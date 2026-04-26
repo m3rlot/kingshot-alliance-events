@@ -144,7 +144,7 @@ select.finp option{background:var(--panel)}
 /* STATS TAB */
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
 @media(max-width:400px){.stat-grid{grid-template-columns:1fr}}
-.stat-card{background:var(--deep);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
+.stat-card-old{background:var(--deep);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
 .stat-big{font-size:28px;font-weight:800;line-height:1;margin-bottom:4px}
 .stat-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.7px;text-transform:uppercase}
 .stat-sub{font-size:11px;color:var(--muted);margin-top:4px}
@@ -384,12 +384,12 @@ body.light .alliance-badge{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.1
 .p23-meta{font-size:8.5px;color:var(--muted);white-space:nowrap}
 .v2{color:#94a3b8}.v3{color:#cd7f32}
 .tbl-dense{border-top:1px solid var(--border)}
-.tbl-dense-row{display:grid;grid-template-columns:26px 1fr auto auto;gap:6px;align-items:center;padding:7px 12px;border-bottom:1px solid rgba(255,255,255,.03)}
+.tbl-dense-row{display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid rgba(255,255,255,.04)}
 .tbl-dense-row:last-child{border-bottom:none}
-.tbl-dense-rk{font-size:10px;font-weight:900;color:var(--muted);text-align:center}
-.tbl-dense-nm{font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tbl-dense-mt{font-size:9px;color:var(--muted);white-space:nowrap}
-.tbl-dense-vl{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;color:var(--muted);text-align:right}
+.tbl-dense-rk{font-size:11px;font-weight:900;color:var(--muted);min-width:20px;text-align:right;flex-shrink:0}
+.tbl-dense-nm{font-size:12px;font-weight:700;color:var(--muted);flex:1;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tbl-dense-mt{font-size:10px;color:var(--muted);opacity:.8;white-space:nowrap;flex-shrink:0;text-align:right}
+.tbl-dense-vl{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--muted);flex-shrink:0;text-align:right}
 body.light .tbl-dense-row{border-bottom-color:var(--border)}
 </style>
 </head>
@@ -1643,7 +1643,7 @@ function podiumTable(icon, title, entries) {
     rowsHtml += '<div class="tbl-dense-row">'
       + '<span class="tbl-dense-rk">'+(ri+4)+'</span>'
       + '<span class="tbl-dense-nm">'+rest[ri].name+'</span>'
-      + (rest[ri].meta?'<span class="tbl-dense-mt">'+rest[ri].meta+'</span>':'<span></span>')
+      + (rest[ri].meta?'<span class="tbl-dense-mt">'+rest[ri].meta+'</span>':'')
       + '<span class="tbl-dense-vl">'+rest[ri].val+'</span>'
       + '</div>';
   }
@@ -1651,7 +1651,7 @@ function podiumTable(icon, title, entries) {
   return '<div class="stat-card">'
     + '<div class="stat-card-hdr"><span style="font-size:13px">'+icon+'</span>'
     + '<span class="stat-card-hdr-lbl">'+title+'</span></div>'
-    + '<div style="padding:12px 10px 12px;display:flex;flex-direction:column;gap:6px">'
+    + '<div style="padding:12px 10px 6px;display:flex;flex-direction:column;gap:6px">'
     + first
     + (e2||e3 ? '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">'+second+third+'</div>' : '')
     + '</div>'
@@ -3480,7 +3480,7 @@ function renderStats() {
   var rankEntries=allSorted.slice(0,20).map(function(ps){
     var wrC=ps.wr>=60?'#059669':ps.wr>=40?'#d97706':'#dc2626';
     var wrBadge=ps.wr!==null?'<span style="font-size:9px;font-weight:900;padding:1px 6px;background:var(--panel2);border-radius:10px;color:'+wrC+'">'+ps.wr+'%</span>':'';
-    return{name:esc(ps.name),val:'&#10003;'+ps.pres+' &#127942;'+ps.wins,meta:wrBadge};
+    return{name:esc(ps.name),meta:'&#10003;'+ps.pres+' &#127942;'+ps.wins,val:wrBadge};
   });
   var rankRows=rankEntries.length?podiumTable('&#127942;','Player Rankings',rankEntries):'';
 
@@ -3592,10 +3592,7 @@ function bhRow(idx, mainText, subText, value) {
     + mvpBlock
     + scorersBlock
     + '</div></div>' : '')
-    + (sType !== 'bh' ? '<div class="card"><div class="ch ch-cf"><span style="font-size:18px">&#128203;</span><span class="ch-title">Full Ranking</span><span class="ch-sub">&#10003; presence &nbsp;&#127942; wins &nbsp;% win rate</span></div>'
-    + '<div class="top3-table" style="border-radius:0;border:none;margin:0">'
-    + (rankRows || '<div style="padding:14px;text-align:center;color:var(--muted);font-size:12px">No data yet</div>')
-    + '</div></div>' : '')
+        + (sType !== 'bh' ? '<div class="card"><div class="ch ch-cf"><span style="font-size:18px">&#128203;</span><span class="ch-title">Full Ranking</span><span class="ch-sub">&#10003; presence &nbsp;&#127942; wins &nbsp;% win rate</span></div>'    + '<div class="cb" style="padding:10px">'    + (rankRows || '<div style="padding:14px;text-align:center;color:var(--muted);font-size:12px">No data yet</div>')    + '</div></div>' : '')
     + bhBlock;
 }
 
