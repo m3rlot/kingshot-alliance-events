@@ -340,6 +340,57 @@ body.light .h-mock{background:#e8ecf5}
 .login-info{font-size:11px;color:var(--muted);text-align:center;margin-top:14px;line-height:1.7}
 .alliance-badge{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:0 10px;height:34px;display:none;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--goldtxt);font-family:'Exo 2',sans-serif;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0}
 body.light .alliance-badge{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.12)}
+
+/* Stats dashboard cards */
+.dash-card{background:var(--panel);border-radius:12px;border:1px solid var(--border);overflow:hidden;margin-bottom:10px}
+.dash-top{display:flex;align-items:center;justify-content:space-around;padding:14px 10px;gap:4px}
+.dash-main{text-align:center;flex:1}
+.dash-big{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:32px;line-height:1}
+.dash-lbl{font-size:8px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.dash-div{width:1px;background:var(--border);align-self:stretch;flex-shrink:0}
+.dash-sub{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border)}
+.dash-sub-item{text-align:center;padding:10px 8px}
+.dash-sub-item:first-child{border-right:1px solid var(--border)}
+.dash-sub-val{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;line-height:1}
+.dash-sub-lbl{font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-top:3px}
+.streak-pill{display:inline-block;font-weight:900;font-size:14px;padding:3px 10px;border-radius:20px;border:1px solid;white-space:nowrap}
+
+.stat-card{background:var(--panel);border-radius:10px;overflow:hidden;margin-bottom:10px;border:1px solid var(--border);box-shadow:var(--shadow)}
+.stat-card-hdr{padding:8px 14px;background:var(--panel2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.stat-card-hdr-lbl{font-size:10px;font-weight:900;letter-spacing:1px;color:var(--goldtxt);text-transform:uppercase}
+.stat-row{display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border);border-left:3px solid transparent}
+.stat-row:last-child{border-bottom:none}
+.stat-row-top{padding:11px 14px}
+.stat-rank{width:26px;text-align:center;flex-shrink:0;line-height:1}
+.stat-name{flex:1;font-weight:700;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.stat-name-top{font-weight:800;font-size:13px}
+.stat-sub{font-size:9px;color:var(--muted);margin-top:1px}
+.stat-val{font-weight:900;flex-shrink:0;font-size:13px}
+.stat-val-top{font-size:15px}
+
+/* Podium — 1st on top, 2nd+3rd side by side */
+.pod-1st{background:linear-gradient(135deg,rgba(245,158,11,.18),rgba(245,158,11,.05));border:1px solid rgba(245,158,11,.35);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:14px;box-shadow:0 0 20px rgba(245,158,11,.1)}
+.p1-crown{font-size:26px;flex-shrink:0}
+.p1-info{flex:1;min-width:0}
+.p1-name{font-weight:900;font-size:15px;color:var(--text)}
+.p1-meta{font-size:10px;color:var(--muted);margin-top:2px}
+.p1-val{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:#f59e0b;flex-shrink:0;text-shadow:0 0 14px rgba(245,158,11,.4)}
+.pod-2nd{background:linear-gradient(135deg,rgba(148,163,184,.13),rgba(148,163,184,.03));border:1px solid rgba(148,163,184,.22);border-radius:10px;padding:11px 12px;display:flex;flex-direction:column;gap:3px}
+.pod-3rd{background:linear-gradient(135deg,rgba(205,127,50,.11),rgba(205,127,50,.03));border:1px solid rgba(205,127,50,.2);border-radius:10px;padding:11px 12px;display:flex;flex-direction:column;gap:3px}
+.p23-top{display:flex;align-items:center;gap:7px}
+.p23-med{font-size:18px;flex-shrink:0}
+.p23-name{font-weight:800;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p23-val{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px}
+.p23-meta{font-size:8.5px;color:var(--muted);white-space:nowrap}
+.v2{color:#94a3b8}.v3{color:#cd7f32}
+.tbl-dense{border-top:1px solid var(--border)}
+.tbl-dense-row{display:grid;grid-template-columns:26px 1fr auto auto;gap:6px;align-items:center;padding:7px 12px;border-bottom:1px solid rgba(255,255,255,.03)}
+.tbl-dense-row:last-child{border-bottom:none}
+.tbl-dense-rk{font-size:10px;font-weight:900;color:var(--muted);text-align:center}
+.tbl-dense-nm{font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tbl-dense-mt{font-size:9px;color:var(--muted);white-space:nowrap}
+.tbl-dense-vl{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;color:var(--muted);text-align:right}
+body.light .tbl-dense-row{border-bottom-color:var(--border)}
 </style>
 </head>
 <body>
@@ -357,6 +408,10 @@ body.light .alliance-badge{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.1
       <button class="tb-btn" id="theme-btn" onclick="toggleTheme()" title="Light / Dark">&#9788;</button>
       <div class="sync-dot" id="sync-dot" title="Saved"></div>
     </div>
+  </div>
+  <div id="demo-banner" style="display:none;background:linear-gradient(90deg,#92400e,#78350f);padding:5px 14px;font-size:11px;font-weight:700;color:#fde68a;display:none;align-items:center;gap:8px;flex-shrink:0">
+    <span>&#127918; DEMO MODE — changes are not saved</span>
+    <button onclick="exitDemoMode()" style="margin-left:auto;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:6px;color:#fde68a;font-size:10px;font-weight:800;padding:2px 10px;cursor:pointer">Exit Demo</button>
   </div>
   <div id="nav">
     <button class="nb on" onclick="goTab('bh')">&#128059; <span>Bear Hunt</span></button>
@@ -403,25 +458,27 @@ body.light .alliance-badge{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.1
 
 <!-- BEAR HUNT MODAL -->
 <div id="bh-modal" class="ov" style="display:none">
-  <div class="modal" style="max-width:480px;max-height:85vh;overflow-y:auto">
-    <div style="display:flex;align-items:center;margin-bottom:16px">
+  <div class="modal" style="max-width:480px;max-height:88vh;display:flex;flex-direction:column">
+    <div style="display:flex;align-items:center;margin-bottom:16px;flex-shrink:0">
       <div class="modal-ttl" id="bh-m-ttl">New Bear Hunt</div>
       <button class="close-btn" onclick="closeBHModal()">&#215;</button>
     </div>
     <input type="hidden" id="bh-m-eid">
-    <div class="fld"><label class="flbl">Date</label><input class="finp" id="bh-m-date" type="date"></div>
-    <div class="fld">
-      <label class="flbl">Trap</label>
-      <select class="finp" id="bh-m-trap" style="width:100%">
-        <option value="1">Trap 1</option>
-        <option value="2">Trap 2</option>
-      </select>
+    <div style="flex-shrink:0">
+      <div class="fld"><label class="flbl">Date</label><input class="finp" id="bh-m-date" type="date"></div>
+      <div class="fld">
+        <label class="flbl">Trap</label>
+        <select class="finp" id="bh-m-trap" style="width:100%">
+          <option value="1">Trap 1</option>
+          <option value="2">Trap 2</option>
+        </select>
+      </div>
+      <div class="fld"><label class="flbl">Total Alliance Damage</label><input class="finp" id="bh-m-damage" type="number" min="0" placeholder="ex: 980000000"></div>
+      <div class="fld" style="margin-bottom:12px"><label class="flbl">Total Rallies</label><input class="finp" id="bh-m-rallies" type="number" min="0" placeholder="ex: 38"></div>
+      <div class="flbl" style="margin-bottom:8px">Individual Damage Points</div>
     </div>
-    <div class="fld"><label class="flbl">Total Alliance Damage</label><input class="finp" id="bh-m-damage" type="number" min="0" placeholder="ex: 980000000"></div>
-    <div class="fld" style="margin-bottom:12px"><label class="flbl">Total Rallies</label><input class="finp" id="bh-m-rallies" type="number" min="0" placeholder="ex: 38"></div>
-    <div class="flbl" style="margin-bottom:8px">Individual Damage Points</div>
-    <div id="bh-m-rows" style="max-height:280px;overflow-y:auto;border:1px solid var(--border);border-radius:8px;padding:6px 10px"></div>
-    <div style="display:flex;gap:8px;margin-top:16px">
+    <div id="bh-m-rows" style="flex:1;overflow-y:scroll;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:8px;padding:6px 10px;min-height:120px"></div>
+    <div style="display:flex;gap:8px;margin-top:16px;flex-shrink:0">
       <button class="btn bghost" style="flex:1" onclick="closeBHModal()">Cancel</button>
       <button class="btn bgold"  style="flex:1" onclick="saveBHEvent()">Save</button>
     </div>
@@ -577,6 +634,8 @@ body.light .alliance-badge{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.1
     </div>
   </div>
 </div>
+
+
 
 <!-- CONFIRM MODAL -->
 <div id="cm" class="ov" style="display:none">
@@ -769,7 +828,7 @@ body.light .alliance-badge{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.1
 </div>
 
 <script>
-var VERSION = '3.0';
+var VERSION = '3.1';
 
 // =============================================================================
 // FULLSCREEN
@@ -859,7 +918,9 @@ var APP = {
   rosterActFilter: 'all',
   confirmCb: null,
   dataKey: null,
-  readOnly: false
+  readOnly: false,
+  isDemoMode: false,
+  REAL_S: null
 };
 
 function askConfirm(msg, cb) {
@@ -895,62 +956,7 @@ var DEFAULT_SCHEDULE = {
   trialliance: { startDate:'2026-04-18', intervalWeeks:4,  slotA:'14:00 UTC', slotB:'19:00 UTC' }
 };
 
-var DEMO = {
-  season: 'S1 2026',
-  rules: {ptsPresent:3,ptsNoshow:0,window:5,minEvents:1,starterMin:12,rotationMin:7,autoStreak:2,bhPtsPresent:1,bhPenaltyPts:-1,bhPenaltyWindow:3,inactEvents:3},
-  schedule: {
-    swordland:   {startDate:'2026-04-19', intervalWeeks:2,  slotA:'14:00 UTC', slotB:'19:00 UTC'},
-    trialliance: {startDate:'2026-04-18', intervalWeeks:4,  slotA:'14:00 UTC', slotB:'19:00 UTC'}
-  },
-  swSlots: ['02:00 UTC','12:00 UTC','14:00 UTC','19:00 UTC'],
-  taSlots: ['02:00 UTC','12:00 UTC','14:00 UTC','19:00 UTC','21:00 UTC'],
-  players: [
-    {id:'p1', name:'DragonLord',   swM:'14:00 UTC', swA:'19:00 UTC', taM:'14:00 UTC', taA:null,          r4:false},
-    {id:'p2', name:'IronFist',     swM:'14:00 UTC', swA:null,        taM:'14:00 UTC', taA:null,          r4:true },
-    {id:'p3', name:'SilverWing',   swM:'14:00 UTC', swA:'19:00 UTC', taM:'19:00 UTC', taA:'14:00 UTC',   r4:false},
-    {id:'p4', name:'CrimsonBlade', swM:'19:00 UTC', swA:null,        taM:'19:00 UTC', taA:null,          r4:true },
-    {id:'p5', name:'NightFalcon',  swM:'19:00 UTC', swA:null,        taM:'19:00 UTC', taA:'14:00 UTC',   r4:false},
-    {id:'p6', name:'StormBreaker', swM:'19:00 UTC', swA:'14:00 UTC', taM:'21:00 UTC', taA:'19:00 UTC',   r4:false},
-    {id:'p7', name:'PhoenixRise',  swM:'14:00 UTC', swA:null,        taM:'14:00 UTC', taA:null,          r4:false},
-    {id:'p8', name:'VoidWalker',   swM:'19:00 UTC', swA:'14:00 UTC', taM:'19:00 UTC', taA:null,          r4:false},
-    {id:'p9', name:'AshMantle',    swM:'02:00 UTC', swA:'14:00 UTC', taM:'02:00 UTC', taA:null,          r4:false},
-    {id:'p10',name:'GhostRider',   swM:'12:00 UTC', swA:null,        taM:'12:00 UTC', taA:null,          r4:false}
-  ],
-  events: [
-    {id:'e1',type:'swordland',  name:'Swordland #1',   date:'2026-03-08',slotA:'14:00 UTC',slotB:'19:00 UTC',
-     players:{p1:{lg:'a',st:'present'},p2:{lg:'a',st:'present'},p3:{lg:'a',st:'warned'},
-              p4:{lg:'b',st:'present'},p5:{lg:'b',st:'noshow'},p6:{lg:'b',st:'present'},
-              p7:{lg:'a',st:'present'},p8:{lg:'b',st:'noshow'},p9:{lg:'',st:''},p10:{lg:'',st:''}}},
-    {id:'e2',type:'trialliance',name:'Tri-Alliance #1',date:'2026-03-12',slotA:'14:00 UTC',slotB:'19:00 UTC',
-     players:{p1:{lg:'a',st:'present'},p2:{lg:'a',st:'present'},p3:{lg:'b',st:'present'},
-              p4:{lg:'b',st:'warned'}, p5:{lg:'b',st:'noshow'},p6:{lg:'b',st:'present'},
-              p7:{lg:'a',st:'noshow'},p8:{lg:'b',st:'present'},p9:{lg:'',st:''},p10:{lg:'a',st:'present'}}},
-    {id:'e3',type:'swordland',  name:'Swordland #2',   date:'2026-03-22',slotA:'14:00 UTC',slotB:'19:00 UTC',
-     players:{p1:{lg:'a',st:'present'},p2:{lg:'a',st:'warned'},p3:{lg:'a',st:'present'},
-              p4:{lg:'b',st:'present'},p5:{lg:'b',st:'present'},p6:{lg:'b',st:'noshow'},
-              p7:{lg:'a',st:'present'},p8:{lg:'b',st:'present'},p9:{lg:'',st:''},p10:{lg:'',st:''}}},
-    {id:'e4',type:'trialliance',name:'Tri-Alliance #2',date:'2026-03-26',slotA:'14:00 UTC',slotB:'19:00 UTC',
-     players:{p1:{lg:'a',st:'present'},p2:{lg:'a',st:'present'},p3:{lg:'a',st:'present'},
-              p4:{lg:'b',st:'present'},p5:{lg:'b',st:'warned'},p6:{lg:'b',st:'present'},
-              p7:{lg:'a',st:'noshow'},p8:{lg:'b',st:'warned'},p9:{lg:'',st:''},p10:{lg:'a',st:'present'}}},
-    {id:'e5',type:'swordland',  name:'Swordland #3',   date:'2026-04-05',slotA:'14:00 UTC',slotB:'19:00 UTC',
-     players:{p1:{lg:'a',st:'present'},p2:{lg:'a',st:'present'},p3:{lg:'a',st:'noshow'},
-              p4:{lg:'b',st:'present'},p5:{lg:'b',st:'noshow'},p6:{lg:'b',st:'present'},
-              p7:{lg:'a',st:'present'},p8:{lg:'b',st:'present'},p9:{lg:'',st:''},p10:{lg:'',st:''}}},
-    {id:'bh1',type:'bearhunt',name:'BH #1',date:'2026-03-14',trapNumber:1,
-     totalAllianceDamage:980000000,totalRallies:38,penaltyApplied:true,
-     participants:{p1:{dp:48200000},p2:{dp:41500000},p3:{dp:38000000},p4:{dp:52100000},p5:{dp:29000000},p6:{dp:33000000},p7:{dp:0},p8:{dp:44000000},p9:{dp:0},p10:{dp:0}}},
-    {id:'bh2',type:'bearhunt',name:'BH #2',date:'2026-03-14',trapNumber:2,
-     totalAllianceDamage:1050000000,totalRallies:41,penaltyApplied:true,
-     participants:{p1:{dp:51000000},p2:{dp:38000000},p3:{dp:42000000},p4:{dp:0},p5:{dp:31000000},p6:{dp:36000000},p7:{dp:45000000},p8:{dp:0},p9:{dp:28000000},p10:{dp:22000000}}},
-    {id:'bh3',type:'bearhunt',name:'BH #3',date:'2026-03-28',trapNumber:1,
-     totalAllianceDamage:1120000000,totalRallies:43,penaltyApplied:true,
-     participants:{p1:{dp:55000000},p2:{dp:44000000},p3:{dp:0},p4:{dp:58000000},p5:{dp:33000000},p6:{dp:0},p7:{dp:47000000},p8:{dp:39000000},p9:{dp:0},p10:{dp:25000000}}},
-    {id:'bh4',type:'bearhunt',name:'BH #4',date:'2026-03-28',trapNumber:2,
-     totalAllianceDamage:890000000,totalRallies:35,penaltyApplied:true,
-     participants:{p1:{dp:0},p2:{dp:35000000},p3:{dp:38000000},p4:{dp:49000000},p5:{dp:0},p6:{dp:40000000},p7:{dp:0},p8:{dp:42000000},p9:{dp:31000000},p10:{dp:18000000}}}
-  ]
-};
+var DEMO = {"players":[{"id":"p_ironfist","name":"IronFist","swM":"19:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":true},{"id":"p_dragonlord","name":"DragonLord","swM":"14:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":true},{"id":"p_crimsonblade","name":"CrimsonBlade","swM":"19:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":true},{"id":"p_voidwalker","name":"VoidWalker","swM":"14:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":true},{"id":"p_stormbreaker","name":"StormBreaker","swM":"14:00 UTC","swA":"02:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":true},{"id":"p_silverwing","name":"SilverWing","swM":"14:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_phoenixrise","name":"PhoenixRise","swM":"19:00 UTC","swA":"02:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_ghostrider","name":"GhostRider","swM":"19:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_nightfalcon","name":"NightFalcon","swM":"19:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_ashmantle","name":"AshMantle","swM":"14:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_bladerunner","name":"BladeRunner","swM":"19:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_thunderking","name":"ThunderKing","swM":"19:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_shadowwolf","name":"ShadowWolf","swM":"19:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_cobaltrage","name":"CobaltRage","swM":"14:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_emberstrike","name":"EmberStrike","swM":"14:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_warlordx","name":"WarlordX","swM":"14:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_titanslayer","name":"TitanSlayer","swM":"19:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_novaburst","name":"NovaBurst","swM":"14:00 UTC","swA":"02:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_crypticforce","name":"CrypticForce","swM":"19:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_omegaprime","name":"OmegaPrime","swM":"19:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_zeroghost","name":"ZeroGhost","swM":"19:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_icebreaker","name":"IceBreaker","swM":"19:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_flamehunter","name":"FlameHunter","swM":"14:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_dawncrusher","name":"DawnCrusher","swM":"14:00 UTC","swA":"02:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_steelvenom","name":"SteelVenom","swM":"19:00 UTC","swA":"02:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_lunarblade","name":"LunarBlade","swM":"14:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_solarfist","name":"SolarFist","swM":"14:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_nightraider","name":"NightRaider","swM":"14:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_redphoenix","name":"RedPhoenix","swM":"14:00 UTC","swA":"02:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_arcaneknight","name":"ArcaneKnight","swM":"14:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_swiftarrow","name":"SwiftArrow","swM":"14:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_darkmatter","name":"DarkMatter","swM":"14:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_rubyfang","name":"RubyFang","swM":"19:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_celestialx","name":"CelestialX","swM":"19:00 UTC","swA":"02:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_viperclash","name":"ViperClash","swM":"19:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_midnightaxe","name":"MidnightAxe","swM":"19:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_glacierpeak","name":"GlacierPeak","swM":"14:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_thornward","name":"ThornWard","swM":"14:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_opalcrest","name":"OpalCrest","swM":"19:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_bronzefire","name":"BronzeFire","swM":"19:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_silentstorm","name":"SilentStorm","swM":"19:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_runekeeper","name":"RuneKeeper","swM":"14:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_pearldagger","name":"PearlDagger","swM":"14:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_coralwing","name":"CoralWing","swM":"19:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_obsidianrift","name":"ObsidianRift","swM":"19:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_marbleguard","name":"MarbleGuard","swM":"14:00 UTC","swA":"02:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_twilightbow","name":"TwilightBow","swM":"19:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_goldenscale","name":"GoldenScale","swM":"14:00 UTC","swA":"02:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_ivoryslash","name":"IvorySlash","swM":"14:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_hollowecho","name":"HollowEcho","swM":"19:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_willowshade","name":"WillowShade","swM":"19:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_sapphireclaw","name":"SapphireClaw","swM":"14:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_emberpath","name":"EmberPath","swM":"14:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_crimsondusk","name":"CrimsonDusk","swM":"14:00 UTC","swA":"02:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_violetstrike","name":"VioletStrike","swM":"14:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_newrecruit","name":"NewRecruit","swM":"14:00 UTC","swA":"02:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_ghostwalker","name":"GhostWalker","swM":"14:00 UTC","swA":"02:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_silverspark","name":"SilverSpark","swM":"14:00 UTC","swA":"02:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_tinderfox","name":"TinderFox","swM":"19:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_coppermask","name":"CopperMask","swM":"14:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_bronzewing","name":"BronzeWing","swM":"19:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_rookiex","name":"RookieX","swM":"14:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_timberwolf","name":"TimberWolf","swM":"19:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_silentblade","name":"SilentBlade","swM":"14:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_oakshield","name":"OakShield","swM":"14:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_ironspark","name":"IronSpark","swM":"19:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_graymist","name":"GrayMist","swM":"19:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_dustcloud","name":"DustCloud","swM":"19:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_pineshadow","name":"PineShadow","swM":"14:00 UTC","swA":"02:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_stoneguard","name":"StoneGuard","swM":"14:00 UTC","swA":"02:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_lonerwolf","name":"LonerWolf","swM":"14:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_quickstep","name":"QuickStep","swM":"14:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_stillwater","name":"StillWater","swM":"14:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_nightmist","name":"NightMist","swM":"14:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_palemoon","name":"PaleMoon","swM":"14:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_highnoon","name":"HighNoon","swM":"14:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_lowrider","name":"LowRider","swM":"14:00 UTC","swA":"21:00 UTC","taM":"14:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_softbreeze","name":"SoftBreeze","swM":"14:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_calmriver","name":"CalmRiver","swM":"14:00 UTC","swA":"02:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false},{"id":"p_dimlight","name":"DimLight","swM":"14:00 UTC","swA":"21:00 UTC","taM":"19:00 UTC","taA":"02:00 UTC","r4":false}],"events":[{"id":"ev1001","type":"swordland","name":"Swordland #1","date":"2026-01-11","slotA":"14:00 UTC","slotB":"19:00 UTC","locked":true,"r1":"win","r2":"loss","score1":287340,"score2":145890,"mvp1":"VoidWalker","mvp2":"ShadowWolf","players":{"p_silverwing":{"lg":"a","st":"present","score":30654},"p_stormbreaker":{"lg":"a","st":"present","score":28557},"p_glacierpeak":{"lg":"a","st":"present","score":41516},"p_opalcrest":{"lg":"a","st":"present","score":20457},"p_quickstep":{"lg":"a","st":"present","score":36577},"p_icebreaker":{"lg":"a","st":"present","score":43287},"p_arcaneknight":{"lg":"a","st":"present","score":20912},"p_redphoenix":{"lg":"a","st":"present","score":12585},"p_thornward":{"lg":"a","st":"noshow","score":0},"p_steelvenom":{"lg":"a","st":"present","score":28572},"p_titanslayer":{"lg":"a","st":"present","score":16167},"p_lunarblade":{"lg":"a","st":"present","score":27681},"p_silverspark":{"lg":"a","st":"present","score":34764},"p_dawncrusher":{"lg":"a","st":"present","score":27376},"p_phoenixrise":{"lg":"a","st":"present","score":20572},"p_crimsondusk":{"lg":"a","st":"present","score":32847},"p_goldenscale":{"lg":"a","st":"present","score":19405},"p_ashmantle":{"lg":"a","st":"present","score":27723},"p_willowshade":{"lg":"a","st":"present","score":8026},"p_cobaltrage":{"lg":"a","st":"present","score":21774},"p_obsidianrift":{"lg":"a","st":"present","score":29118},"p_oakshield":{"lg":"a","st":"present","score":36977},"p_ironfist":{"lg":"a","st":"present","score":41500},"p_ivoryslash":{"lg":"a","st":"present","score":19120},"p_nightfalcon":{"lg":"as","st":"present","score":15794},"p_viperclash":{"lg":"as","st":"present","score":6389},"p_bladerunner":{"lg":"as","st":"present","score":9649},"p_ironspark":{"lg":"b","st":"present","score":29966},"p_coralwing":{"lg":"b","st":"present","score":23392},"p_tinderfox":{"lg":"b","st":"noshow","score":0},"p_hollowecho":{"lg":"b","st":"present","score":21050},"p_novaburst":{"lg":"b","st":"present","score":11028},"p_runekeeper":{"lg":"b","st":"present","score":39138},"p_crimsonblade":{"lg":"b","st":"present","score":12772},"p_darkmatter":{"lg":"b","st":"present","score":20742},"p_ghostrider":{"lg":"b","st":"present","score":33164},"p_calmriver":{"lg":"b","st":"present","score":23989},"p_flamehunter":{"lg":"b","st":"present","score":8363},"p_crypticforce":{"lg":"b","st":"present","score":14985},"p_stillwater":{"lg":"b","st":"noshow","score":0},"p_solarfist":{"lg":"b","st":"present","score":41944},"p_nightmist":{"lg":"b","st":"present","score":44530},"p_dragonlord":{"lg":"b","st":"present","score":15953},"p_midnightaxe":{"lg":"b","st":"present","score":38450},"p_shadowwolf":{"lg":"b","st":"present","score":44629},"p_thunderking":{"lg":"b","st":"present","score":37004}}},{"id":"ev1002","type":"swordland","name":"Swordland #2","date":"2026-01-25","slotA":"14:00 UTC","slotB":"19:00 UTC","locked":true,"r1":"win","r2":"win","score1":312890,"score2":267300,"mvp1":"GhostRider","mvp2":"GhostRider","players":{"p_stormbreaker":{"lg":"a","st":"present","score":38129},"p_lunarblade":{"lg":"a","st":"present","score":36540},"p_swiftarrow":{"lg":"a","st":"present","score":42193},"p_coppermask":{"lg":"a","st":"noshow","score":0},"p_newrecruit":{"lg":"a","st":"present","score":43269},"p_crypticforce":{"lg":"a","st":"present","score":38465},"p_oakshield":{"lg":"a","st":"present","score":25589},"p_ironfist":{"lg":"a","st":"present","score":24088},"p_softbreeze":{"lg":"a","st":"noshow","score":0},"p_warlordx":{"lg":"a","st":"present","score":37543},"p_tinderfox":{"lg":"a","st":"present","score":38455},"p_silverwing":{"lg":"a","st":"present","score":32837},"p_obsidianrift":{"lg":"a","st":"present","score":40394},"p_solarfist":{"lg":"a","st":"present","score":19917},"p_lowrider":{"lg":"a","st":"present","score":31253},"p_thunderking":{"lg":"a","st":"present","score":30304},"p_runekeeper":{"lg":"a","st":"present","score":26105},"p_thornward":{"lg":"a","st":"present","score":41857},"p_ashmantle":{"lg":"a","st":"present","score":13610},"p_voidwalker":{"lg":"a","st":"present","score":34635},"p_nightmist":{"lg":"a","st":"present","score":23749},"p_icebreaker":{"lg":"a","st":"present","score":40166},"p_redphoenix":{"lg":"a","st":"present","score":9130},"p_highnoon":{"lg":"a","st":"present","score":22522},"p_crimsonblade":{"lg":"as","st":"present","score":11625},"p_pearldagger":{"lg":"as","st":"present","score":16334},"p_dawncrusher":{"lg":"as","st":"present","score":8986},"p_darkmatter":{"lg":"b","st":"present","score":32184},"p_shadowwolf":{"lg":"b","st":"present","score":42794},"p_flamehunter":{"lg":"b","st":"present","score":44070},"p_omegaprime":{"lg":"b","st":"present","score":37736},"p_coralwing":{"lg":"b","st":"present","score":24475},"p_dragonlord":{"lg":"b","st":"present","score":20621},"p_phoenixrise":{"lg":"b","st":"present","score":43118},"p_zeroghost":{"lg":"b","st":"noshow","score":0},"p_crimsondusk":{"lg":"b","st":"present","score":20552},"p_stillwater":{"lg":"b","st":"present","score":39732},"p_bladerunner":{"lg":"b","st":"present","score":42382},"p_steelvenom":{"lg":"b","st":"present","score":14588},"p_novaburst":{"lg":"b","st":"present","score":27414},"p_celestialx":{"lg":"b","st":"present","score":19759},"p_cobaltrage":{"lg":"b","st":"present","score":43005},"p_sapphireclaw":{"lg":"b","st":"present","score":10982},"p_ghostrider":{"lg":"b","st":"noshow","score":0},"p_lonerwolf":{"lg":"b","st":"present","score":16275},"p_viperclash":{"lg":"b","st":"present","score":40170},"p_nightfalcon":{"lg":"b","st":"present","score":8803},"p_titanslayer":{"lg":"b","st":"present","score":38762}}},{"id":"ev1003","type":"swordland","name":"Swordland #3","date":"2026-02-08","slotA":"14:00 UTC","slotB":"19:00 UTC","locked":true,"r1":"loss","r2":"win","score1":198450,"score2":312400,"mvp1":"CrimsonBlade","mvp2":"GhostRider","players":{"p_willowshade":{"lg":"a","st":"present","score":21340},"p_emberpath":{"lg":"a","st":"present","score":16586},"p_twilightbow":{"lg":"a","st":"noshow","score":0},"p_crypticforce":{"lg":"a","st":"present","score":39766},"p_bronzefire":{"lg":"a","st":"present","score":23682},"p_silverwing":{"lg":"a","st":"present","score":28365},"p_celestialx":{"lg":"a","st":"present","score":44192},"p_violetstrike":{"lg":"a","st":"present","score":22725},"p_lonerwolf":{"lg":"a","st":"noshow","score":0},"p_nightfalcon":{"lg":"a","st":"present","score":38241},"p_pearldagger":{"lg":"a","st":"noshow","score":0},"p_nightraider":{"lg":"a","st":"present","score":18090},"p_ironfist":{"lg":"a","st":"present","score":27127},"p_icebreaker":{"lg":"a","st":"present","score":25919},"p_obsidianrift":{"lg":"a","st":"present","score":39621},"p_arcaneknight":{"lg":"a","st":"noshow","score":0},"p_stormbreaker":{"lg":"a","st":"present","score":44127},"p_flamehunter":{"lg":"a","st":"present","score":20491},"p_ashmantle":{"lg":"a","st":"present","score":41308},"p_thornward":{"lg":"a","st":"present","score":16946},"p_voidwalker":{"lg":"a","st":"present","score":26104},"p_titanslayer":{"lg":"a","st":"present","score":35193},"p_crimsonblade":{"lg":"a","st":"present","score":41275},"p_crimsondusk":{"lg":"a","st":"present","score":8168},"p_redphoenix":{"lg":"as","st":"present","score":9634},"p_emberstrike":{"lg":"as","st":"present","score":16895},"p_silentblade":{"lg":"as","st":"present","score":9891},"p_bladerunner":{"lg":"b","st":"present","score":40089},"p_novaburst":{"lg":"b","st":"present","score":37264},"p_sapphireclaw":{"lg":"b","st":"present","score":30618},"p_warlordx":{"lg":"b","st":"present","score":43614},"p_silentstorm":{"lg":"b","st":"present","score":29088},"p_shadowwolf":{"lg":"b","st":"present","score":23650},"p_ghostrider":{"lg":"b","st":"present","score":23306},"p_dawncrusher":{"lg":"b","st":"present","score":34920},"p_steelvenom":{"lg":"b","st":"present","score":38996},"p_swiftarrow":{"lg":"b","st":"present","score":32984},"p_lunarblade":{"lg":"b","st":"present","score":17968},"p_quickstep":{"lg":"b","st":"present","score":10426},"p_phoenixrise":{"lg":"b","st":"present","score":29757},"p_midnightaxe":{"lg":"b","st":"noshow","score":0},"p_ivoryslash":{"lg":"b","st":"noshow","score":0},"p_darkmatter":{"lg":"b","st":"present","score":42468},"p_coralwing":{"lg":"b","st":"noshow","score":0},"p_highnoon":{"lg":"b","st":"present","score":17447},"p_omegaprime":{"lg":"b","st":"present","score":18116},"p_rubyfang":{"lg":"b","st":"present","score":25368},"p_hollowecho":{"lg":"b","st":"present","score":34049},"p_opalcrest":{"lg":"b","st":"present","score":29532},"p_viperclash":{"lg":"b","st":"noshow","score":0},"p_cobaltrage":{"lg":"b","st":"present","score":32904}}},{"id":"ev1004","type":"swordland","name":"Swordland #4","date":"2026-02-22","slotA":"14:00 UTC","slotB":"19:00 UTC","locked":true,"r1":"win","r2":"win","score1":345200,"score2":198760,"mvp1":"GhostRider","mvp2":"ThunderKing","players":{"p_flamehunter":{"lg":"a","st":"present","score":22507},"p_thunderking":{"lg":"a","st":"present","score":38426},"p_titanslayer":{"lg":"a","st":"present","score":27804},"p_tinderfox":{"lg":"a","st":"present","score":15646},"p_twilightbow":{"lg":"a","st":"present","score":10438},"p_opalcrest":{"lg":"a","st":"present","score":40284},"p_crypticforce":{"lg":"a","st":"present","score":23387},"p_rubyfang":{"lg":"a","st":"noshow","score":0},"p_nightfalcon":{"lg":"a","st":"present","score":37729},"p_glacierpeak":{"lg":"a","st":"present","score":43402},"p_ghostrider":{"lg":"a","st":"present","score":18126},"p_lunarblade":{"lg":"a","st":"present","score":14489},"p_dragonlord":{"lg":"a","st":"present","score":34746},"p_hollowecho":{"lg":"a","st":"noshow","score":0},"p_marbleguard":{"lg":"a","st":"present","score":32283},"p_ironfist":{"lg":"a","st":"present","score":37143},"p_timberwolf":{"lg":"a","st":"noshow","score":0},"p_redphoenix":{"lg":"a","st":"present","score":14511},"p_violetstrike":{"lg":"a","st":"noshow","score":0},"p_obsidianrift":{"lg":"a","st":"present","score":31506},"p_sapphireclaw":{"lg":"a","st":"present","score":26080},"p_steelvenom":{"lg":"a","st":"present","score":16005},"p_ashmantle":{"lg":"a","st":"present","score":37800},"p_phoenixrise":{"lg":"a","st":"present","score":21900},"p_crimsonblade":{"lg":"as","st":"present","score":15513},"p_novaburst":{"lg":"as","st":"present","score":15477},"p_voidwalker":{"lg":"as","st":"present","score":14783},"p_arcaneknight":{"lg":"b","st":"noshow","score":0},"p_ivoryslash":{"lg":"b","st":"present","score":29856},"p_darkmatter":{"lg":"b","st":"present","score":16252},"p_goldenscale":{"lg":"b","st":"present","score":21448},"p_dimlight":{"lg":"b","st":"present","score":44320},"p_thornward":{"lg":"b","st":"present","score":22152},"p_omegaprime":{"lg":"b","st":"present","score":23269},"p_shadowwolf":{"lg":"b","st":"present","score":17670},"p_zeroghost":{"lg":"b","st":"present","score":8185},"p_bronzefire":{"lg":"b","st":"present","score":17482},"p_runekeeper":{"lg":"b","st":"noshow","score":0},"p_solarfist":{"lg":"b","st":"present","score":19435},"p_pearldagger":{"lg":"b","st":"present","score":9689},"p_bladerunner":{"lg":"b","st":"present","score":31477},"p_warlordx":{"lg":"b","st":"present","score":23593},"p_emberstrike":{"lg":"b","st":"present","score":9034},"p_swiftarrow":{"lg":"b","st":"present","score":11434},"p_dawncrusher":{"lg":"b","st":"present","score":35588},"p_icebreaker":{"lg":"b","st":"present","score":12165}}},{"id":"ev1005","type":"swordland","name":"Swordland #5","date":"2026-03-08","slotA":"14:00 UTC","slotB":"19:00 UTC","locked":true,"r1":"win","r2":"loss","score1":290100,"score2":123450,"mvp1":"CrimsonBlade","mvp2":"SilverWing","players":{"p_goldenscale":{"lg":"a","st":"present","score":35788},"p_voidwalker":{"lg":"a","st":"present","score":36969},"p_obsidianrift":{"lg":"a","st":"present","score":22127},"p_nightfalcon":{"lg":"a","st":"present","score":15459},"p_bronzefire":{"lg":"a","st":"present","score":15267},"p_redphoenix":{"lg":"a","st":"present","score":39891},"p_ashmantle":{"lg":"a","st":"present","score":28212},"p_arcaneknight":{"lg":"a","st":"present","score":33903},"p_crimsondusk":{"lg":"a","st":"noshow","score":0},"p_opalcrest":{"lg":"a","st":"present","score":21397},"p_silentstorm":{"lg":"a","st":"present","score":21843},"p_hollowecho":{"lg":"a","st":"present","score":24745},"p_runekeeper":{"lg":"a","st":"present","score":15863},"p_midnightaxe":{"lg":"a","st":"present","score":36223},"p_crypticforce":{"lg":"a","st":"present","score":32917},"p_phoenixrise":{"lg":"a","st":"present","score":23080},"p_shadowwolf":{"lg":"a","st":"present","score":31210},"p_novaburst":{"lg":"a","st":"present","score":10772},"p_warlordx":{"lg":"a","st":"present","score":38130},"p_thornward":{"lg":"a","st":"noshow","score":0},"p_ghostrider":{"lg":"a","st":"present","score":36133},"p_omegaprime":{"lg":"a","st":"present","score":35373},"p_glacierpeak":{"lg":"a","st":"present","score":34544},"p_pearldagger":{"lg":"a","st":"present","score":29284},"p_dawncrusher":{"lg":"as","st":"present","score":7815},"p_nightraider":{"lg":"as","st":"present","score":18128},"p_silverwing":{"lg":"as","st":"present","score":15127},"p_crimsonblade":{"lg":"b","st":"present","score":31714},"p_emberstrike":{"lg":"b","st":"present","score":14937},"p_stoneguard":{"lg":"b","st":"present","score":34243},"p_icebreaker":{"lg":"b","st":"present","score":33936},"p_thunderking":{"lg":"b","st":"present","score":30250},"p_lonerwolf":{"lg":"b","st":"present","score":19018},"p_ironfist":{"lg":"b","st":"present","score":15472},"p_solarfist":{"lg":"b","st":"present","score":20707},"p_steelvenom":{"lg":"b","st":"present","score":30896},"p_flamehunter":{"lg":"b","st":"present","score":17679},"p_violetstrike":{"lg":"b","st":"present","score":17597},"p_cobaltrage":{"lg":"b","st":"present","score":19370},"p_dustcloud":{"lg":"b","st":"present","score":12938},"p_zeroghost":{"lg":"b","st":"present","score":40382},"p_willowshade":{"lg":"b","st":"present","score":44944},"p_dragonlord":{"lg":"b","st":"present","score":37419},"p_marbleguard":{"lg":"b","st":"present","score":44994},"p_silverspark":{"lg":"b","st":"present","score":29181}}},{"id":"ev1006","type":"swordland","name":"Swordland #6","date":"2026-03-22","slotA":"14:00 UTC","slotB":"19:00 UTC","locked":true,"r1":"loss","r2":"win","score1":175320,"score2":287900,"mvp1":"GhostRider","mvp2":"StormBreaker","players":{"p_ivoryslash":{"lg":"a","st":"noshow","score":0},"p_dawncrusher":{"lg":"a","st":"present","score":24384},"p_ironfist":{"lg":"a","st":"present","score":39495},"p_bronzefire":{"lg":"a","st":"noshow","score":0},"p_ironspark":{"lg":"a","st":"present","score":14723},"p_emberpath":{"lg":"a","st":"present","score":41810},"p_crypticforce":{"lg":"a","st":"present","score":26681},"p_obsidianrift":{"lg":"a","st":"present","score":18506},"p_midnightaxe":{"lg":"a","st":"present","score":41643},"p_cobaltrage":{"lg":"a","st":"present","score":36670},"p_lonerwolf":{"lg":"a","st":"present","score":22551},"p_nightmist":{"lg":"a","st":"noshow","score":0},"p_titanslayer":{"lg":"a","st":"present","score":9747},"p_coppermask":{"lg":"a","st":"present","score":33982},"p_voidwalker":{"lg":"a","st":"present","score":23451},"p_omegaprime":{"lg":"a","st":"present","score":13348},"p_rookiex":{"lg":"a","st":"present","score":9847},"p_thornward":{"lg":"a","st":"present","score":14493},"p_ghostrider":{"lg":"a","st":"present","score":29973},"p_thunderking":{"lg":"a","st":"present","score":17017},"p_emberstrike":{"lg":"a","st":"present","score":38962},"p_dragonlord":{"lg":"a","st":"present","score":17095},"p_warlordx":{"lg":"a","st":"present","score":38743},"p_nightraider":{"lg":"a","st":"present","score":8344},"p_pearldagger":{"lg":"as","st":"present","score":19841},"p_swiftarrow":{"lg":"as","st":"present","score":6298},"p_flamehunter":{"lg":"as","st":"present","score":5311},"p_crimsondusk":{"lg":"b","st":"present","score":17798},"p_solarfist":{"lg":"b","st":"present","score":42588},"p_rubyfang":{"lg":"b","st":"present","score":26881},"p_silverwing":{"lg":"b","st":"present","score":15985},"p_bladerunner":{"lg":"b","st":"present","score":35513},"p_calmriver":{"lg":"b","st":"present","score":37957},"p_redphoenix":{"lg":"b","st":"present","score":40756},"p_nightfalcon":{"lg":"b","st":"present","score":9077},"p_steelvenom":{"lg":"b","st":"present","score":23855},"p_crimsonblade":{"lg":"b","st":"present","score":27088},"p_twilightbow":{"lg":"b","st":"present","score":31122},"p_goldenscale":{"lg":"b","st":"present","score":35300},"p_marbleguard":{"lg":"b","st":"present","score":13610},"p_phoenixrise":{"lg":"b","st":"present","score":31632},"p_icebreaker":{"lg":"b","st":"present","score":42475},"p_stormbreaker":{"lg":"b","st":"present","score":41267},"p_ashmantle":{"lg":"b","st":"present","score":33588}}},{"id":"ev1007","type":"swordland","name":"Swordland #7","date":"2026-04-05","slotA":"14:00 UTC","slotB":"19:00 UTC","locked":true,"r1":"win","r2":"win","score1":328760,"score2":345100,"mvp1":"VoidWalker","mvp2":"ShadowWolf","players":{"p_sapphireclaw":{"lg":"a","st":"noshow","score":0},"p_swiftarrow":{"lg":"a","st":"present","score":13753},"p_redphoenix":{"lg":"a","st":"present","score":28944},"p_flamehunter":{"lg":"a","st":"present","score":12255},"p_ghostrider":{"lg":"a","st":"present","score":27029},"p_dawncrusher":{"lg":"a","st":"present","score":18322},"p_crimsonblade":{"lg":"a","st":"present","score":19409},"p_warlordx":{"lg":"a","st":"present","score":41341},"p_emberstrike":{"lg":"a","st":"present","score":21171},"p_ivoryslash":{"lg":"a","st":"present","score":23514},"p_zeroghost":{"lg":"a","st":"present","score":9722},"p_ghostwalker":{"lg":"a","st":"present","score":32176},"p_celestialx":{"lg":"a","st":"present","score":44152},"p_opalcrest":{"lg":"a","st":"present","score":13650},"p_omegaprime":{"lg":"a","st":"present","score":34093},"p_solarfist":{"lg":"a","st":"noshow","score":0},"p_coralwing":{"lg":"a","st":"present","score":42451},"p_crypticforce":{"lg":"a","st":"present","score":34832},"p_bronzefire":{"lg":"a","st":"noshow","score":0},"p_viperclash":{"lg":"a","st":"present","score":28776},"p_lowrider":{"lg":"a","st":"present","score":37489},"p_phoenixrise":{"lg":"a","st":"present","score":41905},"p_ironfist":{"lg":"a","st":"present","score":44130},"p_stormbreaker":{"lg":"a","st":"present","score":19925},"p_nightfalcon":{"lg":"as","st":"present","score":17579},"p_thornward":{"lg":"as","st":"present","score":7114},"p_icebreaker":{"lg":"as","st":"present","score":12088},"p_thunderking":{"lg":"b","st":"present","score":11631},"p_cobaltrage":{"lg":"b","st":"present","score":41954},"p_shadowwolf":{"lg":"b","st":"present","score":18790},"p_novaburst":{"lg":"b","st":"present","score":22776},"p_ashmantle":{"lg":"b","st":"present","score":42006},"p_dimlight":{"lg":"b","st":"noshow","score":0},"p_violetstrike":{"lg":"b","st":"noshow","score":0},"p_marbleguard":{"lg":"b","st":"present","score":44099},"p_lonerwolf":{"lg":"b","st":"present","score":27845},"p_darkmatter":{"lg":"b","st":"present","score":14122},"p_bladerunner":{"lg":"b","st":"present","score":19051},"p_voidwalker":{"lg":"b","st":"present","score":18105},"p_twilightbow":{"lg":"b","st":"present","score":30126},"p_lunarblade":{"lg":"b","st":"present","score":44937},"p_dustcloud":{"lg":"b","st":"present","score":9859},"p_steelvenom":{"lg":"b","st":"present","score":25344},"p_silentblade":{"lg":"b","st":"noshow","score":0},"p_titanslayer":{"lg":"b","st":"present","score":35301},"p_silverwing":{"lg":"b","st":"present","score":9984}}},{"id":"ev1008","type":"swordland","name":"Swordland #8","date":"2026-04-19","slotA":"14:00 UTC","slotB":"19:00 UTC","locked":true,"r1":"win","r2":"loss","score1":301450,"score2":210890,"mvp1":"PhoenixRise","mvp2":"GhostRider","players":{"p_silverwing":{"lg":"a","st":"present","score":36903},"p_marbleguard":{"lg":"a","st":"present","score":17924},"p_solarfist":{"lg":"a","st":"present","score":21362},"p_softbreeze":{"lg":"a","st":"present","score":38907},"p_lunarblade":{"lg":"a","st":"present","score":12081},"p_phoenixrise":{"lg":"a","st":"present","score":41992},"p_swiftarrow":{"lg":"a","st":"present","score":29302},"p_cobaltrage":{"lg":"a","st":"noshow","score":0},"p_ghostrider":{"lg":"a","st":"present","score":32695},"p_warlordx":{"lg":"a","st":"present","score":19349},"p_arcaneknight":{"lg":"a","st":"present","score":42939},"p_omegaprime":{"lg":"a","st":"present","score":31218},"p_voidwalker":{"lg":"a","st":"present","score":25325},"p_crypticforce":{"lg":"a","st":"present","score":20600},"p_steelvenom":{"lg":"a","st":"noshow","score":0},"p_crimsonblade":{"lg":"a","st":"present","score":27562},"p_nightfalcon":{"lg":"a","st":"present","score":27504},"p_coppermask":{"lg":"a","st":"noshow","score":0},"p_novaburst":{"lg":"a","st":"present","score":40047},"p_thornward":{"lg":"a","st":"present","score":30859},"p_palemoon":{"lg":"a","st":"present","score":25921},"p_hollowecho":{"lg":"a","st":"present","score":43598},"p_dustcloud":{"lg":"a","st":"present","score":33856},"p_zeroghost":{"lg":"a","st":"present","score":17599},"p_emberstrike":{"lg":"as","st":"present","score":9758},"p_stormbreaker":{"lg":"as","st":"present","score":5689},"p_bronzefire":{"lg":"as","st":"present","score":9712},"p_twilightbow":{"lg":"b","st":"noshow","score":0},"p_shadowwolf":{"lg":"b","st":"present","score":36991},"p_ironfist":{"lg":"b","st":"present","score":39396},"p_redphoenix":{"lg":"b","st":"present","score":43296},"p_calmriver":{"lg":"b","st":"present","score":44832},"p_oakshield":{"lg":"b","st":"noshow","score":0},"p_celestialx":{"lg":"b","st":"present","score":23681},"p_opalcrest":{"lg":"b","st":"present","score":42802},"p_rookiex":{"lg":"b","st":"present","score":23259},"p_dawncrusher":{"lg":"b","st":"present","score":35086},"p_runekeeper":{"lg":"b","st":"present","score":38959},"p_icebreaker":{"lg":"b","st":"present","score":17009},"p_willowshade":{"lg":"b","st":"present","score":44067},"p_nightraider":{"lg":"b","st":"noshow","score":0},"p_thunderking":{"lg":"b","st":"present","score":39175},"p_emberpath":{"lg":"b","st":"present","score":21071},"p_obsidianrift":{"lg":"b","st":"present","score":26824},"p_flamehunter":{"lg":"b","st":"present","score":11877},"p_ashmantle":{"lg":"b","st":"present","score":13862},"p_midnightaxe":{"lg":"b","st":"present","score":23218},"p_coralwing":{"lg":"b","st":"present","score":10444},"p_bladerunner":{"lg":"b","st":"present","score":19473},"p_darkmatter":{"lg":"b","st":"present","score":19520},"p_glacierpeak":{"lg":"b","st":"noshow","score":0},"p_rubyfang":{"lg":"bs","st":"present","score":5595}}},{"id":"ev1009","type":"trialliance","name":"Tri-Alliance #1","date":"2026-01-17","slotA":"14:00 UTC","slotB":"19:00 UTC","locked":true,"r1":"1","r2":"3","score1":1234567,"score2":876543,"mvp1":"DragonLord","mvp2":"SilverWing","players":{"p_bronzefire":{"lg":"a","st":"present","score":250529},"p_stormbreaker":{"lg":"a","st":"present","score":247916},"p_solarfist":{"lg":"a","st":"present","score":332748},"p_silverspark":{"lg":"a","st":"present","score":232331},"p_goldenscale":{"lg":"a","st":"present","score":331678},"p_rubyfang":{"lg":"a","st":"present","score":116766},"p_steelvenom":{"lg":"a","st":"present","score":166753},"p_obsidianrift":{"lg":"a","st":"noshow","score":0},"p_ivoryslash":{"lg":"a","st":"present","score":206428},"p_arcaneknight":{"lg":"a","st":"present","score":335446},"p_icebreaker":{"lg":"a","st":"present","score":248850},"p_novaburst":{"lg":"a","st":"present","score":179767},"p_cobaltrage":{"lg":"a","st":"present","score":131328},"p_silentstorm":{"lg":"a","st":"present","score":109163},"p_nightraider":{"lg":"a","st":"present","score":269802},"p_redphoenix":{"lg":"a","st":"present","score":58202},"p_crimsonblade":{"lg":"a","st":"present","score":85279},"p_phoenixrise":{"lg":"a","st":"present","score":67603},"p_lunarblade":{"lg":"a","st":"present","score":75520},"p_pearldagger":{"lg":"a","st":"present","score":73192},"p_emberstrike":{"lg":"a","st":"present","score":172861},"p_ironfist":{"lg":"a","st":"present","score":79592},"p_lowrider":{"lg":"as","st":"present","score":48367},"p_dawncrusher":{"lg":"as","st":"present","score":96046},"p_dimlight":{"lg":"as","st":"present","score":67914},"p_omegaprime":{"lg":"b","st":"present","score":217197},"p_dragonlord":{"lg":"b","st":"present","score":218120},"p_zeroghost":{"lg":"b","st":"present","score":125109},"p_titanslayer":{"lg":"b","st":"noshow","score":0},"p_coralwing":{"lg":"b","st":"present","score":266824},"p_crypticforce":{"lg":"b","st":"present","score":81959},"p_ashmantle":{"lg":"b","st":"present","score":141820},"p_darkmatter":{"lg":"b","st":"present","score":273976},"p_voidwalker":{"lg":"b","st":"present","score":74580},"p_marbleguard":{"lg":"b","st":"noshow","score":0},"p_glacierpeak":{"lg":"b","st":"noshow","score":0},"p_silverwing":{"lg":"b","st":"present","score":324969},"p_viperclash":{"lg":"b","st":"present","score":268274},"p_runekeeper":{"lg":"b","st":"present","score":207227},"p_warlordx":{"lg":"b","st":"present","score":332029},"p_nightfalcon":{"lg":"b","st":"present","score":168145},"p_swiftarrow":{"lg":"b","st":"present","score":125681},"p_thornward":{"lg":"b","st":"noshow","score":0},"p_flamehunter":{"lg":"b","st":"present","score":344852},"p_thunderking":{"lg":"b","st":"present","score":268370},"p_bladerunner":{"lg":"b","st":"present","score":120303},"p_opalcrest":{"lg":"b","st":"present","score":183691}}},{"id":"ev1010","type":"trialliance","name":"Tri-Alliance #2","date":"2026-02-14","slotA":"14:00 UTC","slotB":"19:00 UTC","locked":true,"r1":"1","r2":"2","score1":987654,"score2":1345678,"mvp1":"DragonLord","mvp2":"AshMantle","players":{"p_titanslayer":{"lg":"a","st":"present","score":66611},"p_viperclash":{"lg":"a","st":"present","score":248843},"p_lunarblade":{"lg":"a","st":"present","score":299563},"p_voidwalker":{"lg":"a","st":"present","score":54954},"p_oakshield":{"lg":"a","st":"noshow","score":0},"p_thunderking":{"lg":"a","st":"present","score":277493},"p_cobaltrage":{"lg":"a","st":"present","score":223681},"p_emberpath":{"lg":"a","st":"present","score":99997},"p_shadowwolf":{"lg":"a","st":"present","score":72309},"p_warlordx":{"lg":"a","st":"present","score":347158},"p_lonerwolf":{"lg":"a","st":"present","score":74411},"p_steelvenom":{"lg":"a","st":"present","score":196996},"p_dawncrusher":{"lg":"a","st":"present","score":345441},"p_darkmatter":{"lg":"a","st":"present","score":144033},"p_timberwolf":{"lg":"a","st":"noshow","score":0},"p_ashmantle":{"lg":"a","st":"present","score":158610},"p_ghostrider":{"lg":"a","st":"present","score":258821},"p_nightfalcon":{"lg":"a","st":"present","score":206907},"p_silverwing":{"lg":"a","st":"present","score":176076},"p_celestialx":{"lg":"a","st":"present","score":254030},"p_swiftarrow":{"lg":"a","st":"present","score":333410},"p_silverspark":{"lg":"a","st":"present","score":123374},"p_phoenixrise":{"lg":"as","st":"present","score":133612},"p_quickstep":{"lg":"as","st":"present","score":120349},"p_solarfist":{"lg":"as","st":"present","score":124917},"p_redphoenix":{"lg":"b","st":"present","score":231329},"p_marbleguard":{"lg":"b","st":"present","score":279160},"p_crypticforce":{"lg":"b","st":"present","score":89855},"p_pearldagger":{"lg":"b","st":"present","score":257986},"p_bladerunner":{"lg":"b","st":"noshow","score":0},"p_sapphireclaw":{"lg":"b","st":"present","score":193302},"p_icebreaker":{"lg":"b","st":"present","score":286218},"p_ivoryslash":{"lg":"b","st":"present","score":236547},"p_twilightbow":{"lg":"b","st":"present","score":246831},"p_rubyfang":{"lg":"b","st":"present","score":249267},"p_obsidianrift":{"lg":"b","st":"present","score":204863},"p_coralwing":{"lg":"b","st":"present","score":88538},"p_calmriver":{"lg":"b","st":"present","score":130856},"p_crimsonblade":{"lg":"b","st":"present","score":130885},"p_opalcrest":{"lg":"b","st":"present","score":216030},"p_glacierpeak":{"lg":"b","st":"present","score":97983},"p_violetstrike":{"lg":"b","st":"present","score":211620},"p_willowshade":{"lg":"b","st":"present","score":191435},"p_hollowecho":{"lg":"b","st":"present","score":95768},"p_stormbreaker":{"lg":"b","st":"present","score":285323},"p_arcaneknight":{"lg":"b","st":"present","score":318666},"p_midnightaxe":{"lg":"b","st":"present","score":63768},"p_runekeeper":{"lg":"bs","st":"present","score":41746},"p_emberstrike":{"lg":"bs","st":"present","score":76388},"p_ironfist":{"lg":"bs","st":"present","score":102642}}},{"id":"ev1011","type":"trialliance","name":"Tri-Alliance #3","date":"2026-03-14","slotA":"14:00 UTC","slotB":"19:00 UTC","locked":true,"r1":"2","r2":"1","score1":1456789,"score2":1567890,"mvp1":"VoidWalker","mvp2":"BladeRunner","players":{"p_emberstrike":{"lg":"a","st":"present","score":158458},"p_voidwalker":{"lg":"a","st":"present","score":232609},"p_sapphireclaw":{"lg":"a","st":"present","score":279725},"p_dustcloud":{"lg":"a","st":"noshow","score":0},"p_pineshadow":{"lg":"a","st":"present","score":85218},"p_goldenscale":{"lg":"a","st":"present","score":110337},"p_bladerunner":{"lg":"a","st":"present","score":229871},"p_viperclash":{"lg":"a","st":"present","score":136168},"p_icebreaker":{"lg":"a","st":"present","score":177880},"p_midnightaxe":{"lg":"a","st":"present","score":339359},"p_newrecruit":{"lg":"a","st":"present","score":343522},"p_dragonlord":{"lg":"a","st":"present","score":292249},"p_runekeeper":{"lg":"a","st":"present","score":262361},"p_opalcrest":{"lg":"a","st":"present","score":147720},"p_rookiex":{"lg":"a","st":"present","score":276562},"p_stormbreaker":{"lg":"a","st":"present","score":153454},"p_redphoenix":{"lg":"a","st":"present","score":275209},"p_flamehunter":{"lg":"a","st":"present","score":162615},"p_cobaltrage":{"lg":"a","st":"present","score":82801},"p_shadowwolf":{"lg":"a","st":"present","score":331484},"p_warlordx":{"lg":"a","st":"present","score":220909},"p_darkmatter":{"lg":"a","st":"present","score":109745},"p_solarfist":{"lg":"as","st":"present","score":64387},"p_calmriver":{"lg":"as","st":"present","score":117910},"p_zeroghost":{"lg":"as","st":"present","score":143067},"p_crypticforce":{"lg":"b","st":"present","score":214314},"p_swiftarrow":{"lg":"b","st":"present","score":255806},"p_lunarblade":{"lg":"b","st":"present","score":232412},"p_novaburst":{"lg":"b","st":"present","score":290050},"p_nightfalcon":{"lg":"b","st":"present","score":205946},"p_ashmantle":{"lg":"b","st":"present","score":94434},"p_bronzefire":{"lg":"b","st":"present","score":214199},"p_ironfist":{"lg":"b","st":"present","score":210107},"p_tinderfox":{"lg":"b","st":"present","score":245719},"p_arcaneknight":{"lg":"b","st":"present","score":317819},"p_dawncrusher":{"lg":"b","st":"present","score":122282},"p_nightraider":{"lg":"b","st":"present","score":271794},"p_twilightbow":{"lg":"b","st":"present","score":331741},"p_crimsonblade":{"lg":"b","st":"present","score":140824},"p_thunderking":{"lg":"b","st":"present","score":306713},"p_steelvenom":{"lg":"b","st":"present","score":148093},"p_titanslayer":{"lg":"b","st":"present","score":286454},"p_ghostrider":{"lg":"b","st":"present","score":238239},"p_silverwing":{"lg":"b","st":"noshow","score":0},"p_crimsondusk":{"lg":"b","st":"present","score":152303},"p_hollowecho":{"lg":"b","st":"noshow","score":0},"p_silentstorm":{"lg":"b","st":"noshow","score":0},"p_ironspark":{"lg":"bs","st":"present","score":96248}}},{"id":"ev1012","type":"trialliance","name":"Tri-Alliance #4","date":"2026-04-11","slotA":"14:00 UTC","slotB":"19:00 UTC","locked":true,"r1":"1","r2":"2","score1":1123456,"score2":987654,"mvp1":"GhostRider","mvp2":"AshMantle","players":{"p_thunderking":{"lg":"a","st":"present","score":136782},"p_dimlight":{"lg":"a","st":"present","score":210174},"p_shadowwolf":{"lg":"a","st":"present","score":172758},"p_twilightbow":{"lg":"a","st":"present","score":97814},"p_nightfalcon":{"lg":"a","st":"present","score":50569},"p_titanslayer":{"lg":"a","st":"present","score":90862},"p_coralwing":{"lg":"a","st":"present","score":168589},"p_ashmantle":{"lg":"a","st":"present","score":283343},"p_lunarblade":{"lg":"a","st":"present","score":230131},"p_obsidianrift":{"lg":"a","st":"noshow","score":0},"p_crimsonblade":{"lg":"a","st":"noshow","score":0},"p_emberpath":{"lg":"a","st":"present","score":119297},"p_phoenixrise":{"lg":"a","st":"present","score":170034},"p_nightraider":{"lg":"a","st":"present","score":103701},"p_ghostrider":{"lg":"a","st":"present","score":242708},"p_omegaprime":{"lg":"a","st":"present","score":121895},"p_crimsondusk":{"lg":"a","st":"present","score":119806},"p_opalcrest":{"lg":"a","st":"present","score":124896},"p_silverspark":{"lg":"a","st":"present","score":345326},"p_emberstrike":{"lg":"a","st":"present","score":136044},"p_voidwalker":{"lg":"a","st":"present","score":161702},"p_hollowecho":{"lg":"a","st":"present","score":129363},"p_dragonlord":{"lg":"as","st":"present","score":83963},"p_icebreaker":{"lg":"as","st":"present","score":110750},"p_celestialx":{"lg":"as","st":"present","score":119989},"p_warlordx":{"lg":"b","st":"present","score":163898},"p_swiftarrow":{"lg":"b","st":"present","score":102672},"p_willowshade":{"lg":"b","st":"present","score":114569},"p_goldenscale":{"lg":"b","st":"present","score":251343},"p_bronzefire":{"lg":"b","st":"present","score":275123},"p_bladerunner":{"lg":"b","st":"present","score":123311},"p_crypticforce":{"lg":"b","st":"present","score":94170},"p_ironspark":{"lg":"b","st":"present","score":199380},"p_novaburst":{"lg":"b","st":"present","score":64063},"p_stillwater":{"lg":"b","st":"noshow","score":0},"p_silentblade":{"lg":"b","st":"noshow","score":0},"p_redphoenix":{"lg":"b","st":"present","score":321449},"p_cobaltrage":{"lg":"b","st":"present","score":148905},"p_solarfist":{"lg":"b","st":"present","score":204949},"p_pearldagger":{"lg":"b","st":"present","score":175483},"p_stormbreaker":{"lg":"b","st":"present","score":109110},"p_flamehunter":{"lg":"b","st":"present","score":87230},"p_ivoryslash":{"lg":"b","st":"present","score":56326},"p_softbreeze":{"lg":"b","st":"noshow","score":0},"p_silverwing":{"lg":"b","st":"present","score":119197},"p_ironfist":{"lg":"b","st":"present","score":347995},"p_marbleguard":{"lg":"b","st":"present","score":336448},"p_zeroghost":{"lg":"bs","st":"present","score":119514},"p_glacierpeak":{"lg":"bs","st":"present","score":52645},"p_darkmatter":{"lg":"bs","st":"present","score":129972}}},{"id":"ev1013","type":"bearhunt","name":"BH #1","date":"2026-01-13","trapNumber":1,"locked":true,"totalAllianceDamage":28926558789,"totalRallies":100,"participants":{"p_crimsondusk":{"dp":559722166},"p_quickstep":{"dp":50392462},"p_dawncrusher":{"dp":2416088091},"p_marbleguard":{"dp":530187039},"p_dragonlord":{"dp":1246457642},"p_emberstrike":{"dp":1681303105},"p_warlordx":{"dp":3075535874},"p_lunarblade":{"dp":1822922016},"p_thornward":{"dp":650773824},"p_pineshadow":{"dp":182077995},"p_bladerunner":{"dp":1057247382},"p_emberpath":{"dp":352872361},"p_zeroghost":{"dp":2001840395},"p_coppermask":{"dp":74971649},"p_ghostrider":{"dp":988550198},"p_solarfist":{"dp":1794167107},"p_violetstrike":{"dp":758087211},"p_flamehunter":{"dp":2574065466},"p_lonerwolf":{"dp":149990053},"p_nightfalcon":{"dp":2769062219},"p_sapphireclaw":{"dp":291163279},"p_ironfist":{"dp":3294390866},"p_rookiex":{"dp":75656256},"p_graymist":{"dp":185674732},"p_obsidianrift":{"dp":343359401}}},{"id":"ev1014","type":"bearhunt","name":"BH #2","date":"2026-01-13","trapNumber":2,"locked":true,"totalAllianceDamage":30261750063,"totalRallies":89,"participants":{"p_shadowwolf":{"dp":2493725910},"p_silentstorm":{"dp":280348617},"p_bronzefire":{"dp":835543236},"p_arcaneknight":{"dp":3238771483},"p_thunderking":{"dp":1067502879},"p_glacierpeak":{"dp":667059305},"p_opalcrest":{"dp":340346956},"p_timberwolf":{"dp":113557928},"p_darkmatter":{"dp":513184748},"p_crimsonblade":{"dp":1920947541},"p_pearldagger":{"dp":538238241},"p_lowrider":{"dp":155482429},"p_cobaltrage":{"dp":2201239832},"p_voidwalker":{"dp":2166047498},"p_runekeeper":{"dp":686145040},"p_ashmantle":{"dp":1968041588},"p_redphoenix":{"dp":1803352579},"p_hollowecho":{"dp":280195016},"p_phoenixrise":{"dp":1670644102},"p_icebreaker":{"dp":1384595923},"p_palemoon":{"dp":79252172},"p_celestialx":{"dp":366870811},"p_omegaprime":{"dp":1253796587},"p_steelvenom":{"dp":1505985174},"p_titanslayer":{"dp":2730874468}}},{"id":"ev1015","type":"bearhunt","name":"BH #3","date":"2026-01-15","trapNumber":1,"locked":true,"totalAllianceDamage":36446109081,"totalRallies":61,"participants":{"p_bladerunner":{"dp":2914097693},"p_zeroghost":{"dp":3128407443},"p_phoenixrise":{"dp":2127372855},"p_arcaneknight":{"dp":1554010571},"p_warlordx":{"dp":2906408413},"p_ironfist":{"dp":963053047},"p_stormbreaker":{"dp":1187652480},"p_pineshadow":{"dp":65077477},"p_nightraider":{"dp":1799109703},"p_ashmantle":{"dp":3384122005},"p_swiftarrow":{"dp":434944315},"p_lowrider":{"dp":55349379},"p_crimsonblade":{"dp":3061079164},"p_cobaltrage":{"dp":2852947074},"p_pearldagger":{"dp":200733897},"p_rubyfang":{"dp":556196659},"p_shadowwolf":{"dp":3437688758},"p_nightmist":{"dp":104080182},"p_silentstorm":{"dp":340112087},"p_opalcrest":{"dp":565887237},"p_nightfalcon":{"dp":1562184337},"p_lunarblade":{"dp":2189803385},"p_dawncrusher":{"dp":1055790920}}},{"id":"ev1016","type":"bearhunt","name":"BH #4","date":"2026-01-15","trapNumber":2,"locked":true,"totalAllianceDamage":32216170261,"totalRallies":102,"participants":{"p_redphoenix":{"dp":1434418273},"p_rookiex":{"dp":88024597},"p_silverwing":{"dp":1276400290},"p_ghostrider":{"dp":3060419271},"p_omegaprime":{"dp":2367189960},"p_violetstrike":{"dp":277880216},"p_willowshade":{"dp":601140044},"p_novaburst":{"dp":2499070000},"p_celestialx":{"dp":829230605},"p_voidwalker":{"dp":1233929868},"p_emberpath":{"dp":561379699},"p_ivoryslash":{"dp":524017866},"p_emberstrike":{"dp":2185570227},"p_coppermask":{"dp":86628464},"p_dragonlord":{"dp":1476474018},"p_thunderking":{"dp":2676335418},"p_crypticforce":{"dp":2892508149},"p_solarfist":{"dp":2162721798},"p_icebreaker":{"dp":1548194762},"p_thornward":{"dp":803418543},"p_marbleguard":{"dp":858965006},"p_steelvenom":{"dp":2332554057},"p_viperclash":{"dp":439699130}}},{"id":"ev1017","type":"bearhunt","name":"BH #5","date":"2026-01-17","trapNumber":1,"locked":true,"totalAllianceDamage":29760749400,"totalRallies":103,"participants":{"p_violetstrike":{"dp":292027526},"p_flamehunter":{"dp":2276572736},"p_runekeeper":{"dp":781376445},"p_lunarblade":{"dp":2578059107},"p_rubyfang":{"dp":833213949},"p_sapphireclaw":{"dp":444289964},"p_crimsondusk":{"dp":794425527},"p_willowshade":{"dp":265480798},"p_pearldagger":{"dp":615652006},"p_highnoon":{"dp":190279611},"p_stormbreaker":{"dp":2598011065},"p_palemoon":{"dp":193751054},"p_thunderking":{"dp":2839355231},"p_swiftarrow":{"dp":814947283},"p_arcaneknight":{"dp":1812074766},"p_ivoryslash":{"dp":711382735},"p_crypticforce":{"dp":2083560032},"p_goldenscale":{"dp":284777341},"p_bronzefire":{"dp":623917958},"p_solarfist":{"dp":949157745},"p_crimsonblade":{"dp":2956509381},"p_shadowwolf":{"dp":3253370912},"p_darkmatter":{"dp":754928450},"p_viperclash":{"dp":813627778}}},{"id":"ev1018","type":"bearhunt","name":"BH #6","date":"2026-01-17","trapNumber":2,"locked":true,"totalAllianceDamage":27191519197,"totalRallies":114,"participants":{"p_ironspark":{"dp":89580179},"p_coppermask":{"dp":82287918},"p_midnightaxe":{"dp":682152746},"p_softbreeze":{"dp":96406845},"p_lowrider":{"dp":94872955},"p_lonerwolf":{"dp":106878831},"p_steelvenom":{"dp":1627752234},"p_stoneguard":{"dp":83872797},"p_pineshadow":{"dp":61455724},"p_titanslayer":{"dp":2618381356},"p_zeroghost":{"dp":1136590217},"p_dragonlord":{"dp":2669999754},"p_nightfalcon":{"dp":1667236691},"p_omegaprime":{"dp":3493916084},"p_coralwing":{"dp":358783057},"p_silentblade":{"dp":119225843},"p_dustcloud":{"dp":135832099},"p_redphoenix":{"dp":1087814151},"p_silverwing":{"dp":1173780031},"p_silentstorm":{"dp":616718295},"p_ironfist":{"dp":3189566051},"p_celestialx":{"dp":626656677},"p_voidwalker":{"dp":3171054709},"p_warlordx":{"dp":2200703953}}},{"id":"ev1019","type":"bearhunt","name":"BH #7","date":"2026-01-19","trapNumber":1,"locked":true,"totalAllianceDamage":32414019209,"totalRallies":111,"participants":{"p_silverspark":{"dp":77464196},"p_swiftarrow":{"dp":207889398},"p_viperclash":{"dp":749233665},"p_lunarblade":{"dp":2407304606},"p_goldenscale":{"dp":802859986},"p_willowshade":{"dp":895078308},"p_crimsonblade":{"dp":3350233647},"p_omegaprime":{"dp":3415850281},"p_icebreaker":{"dp":2014087964},"p_emberstrike":{"dp":2081944343},"p_phoenixrise":{"dp":1264305421},"p_glacierpeak":{"dp":717262695},"p_highnoon":{"dp":67136128},"p_silentstorm":{"dp":561081823},"p_cobaltrage":{"dp":1987486518},"p_ashmantle":{"dp":2196453077},"p_dimlight":{"dp":124325732},"p_ghostrider":{"dp":1921617417},"p_dustcloud":{"dp":130206129},"p_bronzewing":{"dp":100562525},"p_stormbreaker":{"dp":1443941414},"p_novaburst":{"dp":3021759035},"p_arcaneknight":{"dp":1832089545},"p_dawncrusher":{"dp":1043845356}}},{"id":"ev1020","type":"bearhunt","name":"BH #8","date":"2026-01-19","trapNumber":2,"locked":true,"totalAllianceDamage":40196244853,"totalRallies":71,"participants":{"p_nightraider":{"dp":3377123417},"p_lowrider":{"dp":158474345},"p_ironfist":{"dp":2172610291},"p_silentblade":{"dp":87562040},"p_opalcrest":{"dp":227332385},"p_flamehunter":{"dp":2936200004},"p_nightfalcon":{"dp":2069612255},"p_obsidianrift":{"dp":478556835},"p_pearldagger":{"dp":649431487},"p_titanslayer":{"dp":2537739017},"p_warlordx":{"dp":2467628074},"p_oakshield":{"dp":59480873},"p_voidwalker":{"dp":3304067741},"p_solarfist":{"dp":3256903534},"p_dragonlord":{"dp":1615679418},"p_zeroghost":{"dp":2273891248},"p_silverwing":{"dp":1755042637},"p_crypticforce":{"dp":3096240256},"p_bladerunner":{"dp":2843267129},"p_quickstep":{"dp":146233340},"p_steelvenom":{"dp":2978900724},"p_twilightbow":{"dp":522331737},"p_hollowecho":{"dp":382521788},"p_thornward":{"dp":799414278}}},{"id":"ev1021","type":"bearhunt","name":"BH #9","date":"2026-01-21","trapNumber":1,"locked":true,"totalAllianceDamage":29226546974,"totalRallies":75,"participants":{"p_stillwater":{"dp":162427680},"p_dimlight":{"dp":78162700},"p_ashmantle":{"dp":2997239905},"p_goldenscale":{"dp":863248135},"p_opalcrest":{"dp":326416530},"p_nightfalcon":{"dp":2014216328},"p_shadowwolf":{"dp":1289680170},"p_flamehunter":{"dp":1256399159},"p_bronzefire":{"dp":734443249},"p_omegaprime":{"dp":1653180912},"p_coralwing":{"dp":853910715},"p_warlordx":{"dp":1657917067},"p_twilightbow":{"dp":482387564},"p_stormbreaker":{"dp":3046895401},"p_violetstrike":{"dp":416544937},"p_darkmatter":{"dp":584315640},"p_quickstep":{"dp":159993100},"p_newrecruit":{"dp":129282735},"p_crimsondusk":{"dp":372199842},"p_obsidianrift":{"dp":242311558},"p_ironspark":{"dp":197139879},"p_ironfist":{"dp":2931827254},"p_steelvenom":{"dp":1692038856},"p_voidwalker":{"dp":2864435929},"p_lunarblade":{"dp":2219931729}}},{"id":"ev1022","type":"bearhunt","name":"BH #10","date":"2026-01-21","trapNumber":2,"locked":true,"totalAllianceDamage":29471772456,"totalRallies":87,"participants":{"p_midnightaxe":{"dp":202939907},"p_thornward":{"dp":213689561},"p_emberpath":{"dp":295566069},"p_dawncrusher":{"dp":1274297175},"p_icebreaker":{"dp":3265967350},"p_sapphireclaw":{"dp":730540166},"p_zeroghost":{"dp":1440570713},"p_redphoenix":{"dp":1186902139},"p_crimsonblade":{"dp":2997757742},"p_nightraider":{"dp":1122329612},"p_bladerunner":{"dp":1235039291},"p_pineshadow":{"dp":118690512},"p_pearldagger":{"dp":891851361},"p_willowshade":{"dp":448206466},"p_silentblade":{"dp":172608224},"p_novaburst":{"dp":2071405590},"p_thunderking":{"dp":1934408349},"p_timberwolf":{"dp":174628505},"p_crypticforce":{"dp":1015092803},"p_dragonlord":{"dp":1228676004},"p_arcaneknight":{"dp":1550338556},"p_emberstrike":{"dp":969412921},"p_titanslayer":{"dp":2047976542},"p_solarfist":{"dp":2347110201},"p_runekeeper":{"dp":535766697}}},{"id":"ev1023","type":"bearhunt","name":"BH #11","date":"2026-01-23","trapNumber":1,"locked":true,"totalAllianceDamage":34104569151,"totalRallies":91,"participants":{"p_novaburst":{"dp":2914937010},"p_nightfalcon":{"dp":1403224661},"p_rubyfang":{"dp":639386707},"p_silverspark":{"dp":78712261},"p_obsidianrift":{"dp":473041065},"p_emberpath":{"dp":855897094},"p_solarfist":{"dp":1641476312},"p_stormbreaker":{"dp":1605492785},"p_ashmantle":{"dp":1318599264},"p_silentstorm":{"dp":621869399},"p_runekeeper":{"dp":431487470},"p_omegaprime":{"dp":2762997637},"p_dawncrusher":{"dp":1618529567},"p_shadowwolf":{"dp":2251413560},"p_hollowecho":{"dp":315712585},"p_voidwalker":{"dp":2580136605},"p_steelvenom":{"dp":999717518},"p_ivoryslash":{"dp":879936769},"p_titanslayer":{"dp":3328924461},"p_celestialx":{"dp":332305596},"p_opalcrest":{"dp":683725630},"p_crypticforce":{"dp":2764465977},"p_arcaneknight":{"dp":3331093634},"p_lonerwolf":{"dp":185344506},"p_oakshield":{"dp":86141078}}},{"id":"ev1024","type":"bearhunt","name":"BH #12","date":"2026-01-23","trapNumber":2,"locked":true,"totalAllianceDamage":40565297617,"totalRallies":86,"participants":{"p_newrecruit":{"dp":51164372},"p_thunderking":{"dp":3077897510},"p_bladerunner":{"dp":1008613457},"p_emberstrike":{"dp":3176088968},"p_flamehunter":{"dp":2658906417},"p_graymist":{"dp":179636061},"p_cobaltrage":{"dp":2983273171},"p_zeroghost":{"dp":1561078677},"p_palemoon":{"dp":96613888},"p_ironfist":{"dp":1351395583},"p_calmriver":{"dp":77797555},"p_pearldagger":{"dp":615973568},"p_crimsonblade":{"dp":3379325504},"p_redphoenix":{"dp":3403440682},"p_nightraider":{"dp":2182308441},"p_phoenixrise":{"dp":2965136471},"p_dragonlord":{"dp":2452113468},"p_crimsondusk":{"dp":649537843},"p_stillwater":{"dp":116636093},"p_ghostrider":{"dp":1975085349},"p_icebreaker":{"dp":2508838608},"p_highnoon":{"dp":142035458},"p_viperclash":{"dp":515866432},"p_silverwing":{"dp":2744957475},"p_darkmatter":{"dp":343206913},"p_coralwing":{"dp":348369653}}},{"id":"ev1025","type":"bearhunt","name":"BH #13","date":"2026-01-25","trapNumber":1,"locked":true,"totalAllianceDamage":29223639467,"totalRallies":94,"participants":{"p_nightraider":{"dp":1716347640},"p_phoenixrise":{"dp":2225428846},"p_swiftarrow":{"dp":555479984},"p_emberpath":{"dp":587403718},"p_titanslayer":{"dp":2060892281},"p_palemoon":{"dp":108638458},"p_midnightaxe":{"dp":863873742},"p_ghostrider":{"dp":3078475421},"p_emberstrike":{"dp":2839496086},"p_redphoenix":{"dp":3210914100},"p_darkmatter":{"dp":897180693},"p_novaburst":{"dp":837811610},"p_marbleguard":{"dp":323181755},"p_stormbreaker":{"dp":2286090002},"p_hollowecho":{"dp":678531560},"p_celestialx":{"dp":458071565},"p_bronzefire":{"dp":889626099},"p_dimlight":{"dp":115451855},"p_ghostwalker":{"dp":60704467},"p_icebreaker":{"dp":2178413965},"p_crypticforce":{"dp":2437982876},"p_lowrider":{"dp":80433609},"p_coralwing":{"dp":614331133},"p_timberwolf":{"dp":118878002}}},{"id":"ev1026","type":"bearhunt","name":"BH #14","date":"2026-01-25","trapNumber":2,"locked":true,"totalAllianceDamage":34786589296,"totalRallies":115,"participants":{"p_steelvenom":{"dp":2014741296},"p_pineshadow":{"dp":56631892},"p_crimsonblade":{"dp":3019930371},"p_flamehunter":{"dp":2410432533},"p_ivoryslash":{"dp":752235149},"p_pearldagger":{"dp":746250686},"p_silverwing":{"dp":2713652314},"p_oakshield":{"dp":180675644},"p_bladerunner":{"dp":988341455},"p_viperclash":{"dp":518293546},"p_lunarblade":{"dp":1626834424},"p_ironfist":{"dp":2175732811},"p_sapphireclaw":{"dp":751790232},"p_thunderking":{"dp":1153670997},"p_ashmantle":{"dp":1212129737},"p_omegaprime":{"dp":1518955214},"p_obsidianrift":{"dp":777646075},"p_zeroghost":{"dp":3090101581},"p_rubyfang":{"dp":207871158},"p_voidwalker":{"dp":3492657073},"p_arcaneknight":{"dp":1081199333},"p_nightfalcon":{"dp":1705299540},"p_silentstorm":{"dp":875936026},"p_cobaltrage":{"dp":1715580209}}},{"id":"ev1027","type":"bearhunt","name":"BH #15","date":"2026-01-27","trapNumber":1,"locked":true,"totalAllianceDamage":36129399972,"totalRallies":95,"participants":{"p_pineshadow":{"dp":146298964},"p_ivoryslash":{"dp":527997841},"p_nightraider":{"dp":2891526171},"p_redphoenix":{"dp":3169412470},"p_crimsonblade":{"dp":1267432617},"p_ghostrider":{"dp":1554927096},"p_dragonlord":{"dp":3405446007},"p_novaburst":{"dp":1152074333},"p_steelvenom":{"dp":2005236284},"p_pearldagger":{"dp":350325647},"p_quickstep":{"dp":194584178},"p_glacierpeak":{"dp":410917183},"p_rubyfang":{"dp":482646055},"p_opalcrest":{"dp":872826911},"p_voidwalker":{"dp":1128403409},"p_arcaneknight":{"dp":1123840346},"p_ironfist":{"dp":880016490},"p_silverwing":{"dp":2978314265},"p_cobaltrage":{"dp":933978190},"p_darkmatter":{"dp":824800158},"p_thunderking":{"dp":3286359959},"p_solarfist":{"dp":2540039271},"p_lunarblade":{"dp":3334186676},"p_silentstorm":{"dp":428450041},"p_runekeeper":{"dp":239359410}}},{"id":"ev1028","type":"bearhunt","name":"BH #16","date":"2026-01-27","trapNumber":2,"locked":true,"totalAllianceDamage":34184142305,"totalRallies":71,"participants":{"p_violetstrike":{"dp":479834642},"p_ashmantle":{"dp":3134182974},"p_ghostwalker":{"dp":194868473},"p_zeroghost":{"dp":2827671011},"p_bladerunner":{"dp":1438373812},"p_emberstrike":{"dp":2371179066},"p_silverspark":{"dp":155360473},"p_icebreaker":{"dp":1759094724},"p_timberwolf":{"dp":128114492},"p_stoneguard":{"dp":85938476},"p_stillwater":{"dp":174742263},"p_ironspark":{"dp":184519227},"p_warlordx":{"dp":2992202822},"p_nightfalcon":{"dp":1188926568},"p_dawncrusher":{"dp":2504179289},"p_flamehunter":{"dp":2362790683},"p_celestialx":{"dp":739198004},"p_twilightbow":{"dp":211372730},"p_shadowwolf":{"dp":1825985237},"p_phoenixrise":{"dp":3437264426},"p_titanslayer":{"dp":1512292620},"p_highnoon":{"dp":188012514},"p_rookiex":{"dp":87680470},"p_omegaprime":{"dp":2716502228},"p_stormbreaker":{"dp":1483855081}}},{"id":"ev1029","type":"bearhunt","name":"BH #17","date":"2026-01-29","trapNumber":1,"locked":true,"totalAllianceDamage":30571097015,"totalRallies":101,"participants":{"p_steelvenom":{"dp":1785635941},"p_marbleguard":{"dp":717676106},"p_coralwing":{"dp":609349574},"p_cobaltrage":{"dp":2305462528},"p_rookiex":{"dp":76230683},"p_solarfist":{"dp":2627463042},"p_nightraider":{"dp":1375023565},"p_oakshield":{"dp":118321662},"p_bronzefire":{"dp":712326496},"p_tinderfox":{"dp":112414702},"p_ironspark":{"dp":72499610},"p_crimsonblade":{"dp":2016621076},"p_coppermask":{"dp":195956685},"p_nightfalcon":{"dp":2555124229},"p_flamehunter":{"dp":1907263953},"p_swiftarrow":{"dp":402959775},"p_dimlight":{"dp":51468194},"p_icebreaker":{"dp":830554742},"p_dragonlord":{"dp":3282435875},"p_crypticforce":{"dp":3044294928},"p_phoenixrise":{"dp":1306070001},"p_voidwalker":{"dp":3032360156},"p_dawncrusher":{"dp":830898225},"p_twilightbow":{"dp":602685267}}},{"id":"ev1030","type":"bearhunt","name":"BH #18","date":"2026-01-29","trapNumber":2,"locked":true,"totalAllianceDamage":38391832660,"totalRallies":95,"participants":{"p_emberstrike":{"dp":1682266582},"p_highnoon":{"dp":134799220},"p_viperclash":{"dp":638994061},"p_celestialx":{"dp":588984224},"p_violetstrike":{"dp":314442861},"p_runekeeper":{"dp":366192234},"p_ironfist":{"dp":2629963525},"p_ghostrider":{"dp":3314145814},"p_ashmantle":{"dp":1889344285},"p_obsidianrift":{"dp":480571840},"p_redphoenix":{"dp":3102552969},"p_novaburst":{"dp":2619182998},"p_stormbreaker":{"dp":3225240213},"p_glacierpeak":{"dp":592607356},"p_lunarblade":{"dp":3428007501},"p_thunderking":{"dp":1983523503},"p_omegaprime":{"dp":2507052548},"p_pearldagger":{"dp":418714407},"p_emberpath":{"dp":643700355},"p_shadowwolf":{"dp":3171272694},"p_willowshade":{"dp":798678367},"p_bladerunner":{"dp":2872183247},"p_sapphireclaw":{"dp":391898710},"p_darkmatter":{"dp":597513146}}},{"id":"ev1031","type":"bearhunt","name":"BH #19","date":"2026-01-31","trapNumber":1,"locked":true,"totalAllianceDamage":40759049709,"totalRallies":85,"participants":{"p_phoenixrise":{"dp":1939907416},"p_coralwing":{"dp":422026871},"p_lunarblade":{"dp":1784438848},"p_hollowecho":{"dp":417718930},"p_ivoryslash":{"dp":468108429},"p_crypticforce":{"dp":3456853453},"p_bronzefire":{"dp":582281482},"p_arcaneknight":{"dp":1469995863},"p_redphoenix":{"dp":1258227039},"p_obsidianrift":{"dp":328718546},"p_icebreaker":{"dp":1137101561},"p_voidwalker":{"dp":2915979460},"p_pineshadow":{"dp":51778028},"p_coppermask":{"dp":195350806},"p_violetstrike":{"dp":245379683},"p_silverwing":{"dp":2871428721},"p_zeroghost":{"dp":2394276982},"p_willowshade":{"dp":866436631},"p_shadowwolf":{"dp":2154705301},"p_crimsonblade":{"dp":2914585794},"p_ashmantle":{"dp":3267541927},"p_rookiex":{"dp":123748087},"p_nightfalcon":{"dp":2907992942},"p_steelvenom":{"dp":1585428658},"p_ironfist":{"dp":2995302260},"p_novaburst":{"dp":2003735991}}},{"id":"ev1032","type":"bearhunt","name":"BH #20","date":"2026-01-31","trapNumber":2,"locked":true,"totalAllianceDamage":30249146150,"totalRallies":71,"participants":{"p_marbleguard":{"dp":438470307},"p_thunderking":{"dp":3276758136},"p_cobaltrage":{"dp":1350812184},"p_bladerunner":{"dp":1032564616},"p_nightraider":{"dp":3058016513},"p_pearldagger":{"dp":654381628},"p_emberstrike":{"dp":2854369077},"p_graymist":{"dp":195161291},"p_stormbreaker":{"dp":939855492},"p_nightmist":{"dp":184882162},"p_ghostrider":{"dp":2291594744},"p_quickstep":{"dp":155687580},"p_dragonlord":{"dp":1550761833},"p_goldenscale":{"dp":690910502},"p_sapphireclaw":{"dp":329244346},"p_viperclash":{"dp":756418530},"p_flamehunter":{"dp":2775988150},"p_warlordx":{"dp":2155711871},"p_opalcrest":{"dp":209039413},"p_highnoon":{"dp":53172901},"p_solarfist":{"dp":1705174602},"p_rubyfang":{"dp":607407714},"p_bronzewing":{"dp":77044289},"p_titanslayer":{"dp":2197737837},"p_twilightbow":{"dp":588267537},"p_palemoon":{"dp":119712895}}},{"id":"ev1033","type":"bearhunt","name":"BH #21","date":"2026-02-02","trapNumber":1,"locked":true,"totalAllianceDamage":33198490152,"totalRallies":60,"participants":{"p_emberstrike":{"dp":3155984014},"p_dawncrusher":{"dp":2710594463},"p_viperclash":{"dp":345078524},"p_palemoon":{"dp":194763905},"p_runekeeper":{"dp":390091645},"p_sapphireclaw":{"dp":834399876},"p_goldenscale":{"dp":841651145},"p_twilightbow":{"dp":690209766},"p_ironfist":{"dp":3222294927},"p_silentblade":{"dp":166763349},"p_arcaneknight":{"dp":3048242739},"p_softbreeze":{"dp":193286587},"p_flamehunter":{"dp":2129985271},"p_marbleguard":{"dp":572769123},"p_quickstep":{"dp":179292388},"p_crypticforce":{"dp":3117856944},"p_novaburst":{"dp":1775509246},"p_ghostrider":{"dp":1184631600},"p_ashmantle":{"dp":2697775581},"p_rubyfang":{"dp":530570947},"p_zeroghost":{"dp":2371027407},"p_highnoon":{"dp":160650117},"p_silentstorm":{"dp":478965689},"p_omegaprime":{"dp":1468801732},"p_crimsondusk":{"dp":525958941},"p_glacierpeak":{"dp":211334226}}},{"id":"ev1034","type":"bearhunt","name":"BH #22","date":"2026-02-02","trapNumber":2,"locked":true,"totalAllianceDamage":42952984577,"totalRallies":74,"participants":{"p_crimsonblade":{"dp":3047626139},"p_stillwater":{"dp":86587874},"p_willowshade":{"dp":569243620},"p_shadowwolf":{"dp":2031634482},"p_lunarblade":{"dp":2815189868},"p_rookiex":{"dp":193639514},"p_voidwalker":{"dp":835721701},"p_celestialx":{"dp":728207587},"p_stormbreaker":{"dp":2848987473},"p_pearldagger":{"dp":521704344},"p_phoenixrise":{"dp":839224201},"p_nightraider":{"dp":2648705588},"p_oakshield":{"dp":128630814},"p_cobaltrage":{"dp":3364111605},"p_silverwing":{"dp":1793062551},"p_titanslayer":{"dp":831001012},"p_warlordx":{"dp":3154553463},"p_nightfalcon":{"dp":2404788242},"p_dragonlord":{"dp":1609906184},"p_thunderking":{"dp":2568392070},"p_bladerunner":{"dp":3207562635},"p_redphoenix":{"dp":2677357553},"p_darkmatter":{"dp":623861817},"p_opalcrest":{"dp":468323917},"p_coralwing":{"dp":375309282},"p_lonerwolf":{"dp":154615542},"p_steelvenom":{"dp":2425035499}}},{"id":"ev1035","type":"bearhunt","name":"BH #23","date":"2026-02-04","trapNumber":1,"locked":true,"totalAllianceDamage":34404597526,"totalRallies":102,"participants":{"p_nightraider":{"dp":1982509541},"p_bronzefire":{"dp":842827694},"p_quickstep":{"dp":198852912},"p_dimlight":{"dp":93041857},"p_softbreeze":{"dp":68488917},"p_highnoon":{"dp":192576118},"p_arcaneknight":{"dp":1465829369},"p_pearldagger":{"dp":682522615},"p_zeroghost":{"dp":2069904391},"p_emberstrike":{"dp":1931076509},"p_redphoenix":{"dp":3126179846},"p_novaburst":{"dp":2376737058},"p_runekeeper":{"dp":687563596},"p_omegaprime":{"dp":803091620},"p_swiftarrow":{"dp":885075265},"p_dragonlord":{"dp":2973071915},"p_sapphireclaw":{"dp":606994931},"p_silverwing":{"dp":1596863703},"p_graymist":{"dp":55025072},"p_cobaltrage":{"dp":3461739850},"p_ironfist":{"dp":2363691059},"p_glacierpeak":{"dp":865931799},"p_warlordx":{"dp":1825580463},"p_shadowwolf":{"dp":2177370646},"p_lunarblade":{"dp":1072050780}}},{"id":"ev1036","type":"bearhunt","name":"BH #24","date":"2026-02-04","trapNumber":2,"locked":true,"totalAllianceDamage":32322410968,"totalRallies":96,"participants":{"p_icebreaker":{"dp":3114800617},"p_solarfist":{"dp":2464260498},"p_crypticforce":{"dp":1615483101},"p_crimsondusk":{"dp":762715631},"p_nightfalcon":{"dp":2936957354},"p_violetstrike":{"dp":792134048},"p_ashmantle":{"dp":1461989794},"p_ghostrider":{"dp":3432983517},"p_stillwater":{"dp":126001885},"p_dawncrusher":{"dp":2185556630},"p_coralwing":{"dp":640024260},"p_voidwalker":{"dp":2183082793},"p_flamehunter":{"dp":1274439845},"p_silentblade":{"dp":75838603},"p_viperclash":{"dp":761782298},"p_thunderking":{"dp":1086387753},"p_titanslayer":{"dp":988021892},"p_phoenixrise":{"dp":1357376230},"p_steelvenom":{"dp":1567247805},"p_bladerunner":{"dp":934319747},"p_hollowecho":{"dp":416980704},"p_lowrider":{"dp":78737403},"p_darkmatter":{"dp":721162378},"p_pineshadow":{"dp":101436701},"p_goldenscale":{"dp":306035856},"p_crimsonblade":{"dp":936653625}}},{"id":"ev1037","type":"bearhunt","name":"BH #25","date":"2026-02-06","trapNumber":1,"locked":true,"totalAllianceDamage":37580731590,"totalRallies":68,"participants":{"p_steelvenom":{"dp":2442768997},"p_hollowecho":{"dp":258119446},"p_stormbreaker":{"dp":2109034704},"p_warlordx":{"dp":3052209366},"p_ghostrider":{"dp":976876436},"p_zeroghost":{"dp":2171454094},"p_nightmist":{"dp":194936282},"p_stoneguard":{"dp":90152580},"p_flamehunter":{"dp":2203731150},"p_ironfist":{"dp":2957798468},"p_midnightaxe":{"dp":437079167},"p_nightraider":{"dp":1457978181},"p_glacierpeak":{"dp":254245232},"p_arcaneknight":{"dp":2487418351},"p_cobaltrage":{"dp":2713907148},"p_dragonlord":{"dp":3356073288},"p_emberpath":{"dp":817675194},"p_voidwalker":{"dp":2967796058},"p_dawncrusher":{"dp":1186903346},"p_silverwing":{"dp":1753850512},"p_pearldagger":{"dp":663787397},"p_shadowwolf":{"dp":2044608630},"p_darkmatter":{"dp":623400459},"p_coralwing":{"dp":358927104}}},{"id":"ev1038","type":"bearhunt","name":"BH #26","date":"2026-02-06","trapNumber":2,"locked":true,"totalAllianceDamage":33489135779,"totalRallies":64,"participants":{"p_dustcloud":{"dp":140239458},"p_swiftarrow":{"dp":288632141},"p_emberstrike":{"dp":2843780174},"p_icebreaker":{"dp":3254318650},"p_coppermask":{"dp":63236846},"p_ivoryslash":{"dp":788574163},"p_redphoenix":{"dp":2514513575},"p_quickstep":{"dp":120479870},"p_titanslayer":{"dp":1165411459},"p_crypticforce":{"dp":2511660604},"p_solarfist":{"dp":2955313861},"p_omegaprime":{"dp":2666125107},"p_nightfalcon":{"dp":1359957102},"p_pineshadow":{"dp":86204095},"p_lunarblade":{"dp":2865546403},"p_celestialx":{"dp":800539700},"p_crimsonblade":{"dp":1650869632},"p_phoenixrise":{"dp":2895347470},"p_bladerunner":{"dp":2497881328},"p_lonerwolf":{"dp":102640005},"p_twilightbow":{"dp":802549133},"p_highnoon":{"dp":190726693},"p_bronzefire":{"dp":464404457},"p_marbleguard":{"dp":460183853}}},{"id":"ev1039","type":"bearhunt","name":"BH #27","date":"2026-02-08","trapNumber":1,"locked":true,"totalAllianceDamage":30054486312,"totalRallies":77,"participants":{"p_coppermask":{"dp":92425664},"p_ironfist":{"dp":2163635846},"p_twilightbow":{"dp":272814771},"p_silverwing":{"dp":3193758362},"p_redphoenix":{"dp":3089052391},"p_goldenscale":{"dp":327117388},"p_phoenixrise":{"dp":1590854733},"p_thunderking":{"dp":2164071251},"p_marbleguard":{"dp":356253951},"p_arcaneknight":{"dp":926630005},"p_pineshadow":{"dp":135547008},"p_crimsondusk":{"dp":644572227},"p_rubyfang":{"dp":641578219},"p_celestialx":{"dp":525717549},"p_ivoryslash":{"dp":675672443},"p_bladerunner":{"dp":1975945569},"p_opalcrest":{"dp":363162642},"p_darkmatter":{"dp":401792175},"p_stormbreaker":{"dp":1258579821},"p_omegaprime":{"dp":1364985269},"p_calmriver":{"dp":99592510},"p_cobaltrage":{"dp":912520487},"p_ghostrider":{"dp":3428440956},"p_nightraider":{"dp":3449765075}}},{"id":"ev1040","type":"bearhunt","name":"BH #28","date":"2026-02-08","trapNumber":2,"locked":true,"totalAllianceDamage":40077070608,"totalRallies":108,"participants":{"p_icebreaker":{"dp":3401051560},"p_stoneguard":{"dp":111984792},"p_glacierpeak":{"dp":840337419},"p_sapphireclaw":{"dp":449304100},"p_shadowwolf":{"dp":1791761103},"p_steelvenom":{"dp":912032032},"p_crimsonblade":{"dp":2343015709},"p_nightfalcon":{"dp":1141344355},"p_solarfist":{"dp":2846990957},"p_flamehunter":{"dp":1375897664},"p_ashmantle":{"dp":2957467661},"p_emberstrike":{"dp":3397217228},"p_tinderfox":{"dp":175832743},"p_coralwing":{"dp":897468922},"p_dragonlord":{"dp":2406143397},"p_lunarblade":{"dp":1590172950},"p_titanslayer":{"dp":2464129261},"p_nightmist":{"dp":181921423},"p_voidwalker":{"dp":2835157048},"p_crypticforce":{"dp":1390612666},"p_midnightaxe":{"dp":375864280},"p_warlordx":{"dp":1630044665},"p_zeroghost":{"dp":1771835392},"p_willowshade":{"dp":234606221},"p_dawncrusher":{"dp":2554877060}}},{"id":"ev1041","type":"bearhunt","name":"BH #29","date":"2026-02-10","trapNumber":1,"locked":true,"totalAllianceDamage":26247791321,"totalRallies":65,"participants":{"p_novaburst":{"dp":1436755414},"p_ashmantle":{"dp":1036497814},"p_darkmatter":{"dp":574757193},"p_goldenscale":{"dp":239428930},"p_crypticforce":{"dp":1424378340},"p_silverwing":{"dp":939294754},"p_ghostrider":{"dp":3282889288},"p_silverspark":{"dp":130112292},"p_viperclash":{"dp":555527819},"p_lowrider":{"dp":73542511},"p_graymist":{"dp":63161757},"p_stormbreaker":{"dp":1267668878},"p_arcaneknight":{"dp":2590816346},"p_flamehunter":{"dp":1565571034},"p_solarfist":{"dp":1492929517},"p_hollowecho":{"dp":505351281},"p_opalcrest":{"dp":856152630},"p_coralwing":{"dp":838843080},"p_dimlight":{"dp":97625621},"p_violetstrike":{"dp":688915267},"p_dawncrusher":{"dp":3286641280},"p_redphoenix":{"dp":2346998451},"p_icebreaker":{"dp":953931824}}},{"id":"ev1042","type":"bearhunt","name":"BH #30","date":"2026-02-10","trapNumber":2,"locked":true,"totalAllianceDamage":34322364843,"totalRallies":65,"participants":{"p_omegaprime":{"dp":2085460026},"p_willowshade":{"dp":546627326},"p_pearldagger":{"dp":595748400},"p_swiftarrow":{"dp":606883029},"p_calmriver":{"dp":68164135},"p_voidwalker":{"dp":2635341895},"p_bladerunner":{"dp":3164255319},"p_runekeeper":{"dp":269713616},"p_shadowwolf":{"dp":2057706935},"p_thunderking":{"dp":2822142957},"p_timberwolf":{"dp":86116860},"p_steelvenom":{"dp":1324085789},"p_thornward":{"dp":494654666},"p_emberpath":{"dp":553484964},"p_lunarblade":{"dp":3063674265},"p_celestialx":{"dp":644269173},"p_phoenixrise":{"dp":3053338333},"p_titanslayer":{"dp":1701278986},"p_quickstep":{"dp":106116695},"p_warlordx":{"dp":3428750833},"p_emberstrike":{"dp":1049900899},"p_pineshadow":{"dp":79340595},"p_sapphireclaw":{"dp":813500721},"p_nightraider":{"dp":3071808426}}},{"id":"ev1043","type":"bearhunt","name":"BH #31","date":"2026-02-12","trapNumber":1,"locked":true,"totalAllianceDamage":24361759933,"totalRallies":80,"participants":{"p_bladerunner":{"dp":817651775},"p_marbleguard":{"dp":533913647},"p_silentblade":{"dp":61819202},"p_glacierpeak":{"dp":838111425},"p_solarfist":{"dp":1173988120},"p_bronzefire":{"dp":557867151},"p_warlordx":{"dp":2805216731},"p_shadowwolf":{"dp":998168828},"p_rubyfang":{"dp":310705823},"p_coppermask":{"dp":189741514},"p_violetstrike":{"dp":535523711},"p_flamehunter":{"dp":896551970},"p_thunderking":{"dp":3280600589},"p_pearldagger":{"dp":535160886},"p_midnightaxe":{"dp":885960873},"p_lonerwolf":{"dp":106330022},"p_cobaltrage":{"dp":2178170698},"p_obsidianrift":{"dp":415344841},"p_phoenixrise":{"dp":1626977245},"p_nightraider":{"dp":2030797512},"p_willowshade":{"dp":497050178},"p_ironfist":{"dp":3086107192}}},{"id":"ev1044","type":"bearhunt","name":"BH #32","date":"2026-02-12","trapNumber":2,"locked":true,"totalAllianceDamage":36151981358,"totalRallies":70,"participants":{"p_zeroghost":{"dp":2694577179},"p_novaburst":{"dp":1305306513},"p_stoneguard":{"dp":123190057},"p_ashmantle":{"dp":1441327636},"p_arcaneknight":{"dp":1476440254},"p_dragonlord":{"dp":1975261501},"p_swiftarrow":{"dp":322900917},"p_crimsondusk":{"dp":216381768},"p_silverwing":{"dp":3475528232},"p_emberstrike":{"dp":3203574352},"p_coralwing":{"dp":751968433},"p_titanslayer":{"dp":1239698549},"p_dawncrusher":{"dp":1687243074},"p_viperclash":{"dp":782535775},"p_redphoenix":{"dp":2304604930},"p_omegaprime":{"dp":3159507540},"p_thornward":{"dp":541970569},"p_ghostrider":{"dp":1964159934},"p_darkmatter":{"dp":351995483},"p_icebreaker":{"dp":2016625499},"p_stormbreaker":{"dp":3265667475},"p_steelvenom":{"dp":1851515688}}},{"id":"ev1045","type":"bearhunt","name":"BH #33","date":"2026-02-14","trapNumber":1,"locked":true,"totalAllianceDamage":32827033029,"totalRallies":73,"participants":{"p_crimsonblade":{"dp":1068051302},"p_dragonlord":{"dp":2385800252},"p_ghostrider":{"dp":3157443688},"p_titanslayer":{"dp":1028180081},"p_nightfalcon":{"dp":803622015},"p_obsidianrift":{"dp":801327907},"p_celestialx":{"dp":585735987},"p_violetstrike":{"dp":317787669},"p_warlordx":{"dp":2012079465},"p_quickstep":{"dp":58371090},"p_arcaneknight":{"dp":1810353136},"p_dawncrusher":{"dp":2654203954},"p_pearldagger":{"dp":833683639},"p_bladerunner":{"dp":2493369537},"p_coralwing":{"dp":871318744},"p_goldenscale":{"dp":541586594},"p_sapphireclaw":{"dp":611017218},"p_shadowwolf":{"dp":2543896971},"p_ashmantle":{"dp":2438809377},"p_novaburst":{"dp":2669127013},"p_emberstrike":{"dp":3141267390}}},{"id":"ev1046","type":"bearhunt","name":"BH #34","date":"2026-02-14","trapNumber":2,"locked":true,"totalAllianceDamage":29186084046,"totalRallies":111,"participants":{"p_steelvenom":{"dp":1544790751},"p_flamehunter":{"dp":2839557201},"p_rubyfang":{"dp":349324059},"p_ironfist":{"dp":1608428103},"p_marbleguard":{"dp":796379379},"p_twilightbow":{"dp":612955792},"p_crypticforce":{"dp":2347424693},"p_nightmist":{"dp":162000800},"p_willowshade":{"dp":365643247},"p_redphoenix":{"dp":2038972936},"p_cobaltrage":{"dp":1339229515},"p_silverwing":{"dp":1376717254},"p_voidwalker":{"dp":849833464},"p_thornward":{"dp":277036673},"p_zeroghost":{"dp":867464491},"p_lunarblade":{"dp":1418457607},"p_phoenixrise":{"dp":2890366319},"p_stormbreaker":{"dp":2675763024},"p_nightraider":{"dp":1383152392},"p_omegaprime":{"dp":1163626724},"p_thunderking":{"dp":1389356566},"p_darkmatter":{"dp":889603056}}},{"id":"ev1047","type":"bearhunt","name":"BH #35","date":"2026-02-16","trapNumber":1,"locked":true,"totalAllianceDamage":26119426548,"totalRallies":106,"participants":{"p_twilightbow":{"dp":559668515},"p_dragonlord":{"dp":1961041845},"p_silverspark":{"dp":121695838},"p_coppermask":{"dp":76380974},"p_lonerwolf":{"dp":118543360},"p_zeroghost":{"dp":3309020413},"p_nightmist":{"dp":154999539},"p_celestialx":{"dp":695111580},"p_crypticforce":{"dp":1838510073},"p_viperclash":{"dp":832137889},"p_phoenixrise":{"dp":1637199429},"p_obsidianrift":{"dp":758294552},"p_icebreaker":{"dp":2249150306},"p_emberpath":{"dp":393184033},"p_ironfist":{"dp":2145483676},"p_marbleguard":{"dp":787994511},"p_stillwater":{"dp":52839507},"p_stormbreaker":{"dp":836404854},"p_nightfalcon":{"dp":1091851443},"p_solarfist":{"dp":851373886},"p_stoneguard":{"dp":160393751},"p_dimlight":{"dp":76225811},"p_silentstorm":{"dp":763998215},"p_novaburst":{"dp":1246278368},"p_steelvenom":{"dp":2715307177},"p_swiftarrow":{"dp":577437882},"p_bronzewing":{"dp":108899121}}},{"id":"ev1048","type":"bearhunt","name":"BH #36","date":"2026-02-16","trapNumber":2,"locked":true,"totalAllianceDamage":35270222051,"totalRallies":119,"participants":{"p_sapphireclaw":{"dp":504187859},"p_shadowwolf":{"dp":1881885552},"p_emberstrike":{"dp":1629270292},"p_pineshadow":{"dp":59138017},"p_pearldagger":{"dp":225448191},"p_ghostrider":{"dp":3460290823},"p_titanslayer":{"dp":1194884830},"p_voidwalker":{"dp":1044305931},"p_dawncrusher":{"dp":3351805769},"p_cobaltrage":{"dp":1731255046},"p_bladerunner":{"dp":3374338859},"p_darkmatter":{"dp":885136281},"p_lowrider":{"dp":82692788},"p_lunarblade":{"dp":1315297776},"p_arcaneknight":{"dp":1171026639},"p_palemoon":{"dp":84871713},"p_ironspark":{"dp":150920574},"p_ivoryslash":{"dp":895683597},"p_ashmantle":{"dp":3231246996},"p_silverwing":{"dp":1593575163},"p_flamehunter":{"dp":1276076030},"p_crimsonblade":{"dp":1591403539},"p_runekeeper":{"dp":472017183},"p_thunderking":{"dp":2065162573},"p_thornward":{"dp":701389735},"p_warlordx":{"dp":1125189913},"p_oakshield":{"dp":171720382}}},{"id":"ev1049","type":"bearhunt","name":"BH #37","date":"2026-02-18","trapNumber":1,"locked":true,"totalAllianceDamage":31852724719,"totalRallies":75,"participants":{"p_ghostwalker":{"dp":66940991},"p_cobaltrage":{"dp":1670337080},"p_ashmantle":{"dp":2630564310},"p_twilightbow":{"dp":562219407},"p_phoenixrise":{"dp":2526613833},"p_emberstrike":{"dp":2192578489},"p_ghostrider":{"dp":1318842513},"p_thornward":{"dp":818439865},"p_novaburst":{"dp":3144557360},"p_zeroghost":{"dp":1389825310},"p_glacierpeak":{"dp":545304509},"p_omegaprime":{"dp":1715823748},"p_lunarblade":{"dp":995792723},"p_shadowwolf":{"dp":3347281761},"p_swiftarrow":{"dp":386237999},"p_coralwing":{"dp":560244389},"p_lowrider":{"dp":66970997},"p_emberpath":{"dp":329649486},"p_arcaneknight":{"dp":1976363031},"p_oakshield":{"dp":87912965},"p_bronzefire":{"dp":645768567},"p_dragonlord":{"dp":1521772903},"p_dawncrusher":{"dp":2388825845},"p_calmriver":{"dp":198554256},"p_quickstep":{"dp":94293494},"p_viperclash":{"dp":671008888}}},{"id":"ev1050","type":"bearhunt","name":"BH #38","date":"2026-02-18","trapNumber":2,"locked":true,"totalAllianceDamage":34800950788,"totalRallies":120,"participants":{"p_ironspark":{"dp":60925027},"p_pearldagger":{"dp":343205892},"p_violetstrike":{"dp":307339659},"p_icebreaker":{"dp":3430416242},"p_solarfist":{"dp":2415470562},"p_thunderking":{"dp":1477546830},"p_celestialx":{"dp":216782928},"p_titanslayer":{"dp":2891509391},"p_nightfalcon":{"dp":1146700963},"p_redphoenix":{"dp":827271239},"p_ivoryslash":{"dp":207756709},"p_goldenscale":{"dp":392643087},"p_stormbreaker":{"dp":1182858698},"p_steelvenom":{"dp":3350053175},"p_voidwalker":{"dp":2018617714},"p_crimsonblade":{"dp":2587660912},"p_darkmatter":{"dp":711114497},"p_stoneguard":{"dp":84062425},"p_softbreeze":{"dp":105340713},"p_flamehunter":{"dp":1414557693},"p_sapphireclaw":{"dp":887007622},"p_opalcrest":{"dp":490930074},"p_silverwing":{"dp":3046640975},"p_nightraider":{"dp":2734535440},"p_midnightaxe":{"dp":642415269},"p_crypticforce":{"dp":1827587052}}},{"id":"ev1051","type":"bearhunt","name":"BH #39","date":"2026-02-20","trapNumber":1,"locked":true,"totalAllianceDamage":31071187286,"totalRallies":84,"participants":{"p_cobaltrage":{"dp":2753526348},"p_nightfalcon":{"dp":2791836786},"p_phoenixrise":{"dp":1395385173},"p_softbreeze":{"dp":158813097},"p_highnoon":{"dp":99645992},"p_flamehunter":{"dp":2390943758},"p_newrecruit":{"dp":174633451},"p_icebreaker":{"dp":805856809},"p_midnightaxe":{"dp":873563645},"p_graymist":{"dp":68978009},"p_ivoryslash":{"dp":613260967},"p_stormbreaker":{"dp":2229820971},"p_lonerwolf":{"dp":192517841},"p_crimsondusk":{"dp":235126580},"p_lunarblade":{"dp":2073844284},"p_swiftarrow":{"dp":657309058},"p_runekeeper":{"dp":489684139},"p_oakshield":{"dp":195608815},"p_ghostrider":{"dp":3270591311},"p_solarfist":{"dp":1689687133},"p_lowrider":{"dp":71732276},"p_voidwalker":{"dp":3464834821},"p_silverspark":{"dp":140112352},"p_emberstrike":{"dp":1035414339},"p_marbleguard":{"dp":752694084},"p_rookiex":{"dp":147707961},"p_dragonlord":{"dp":1021459606},"p_omegaprime":{"dp":1276597680}}},{"id":"ev1052","type":"bearhunt","name":"BH #40","date":"2026-02-20","trapNumber":2,"locked":true,"totalAllianceDamage":36970369389,"totalRallies":88,"participants":{"p_arcaneknight":{"dp":2370200796},"p_redphoenix":{"dp":2798675370},"p_hollowecho":{"dp":864789481},"p_bronzefire":{"dp":243888484},"p_crimsonblade":{"dp":2370116109},"p_pineshadow":{"dp":148363609},"p_emberpath":{"dp":388191943},"p_ashmantle":{"dp":3199986722},"p_quickstep":{"dp":67986763},"p_coppermask":{"dp":104952118},"p_sapphireclaw":{"dp":348612097},"p_dawncrusher":{"dp":2238512030},"p_willowshade":{"dp":456229918},"p_crypticforce":{"dp":3117709657},"p_viperclash":{"dp":321931627},"p_ironfist":{"dp":2855113777},"p_zeroghost":{"dp":3291593775},"p_glacierpeak":{"dp":425264561},"p_thornward":{"dp":442061379},"p_obsidianrift":{"dp":544095402},"p_titanslayer":{"dp":2314885083},"p_opalcrest":{"dp":487073305},"p_silentstorm":{"dp":740699840},"p_darkmatter":{"dp":654116688},"p_silverwing":{"dp":1990330168},"p_novaburst":{"dp":1033903914},"p_pearldagger":{"dp":268042141},"p_coralwing":{"dp":600305748},"p_bladerunner":{"dp":2282736884}}},{"id":"ev1053","type":"bearhunt","name":"BH #41","date":"2026-02-22","trapNumber":1,"locked":true,"totalAllianceDamage":31645690763,"totalRallies":73,"participants":{"p_emberpath":{"dp":293820269},"p_quickstep":{"dp":187381916},"p_newrecruit":{"dp":155877282},"p_novaburst":{"dp":1635156548},"p_celestialx":{"dp":726633172},"p_viperclash":{"dp":541189853},"p_phoenixrise":{"dp":3390603471},"p_icebreaker":{"dp":3398789449},"p_nightfalcon":{"dp":2997115592},"p_dimlight":{"dp":65045166},"p_ivoryslash":{"dp":587690454},"p_shadowwolf":{"dp":2507498619},"p_swiftarrow":{"dp":358855742},"p_graymist":{"dp":164793867},"p_silverwing":{"dp":2387548621},"p_crimsonblade":{"dp":2458341072},"p_emberstrike":{"dp":2401297604},"p_omegaprime":{"dp":852359062},"p_palemoon":{"dp":126410251},"p_warlordx":{"dp":2281421047},"p_tinderfox":{"dp":144316148},"p_twilightbow":{"dp":530804119},"p_dustcloud":{"dp":169608407},"p_flamehunter":{"dp":3209618453},"p_lonerwolf":{"dp":73514579}}},{"id":"ev1054","type":"bearhunt","name":"BH #42","date":"2026-02-22","trapNumber":2,"locked":true,"totalAllianceDamage":33722085389,"totalRallies":89,"participants":{"p_stormbreaker":{"dp":2707911904},"p_stillwater":{"dp":161564398},"p_zeroghost":{"dp":2700541784},"p_arcaneknight":{"dp":2039673672},"p_voidwalker":{"dp":1503474164},"p_redphoenix":{"dp":2620345419},"p_sapphireclaw":{"dp":644737192},"p_glacierpeak":{"dp":349859658},"p_rookiex":{"dp":73106381},"p_willowshade":{"dp":354231505},"p_silentstorm":{"dp":423106146},"p_dawncrusher":{"dp":2102367816},"p_solarfist":{"dp":2838447866},"p_coralwing":{"dp":764037702},"p_goldenscale":{"dp":560150990},"p_ironfist":{"dp":1083965102},"p_pineshadow":{"dp":150870638},"p_lunarblade":{"dp":1179882490},"p_bronzefire":{"dp":207106953},"p_bladerunner":{"dp":2558620050},"p_pearldagger":{"dp":885912716},"p_darkmatter":{"dp":493484627},"p_dragonlord":{"dp":2580324145},"p_ghostrider":{"dp":1551159774},"p_steelvenom":{"dp":3187202297}}},{"id":"ev1055","type":"bearhunt","name":"BH #43","date":"2026-02-24","trapNumber":1,"locked":true,"totalAllianceDamage":29601805578,"totalRallies":92,"participants":{"p_silverwing":{"dp":2814693343},"p_redphoenix":{"dp":1310767017},"p_titanslayer":{"dp":1886680310},"p_novaburst":{"dp":985892639},"p_highnoon":{"dp":67783141},"p_bladerunner":{"dp":2095558864},"p_obsidianrift":{"dp":211029898},"p_emberstrike":{"dp":1214479793},"p_flamehunter":{"dp":1331689268},"p_lowrider":{"dp":105136960},"p_cobaltrage":{"dp":3323735861},"p_ivoryslash":{"dp":414774593},"p_shadowwolf":{"dp":1593631899},"p_thornward":{"dp":577456401},"p_crypticforce":{"dp":925666952},"p_crimsonblade":{"dp":1189894192},"p_zeroghost":{"dp":1425162463},"p_phoenixrise":{"dp":1991319381},"p_bronzefire":{"dp":822503273},"p_violetstrike":{"dp":573486641},"p_nightraider":{"dp":2312701547},"p_swiftarrow":{"dp":372397121},"p_twilightbow":{"dp":737552108},"p_emberpath":{"dp":858156958},"p_willowshade":{"dp":459654955}}},{"id":"ev1056","type":"bearhunt","name":"BH #44","date":"2026-02-24","trapNumber":2,"locked":true,"totalAllianceDamage":33675098261,"totalRallies":92,"participants":{"p_voidwalker":{"dp":3249142215},"p_dustcloud":{"dp":68344084},"p_nightmist":{"dp":76603479},"p_ironfist":{"dp":3283065233},"p_ashmantle":{"dp":860062145},"p_marbleguard":{"dp":767836278},"p_thunderking":{"dp":1731999629},"p_dawncrusher":{"dp":1622690321},"p_celestialx":{"dp":502641424},"p_hollowecho":{"dp":384440344},"p_lunarblade":{"dp":3106940725},"p_icebreaker":{"dp":818592584},"p_steelvenom":{"dp":1223851921},"p_glacierpeak":{"dp":429797269},"p_dragonlord":{"dp":2965502207},"p_nightfalcon":{"dp":2838887576},"p_palemoon":{"dp":148371669},"p_stormbreaker":{"dp":3331370274},"p_midnightaxe":{"dp":398777291},"p_arcaneknight":{"dp":2688350356},"p_ghostrider":{"dp":1260955243},"p_newrecruit":{"dp":98546158},"p_coralwing":{"dp":580987586},"p_oakshield":{"dp":151902140},"p_runekeeper":{"dp":655365152},"p_silentstorm":{"dp":430074958}}},{"id":"ev1057","type":"bearhunt","name":"BH #45","date":"2026-02-26","trapNumber":1,"locked":true,"totalAllianceDamage":30974848648,"totalRallies":70,"participants":{"p_thunderking":{"dp":1063813981},"p_viperclash":{"dp":230222592},"p_silentblade":{"dp":62111393},"p_lunarblade":{"dp":1350606479},"p_ivoryslash":{"dp":593429840},"p_hollowecho":{"dp":574603593},"p_palemoon":{"dp":57220870},"p_silverspark":{"dp":141605350},"p_redphoenix":{"dp":2434550216},"p_ghostrider":{"dp":1218115287},"p_ironfist":{"dp":2638882481},"p_titanslayer":{"dp":2282378007},"p_silentstorm":{"dp":583718906},"p_arcaneknight":{"dp":2569224170},"p_ashmantle":{"dp":2308689990},"p_nightmist":{"dp":65152978},"p_calmriver":{"dp":115559692},"p_omegaprime":{"dp":1863493733},"p_graymist":{"dp":112980886},"p_zeroghost":{"dp":2140457275},"p_stormbreaker":{"dp":3344904142},"p_coppermask":{"dp":72801373},"p_cobaltrage":{"dp":1081321374},"p_coralwing":{"dp":527397259},"p_bladerunner":{"dp":1291650481},"p_silverwing":{"dp":2249956300}}},{"id":"ev1058","type":"bearhunt","name":"BH #46","date":"2026-02-26","trapNumber":2,"locked":true,"totalAllianceDamage":34700184775,"totalRallies":111,"participants":{"p_emberstrike":{"dp":884662344},"p_novaburst":{"dp":3112482595},"p_phoenixrise":{"dp":2200661168},"p_steelvenom":{"dp":960535661},"p_twilightbow":{"dp":694897685},"p_icebreaker":{"dp":2614507883},"p_shadowwolf":{"dp":3239753607},"p_oakshield":{"dp":188179787},"p_bronzewing":{"dp":163057666},"p_celestialx":{"dp":486279849},"p_emberpath":{"dp":221906773},"p_crimsondusk":{"dp":704336426},"p_flamehunter":{"dp":3325394550},"p_rubyfang":{"dp":223876200},"p_nightraider":{"dp":2159418693},"p_nightfalcon":{"dp":2422370616},"p_darkmatter":{"dp":812412455},"p_voidwalker":{"dp":2476329121},"p_dragonlord":{"dp":2184789235},"p_ironspark":{"dp":76233034},"p_quickstep":{"dp":181092769},"p_dawncrusher":{"dp":1229740169},"p_runekeeper":{"dp":421092375},"p_crypticforce":{"dp":2242969253},"p_opalcrest":{"dp":733361273},"p_midnightaxe":{"dp":739843588}}},{"id":"ev1059","type":"bearhunt","name":"BH #47","date":"2026-02-28","trapNumber":1,"locked":true,"totalAllianceDamage":33216847984,"totalRallies":117,"participants":{"p_ironfist":{"dp":3331801378},"p_sapphireclaw":{"dp":260049440},"p_lowrider":{"dp":181629629},"p_ashmantle":{"dp":3091236085},"p_dawncrusher":{"dp":2409345646},"p_swiftarrow":{"dp":321291327},"p_hollowecho":{"dp":539828493},"p_bronzewing":{"dp":196497316},"p_stoneguard":{"dp":163757931},"p_warlordx":{"dp":2839482919},"p_phoenixrise":{"dp":1858050956},"p_lunarblade":{"dp":1992857436},"p_emberstrike":{"dp":1422390281},"p_lonerwolf":{"dp":147441537},"p_bronzefire":{"dp":710265498},"p_cobaltrage":{"dp":2379428206},"p_calmriver":{"dp":132724130},"p_bladerunner":{"dp":890513024},"p_redphoenix":{"dp":3401954488},"p_rookiex":{"dp":59344084},"p_pineshadow":{"dp":64675995},"p_midnightaxe":{"dp":457349965},"p_glacierpeak":{"dp":471638319},"p_marbleguard":{"dp":793487068},"p_darkmatter":{"dp":613057975},"p_flamehunter":{"dp":2128298095},"p_arcaneknight":{"dp":2358450763}}},{"id":"ev1060","type":"bearhunt","name":"BH #48","date":"2026-02-28","trapNumber":2,"locked":true,"totalAllianceDamage":39182412546,"totalRallies":104,"participants":{"p_violetstrike":{"dp":331054233},"p_novaburst":{"dp":3097423915},"p_coralwing":{"dp":453813127},"p_omegaprime":{"dp":2700105560},"p_ghostrider":{"dp":2468470325},"p_titanslayer":{"dp":833784640},"p_nightfalcon":{"dp":2487817209},"p_solarfist":{"dp":1897508854},"p_dimlight":{"dp":130769048},"p_steelvenom":{"dp":1187622194},"p_nightraider":{"dp":1811294963},"p_stormbreaker":{"dp":2077421636},"p_zeroghost":{"dp":1703603094},"p_ivoryslash":{"dp":372042677},"p_icebreaker":{"dp":2684828544},"p_silverwing":{"dp":2162296424},"p_voidwalker":{"dp":2544997179},"p_dragonlord":{"dp":945520719},"p_celestialx":{"dp":494244475},"p_ironspark":{"dp":71500219},"p_crimsonblade":{"dp":2911800452},"p_emberpath":{"dp":705830413},"p_thunderking":{"dp":2573655347},"p_silentstorm":{"dp":557257753},"p_crimsondusk":{"dp":653512034},"p_crypticforce":{"dp":1231195673},"p_softbreeze":{"dp":93041839}}},{"id":"ev1061","type":"bearhunt","name":"BH #49","date":"2026-03-02","trapNumber":1,"locked":true,"totalAllianceDamage":32678580413,"totalRallies":67,"participants":{"p_celestialx":{"dp":736023317},"p_opalcrest":{"dp":501722145},"p_dawncrusher":{"dp":2348731742},"p_emberstrike":{"dp":2647205403},"p_viperclash":{"dp":503788949},"p_bladerunner":{"dp":1930505773},"p_violetstrike":{"dp":858130257},"p_pearldagger":{"dp":483207928},"p_bronzewing":{"dp":188773798},"p_crimsondusk":{"dp":536092271},"p_rubyfang":{"dp":667910238},"p_emberpath":{"dp":377150029},"p_midnightaxe":{"dp":538811626},"p_ghostrider":{"dp":2910009106},"p_arcaneknight":{"dp":1449677141},"p_rookiex":{"dp":199162793},"p_nightmist":{"dp":168108808},"p_stillwater":{"dp":64286723},"p_crypticforce":{"dp":1611405047},"p_dragonlord":{"dp":1438321534},"p_novaburst":{"dp":1034364203},"p_coralwing":{"dp":446810881},"p_thunderking":{"dp":1586585993},"p_marbleguard":{"dp":238506797},"p_nightraider":{"dp":2819697772},"p_ashmantle":{"dp":1917653437},"p_shadowwolf":{"dp":1502463180},"p_omegaprime":{"dp":2806320271},"p_highnoon":{"dp":167153251}}},{"id":"ev1062","type":"bearhunt","name":"BH #50","date":"2026-03-02","trapNumber":2,"locked":true,"totalAllianceDamage":42243939539,"totalRallies":109,"participants":{"p_oakshield":{"dp":182851600},"p_stoneguard":{"dp":60949941},"p_crimsonblade":{"dp":2696312622},"p_flamehunter":{"dp":2331242221},"p_pineshadow":{"dp":180244752},"p_warlordx":{"dp":2766062974},"p_icebreaker":{"dp":2917369705},"p_dimlight":{"dp":80196540},"p_voidwalker":{"dp":1435885849},"p_thornward":{"dp":332772727},"p_phoenixrise":{"dp":2301539056},"p_stormbreaker":{"dp":1201913949},"p_titanslayer":{"dp":1675029606},"p_silentstorm":{"dp":505067716},"p_redphoenix":{"dp":1575907148},"p_lunarblade":{"dp":1522821534},"p_cobaltrage":{"dp":2985012042},"p_softbreeze":{"dp":123226924},"p_solarfist":{"dp":3219129100},"p_willowshade":{"dp":828866327},"p_zeroghost":{"dp":1712234539},"p_nightfalcon":{"dp":3306316951},"p_darkmatter":{"dp":204429962},"p_ironfist":{"dp":3059218970},"p_silverwing":{"dp":3251514991},"p_swiftarrow":{"dp":393884326},"p_obsidianrift":{"dp":647126482},"p_goldenscale":{"dp":282501451},"p_bronzefire":{"dp":464309534}}},{"id":"ev1063","type":"bearhunt","name":"BH #51","date":"2026-03-04","trapNumber":1,"locked":true,"totalAllianceDamage":33595275011,"totalRallies":111,"participants":{"p_thunderking":{"dp":1706531762},"p_emberstrike":{"dp":1594944308},"p_arcaneknight":{"dp":1135954600},"p_midnightaxe":{"dp":848596832},"p_nightraider":{"dp":1913760908},"p_oakshield":{"dp":78542919},"p_shadowwolf":{"dp":2663152169},"p_ashmantle":{"dp":3095127484},"p_nightmist":{"dp":54809081},"p_emberpath":{"dp":206278247},"p_omegaprime":{"dp":2496227959},"p_dragonlord":{"dp":1301129341},"p_highnoon":{"dp":53571426},"p_obsidianrift":{"dp":384399429},"p_warlordx":{"dp":2849214240},"p_lunarblade":{"dp":2776385116},"p_phoenixrise":{"dp":2539855136},"p_thornward":{"dp":846271713},"p_opalcrest":{"dp":722614299},"p_ironfist":{"dp":2100516022},"p_crypticforce":{"dp":3456434573},"p_silverspark":{"dp":146832395},"p_bronzefire":{"dp":624125052}}},{"id":"ev1064","type":"bearhunt","name":"BH #52","date":"2026-03-04","trapNumber":2,"locked":true,"totalAllianceDamage":26607769331,"totalRallies":90,"participants":{"p_darkmatter":{"dp":524975114},"p_cobaltrage":{"dp":1176390042},"p_bladerunner":{"dp":1337255294},"p_coppermask":{"dp":86269375},"p_redphoenix":{"dp":859596634},"p_solarfist":{"dp":1619488717},"p_titanslayer":{"dp":1280660531},"p_violetstrike":{"dp":217056653},"p_celestialx":{"dp":402100867},"p_timberwolf":{"dp":57198177},"p_crimsondusk":{"dp":424658446},"p_nightfalcon":{"dp":2866382608},"p_silentstorm":{"dp":896453883},"p_crimsonblade":{"dp":1423432493},"p_silverwing":{"dp":1838438114},"p_marbleguard":{"dp":667924311},"p_voidwalker":{"dp":3488903570},"p_sapphireclaw":{"dp":778298594},"p_zeroghost":{"dp":1619971340},"p_viperclash":{"dp":292442244},"p_runekeeper":{"dp":523108101},"p_novaburst":{"dp":2790397616},"p_steelvenom":{"dp":1436366607}}},{"id":"ev1065","type":"bearhunt","name":"BH #53","date":"2026-03-06","trapNumber":1,"locked":true,"totalAllianceDamage":39288003598,"totalRallies":86,"participants":{"p_shadowwolf":{"dp":1462695110},"p_ironfist":{"dp":2362238135},"p_ghostrider":{"dp":2237128353},"p_celestialx":{"dp":347932060},"p_bladerunner":{"dp":1328209967},"p_timberwolf":{"dp":104194523},"p_arcaneknight":{"dp":2685956471},"p_cobaltrage":{"dp":2585631951},"p_phoenixrise":{"dp":828293433},"p_swiftarrow":{"dp":463406114},"p_emberstrike":{"dp":2834368522},"p_thunderking":{"dp":2265958548},"p_calmriver":{"dp":126976095},"p_titanslayer":{"dp":2969056122},"p_ashmantle":{"dp":1535563832},"p_redphoenix":{"dp":1166076664},"p_marbleguard":{"dp":485632109},"p_omegaprime":{"dp":2399601959},"p_nightraider":{"dp":2582448387},"p_flamehunter":{"dp":2348951618},"p_twilightbow":{"dp":875856484},"p_dragonlord":{"dp":1854205230},"p_glacierpeak":{"dp":362791297},"p_stormbreaker":{"dp":3074830614}}},{"id":"ev1066","type":"bearhunt","name":"BH #54","date":"2026-03-06","trapNumber":2,"locked":true,"totalAllianceDamage":21886104974,"totalRallies":69,"participants":{"p_coralwing":{"dp":445008566},"p_icebreaker":{"dp":1392681126},"p_sapphireclaw":{"dp":660445025},"p_runekeeper":{"dp":643894981},"p_graymist":{"dp":159873133},"p_stillwater":{"dp":173145587},"p_rubyfang":{"dp":754217523},"p_crypticforce":{"dp":2353809069},"p_lowrider":{"dp":57989424},"p_steelvenom":{"dp":2700861022},"p_dustcloud":{"dp":89079988},"p_novaburst":{"dp":842729398},"p_bronzefire":{"dp":755498930},"p_rookiex":{"dp":68678058},"p_obsidianrift":{"dp":291029915},"p_oakshield":{"dp":140812689},"p_warlordx":{"dp":2152075331},"p_violetstrike":{"dp":631269332},"p_nightfalcon":{"dp":1505769131},"p_darkmatter":{"dp":666081562},"p_dawncrusher":{"dp":1064004471},"p_silverwing":{"dp":2489065733},"p_voidwalker":{"dp":959316365},"p_silentstorm":{"dp":888768615}}},{"id":"ev1067","type":"bearhunt","name":"BH #55","date":"2026-03-08","trapNumber":1,"locked":true,"totalAllianceDamage":32064873299,"totalRallies":73,"participants":{"p_bladerunner":{"dp":1273890212},"p_zeroghost":{"dp":1319117351},"p_ghostrider":{"dp":2387359626},"p_obsidianrift":{"dp":813927729},"p_thunderking":{"dp":2043782053},"p_pineshadow":{"dp":60813155},"p_dragonlord":{"dp":3045312271},"p_lunarblade":{"dp":1458437876},"p_nightfalcon":{"dp":1305698967},"p_crimsondusk":{"dp":598860032},"p_crimsonblade":{"dp":2109641145},"p_emberstrike":{"dp":2408292420},"p_glacierpeak":{"dp":525623035},"p_cobaltrage":{"dp":2062640058},"p_voidwalker":{"dp":2887034313},"p_redphoenix":{"dp":920163655},"p_runekeeper":{"dp":353404845},"p_flamehunter":{"dp":1410485820},"p_omegaprime":{"dp":3332416852},"p_coralwing":{"dp":652858103},"p_newrecruit":{"dp":63059665},"p_opalcrest":{"dp":527667311},"p_hollowecho":{"dp":504386805}}},{"id":"ev1068","type":"bearhunt","name":"BH #56","date":"2026-03-08","trapNumber":2,"locked":true,"totalAllianceDamage":34281796913,"totalRallies":108,"participants":{"p_solarfist":{"dp":1586310279},"p_novaburst":{"dp":2899352779},"p_ivoryslash":{"dp":202239566},"p_dawncrusher":{"dp":1325394346},"p_crypticforce":{"dp":3151654798},"p_icebreaker":{"dp":2297435811},"p_willowshade":{"dp":272546866},"p_emberpath":{"dp":247977445},"p_silentstorm":{"dp":648367904},"p_arcaneknight":{"dp":2866637025},"p_nightraider":{"dp":3261270060},"p_silverwing":{"dp":2130159429},"p_midnightaxe":{"dp":807484447},"p_warlordx":{"dp":2742933372},"p_thornward":{"dp":562734944},"p_ashmantle":{"dp":2420515349},"p_palemoon":{"dp":177567922},"p_stormbreaker":{"dp":3401503399},"p_ghostwalker":{"dp":85650807},"p_phoenixrise":{"dp":1394948687},"p_swiftarrow":{"dp":741986065},"p_celestialx":{"dp":883394004},"p_dimlight":{"dp":173731609}}}],"swSlots":["14:00 UTC","19:00 UTC"],"taSlots":["14:00 UTC","19:00 UTC"],"schedule":{"swordland":{"startDate":"2026-05-03","intervalWeeks":2,"slotA":"14:00 UTC","slotB":"19:00 UTC"},"trialliance":{"startDate":"2026-05-16","intervalWeeks":4,"slotA":"14:00 UTC","slotB":"19:00 UTC"}},"rules":{"ptsPresent":3,"ptsNoshow":0,"window":10,"minEvents":3,"starterMin":24,"rotationMin":15,"autoStreak":3,"bhPtsPresent":1,"bhPenaltyPts":-1,"bhPenaltyWindow":4,"inactEvents":3}};
 
 // =============================================================================
 // STORAGE — Firebase Realtime Database
@@ -1071,7 +1077,7 @@ async function getSession() {
 
 // ── Persist (called on every data change) ─────────────────────────────────────
 function persist() {
-  if (APP.readOnly) return; // viewer mode — no writes
+  if (APP.readOnly || APP.isDemoMode) return; // viewer/demo — no writes
   syncSaving();
   try { localStorage.setItem(APP.SK, JSON.stringify(APP.S)); } catch(e) {}
   if (APP.dataKey) saveShared(APP.dataKey, APP.S);
@@ -1104,6 +1110,10 @@ function applyLoadedState(parsed) {
       if (ev.result !== undefined && ev.r1 === undefined) { ev.r1 = ev.result; ev.r2 = ev.result; delete ev.result; }
       // Migrate BH events without participants object
       if (ev.type === 'bearhunt' && !ev.participants) ev.participants = {};
+    }
+    // Retroactive slot update — schedule after state is loaded
+    if (!APP.S._slotsRetroUpdated) {
+      setTimeout(function() { if (!APP.S._slotsRetroUpdated) retroactiveSlotUpdate(); }, 100);
     }
     return true;
   }
@@ -1560,6 +1570,28 @@ async function saveViewerCode() {
   }
 }
 
+
+function retroactiveSlotUpdate() {
+  // Run through all SW/TA events chronologically and apply slot update logic.
+  // Called once at load; flag prevents re-running.
+  var evs = APP.S.events.slice()
+    .filter(function(e){ return e.type === 'swordland' || e.type === 'trialliance'; })
+    .sort(function(a,b){ return a.date < b.date ? -1 : 1; });
+  for (var i = 0; i < evs.length; i++) {
+    var ev = evs[i];
+    if (!ev.players) continue;
+    for (var pid in ev.players) {
+      var dd = ev.players[pid];
+      if (dd.st !== 'present') continue;
+      var lg = dd.lg || '';
+      var slot = (lg === 'a' || lg === 'as') ? ev.slotA : ev.slotB;
+      if (slot) updatePlayerSlotFromEvent(pid, ev.type, slot);
+    }
+  }
+  APP.S._slotsRetroUpdated = true;
+  persist();
+}
+
 function updatePlayerSlotFromEvent(pid, evType, evSlot) {
   // Called when a player is confirmed present in a SW or TA event.
   // Updates their main slot to the event's slot, shifts old main to secondary.
@@ -1579,6 +1611,54 @@ function updatePlayerSlotFromEvent(pid, evType, evSlot) {
     p.taM = evSlot;
   }
 }
+
+function podiumTable(icon, title, entries) {
+  if (!entries.length) return '';
+  var e1 = entries[0], e2 = entries[1], e3 = entries[2], rest = entries.slice(3);
+
+  // ── 1st place — full width card ──────────────────────────────────────────
+  var first = '<div class="pod-1st">'
+    + '<span class="p1-crown">&#129351;</span>'
+    + '<div class="p1-info"><div class="p1-name">'+e1.name+'</div>'
+    + (e1.meta?'<div class="p1-meta">'+e1.meta+'</div>':'')+'</div>'
+    + '<div class="p1-val">'+e1.val+'</div>'
+    + '</div>';
+
+  // ── 2nd + 3rd — side by side ─────────────────────────────────────────────
+  var second = e2 ? '<div class="pod-2nd">'
+    + '<div class="p23-top"><span class="p23-med">&#129352;</span><span class="p23-name">'+e2.name+'</span></div>'
+    + '<div class="p23-val v2">'+e2.val+'</div>'
+    + (e2.meta?'<div class="p23-meta">'+e2.meta+'</div>':'')
+    + '</div>' : '<div class="pod-2nd" style="opacity:.2"></div>';
+
+  var third = e3 ? '<div class="pod-3rd">'
+    + '<div class="p23-top"><span class="p23-med">&#129353;</span><span class="p23-name">'+e3.name+'</span></div>'
+    + '<div class="p23-val v3">'+e3.val+'</div>'
+    + (e3.meta?'<div class="p23-meta">'+e3.meta+'</div>':'')
+    + '</div>' : '';
+
+  // ── Rows 4-5 ─────────────────────────────────────────────────────────────
+  var rowsHtml = '';
+  for (var ri = 0; ri < rest.length; ri++) {
+    rowsHtml += '<div class="tbl-dense-row">'
+      + '<span class="tbl-dense-rk">'+(ri+4)+'</span>'
+      + '<span class="tbl-dense-nm">'+rest[ri].name+'</span>'
+      + (rest[ri].meta?'<span class="tbl-dense-mt">'+rest[ri].meta+'</span>':'<span></span>')
+      + '<span class="tbl-dense-vl">'+rest[ri].val+'</span>'
+      + '</div>';
+  }
+
+  return '<div class="stat-card">'
+    + '<div class="stat-card-hdr"><span style="font-size:13px">'+icon+'</span>'
+    + '<span class="stat-card-hdr-lbl">'+title+'</span></div>'
+    + '<div style="padding:12px 10px 12px;display:flex;flex-direction:column;gap:6px">'
+    + first
+    + (e2||e3 ? '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">'+second+third+'</div>' : '')
+    + '</div>'
+    + (rowsHtml ? '<div class="tbl-dense">'+rowsHtml+'</div>' : '')
+    + '</div>';
+}
+
 
 // =============================================================================
 // UTILITIES
@@ -3192,36 +3272,57 @@ function renderStats() {
   var allEvs = [];
   for (i = 0; i < S.events.length; i++) { if (hasResult(S.events[i])) allEvs.push(S.events[i]); }
   allEvs.sort(function(a,b){ return a.date < b.date ? 1 : -1; });
-  var last10 = allEvs.slice(0,10);
+  var last10 = allEvs.slice(0,12);
 
-  function evChips(ev) {
-    // Returns 1-2 chips: one per legion if it has a result
-    var out = '';
-    function chip(r, type, lbl) {
-      var cls, txt;
-      if (type === 'swordland') {
-        cls = r==='win'?'res-win':'res-loss';
-        txt = lbl + (r==='win'?'W':'L');
-      } else {
-        cls = r==='1'?'res-1':r==='2'?'res-2':'res-3';
-        txt = lbl + r;
-      }
-      var dateTag = ev.date ? ' <span style="font-size:8px;opacity:.7">' + ev.date.slice(5) + '</span>' : '';
-      return '<span class="hist-chip ' + cls + '" title="' + esc(ev.name) + ' ' + ev.date + '">' + txt + dateTag + '</span>';
+  function resultBadge(r, type) {
+    if (!r) return '<span style="color:var(--muted);font-size:10px">—</span>';
+    if (type === 'swordland') {
+      return r === 'win'
+        ? '<span class="res-btn res-win" style="font-size:9px;padding:1px 7px">W</span>'
+        : '<span class="res-btn res-loss" style="font-size:9px;padding:1px 7px">L</span>';
+    } else {
+      var cls = r==='1'?'res-1':r==='2'?'res-2':'res-3';
+      var lbl = r==='1'?'1st':r==='2'?'2nd':'3rd';
+      return '<span class="res-btn ' + cls + '" style="font-size:9px;padding:1px 7px">' + lbl + '</span>';
     }
-    if (ev.r1) out += chip(ev.r1, ev.type, (ev.type==='swordland'?'SW ':'TA ')+'L1 ');
-    if (ev.r2) out += chip(ev.r2, ev.type, (ev.type==='swordland'?'SW ':'TA ')+'L2 ');
-    return out;
   }
 
-  // Filter history chips by type
-  var filteredChips = '';
+    function legCell(r, slot, mvp, score, type) {
+    var badge=resultBadge(r,type),mvpTag=mvp?' <span style="color:var(--goldtxt);font-size:9px;font-weight:700">&#11088;'+esc(mvp)+'</span>':'';
+    var scoreTag=score?'<div style="font-size:9px;color:var(--blue);font-weight:600;margin-top:3px">'+Number(score).toLocaleString()+'</div>':'';
+    return '<div style="background:var(--panel2);border-radius:8px;padding:7px 10px;border:1px solid var(--border)">'
+      +'<div style="font-size:9px;color:var(--muted);font-weight:600;letter-spacing:.3px;margin-bottom:4px">'+slot+'</div>'
+      +'<div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap">'+badge+mvpTag+'</div>'
+      +scoreTag+'</div>';
+  }
+
+  function evHistRow(ev) {
+    var icon = ev.type === 'swordland' ? '&#9876;' : '&#129309;';
+    var typeColor = ev.type === 'swordland' ? '#60a5fa' : '#a78bfa';
+    var slotA = ev.slotA ? 'L1 · ' + ev.slotA : 'L1';
+    var slotB = ev.slotB ? 'L2 · ' + ev.slotB : 'L2';
+    return '<div style="padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.05)">'
+      + '<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:8px">'
+      + '<span style="font-size:9px;color:var(--muted);white-space:nowrap">' + (ev.date||'') + '</span>'
+      + '<span style="font-size:9px;font-weight:800;color:' + typeColor + ';text-transform:uppercase;letter-spacing:.5px">' + icon + '</span>'
+      + '<span style="font-size:12px;font-weight:700;flex:1">' + esc(ev.name) + '</span>'
+      + '</div>'
+      + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">'
+      + legCell(ev.r1, slotA, ev.mvp1, ev.score1, ev.type)
+      + legCell(ev.r2, slotB, ev.mvp2, ev.score2, ev.type)
+      + '</div></div>';
+  }
+
+  // Filter history by type
+  var histRows = '';
   for (i = 0; i < last10.length; i++) {
     e = last10[i];
     if (sType === 'sw' && e.type !== 'swordland')   continue;
     if (sType === 'ta' && e.type !== 'trialliance') continue;
-    filteredChips += evChips(e);
+    if (sType === 'bh') continue;
+    histRows += evHistRow(e);
   }
+  var filteredChips = ''; // keep for legacy references
 
   // --- Scores per legion ---
   var swScore1Sum=0, swScore1Cnt=0, swScore2Sum=0, swScore2Cnt=0;
@@ -3295,51 +3396,43 @@ function renderStats() {
 
   var swBlock = (sType === 'all' || sType === 'sw') ?
     '<div class="sec">&#9876; Swordland</div>'
-    + '<div class="stat-grid">'
-    + '<div class="stat-card"><div class="stat-big" style="color:var(--green)">' + swW + '<span style="color:var(--muted);font-size:14px"> / ' + swL + '</span></div><div class="stat-lbl">W / L (all legions)</div>'
-      + (swRate !== null ? '<div class="stat-sub">' + swRate + '% win rate &nbsp;|&nbsp; L1: ' + swW1 + 'W/' + swL1 + 'L &nbsp; L2: ' + swW2 + 'W/' + swL2 + 'L</div>'
-                         : '<div class="stat-sub" style="color:var(--muted)">No results yet</div>') + '</div>'
-    + '<div class="stat-card"><div class="stat-big" style="font-size:20px;margin-top:4px">' + swStreakLabel + '</div><div class="stat-lbl">Current Streak</div></div>'
-    + scoreStatCard('L1 Avg Score', swAvgS1)
-    + scoreStatCard('L2 Avg Score', swAvgS2)
-    + '</div>' : '';
+    + '<div class="dash-card">'
+    + '<div class="dash-top">'
+    + '<div class="dash-main"><div class="dash-big"><span style="color:var(--green)">' + swW + '</span><span style="color:var(--border2);font-size:16px"> / </span><span style="color:#f87171">' + swL + '</span></div><div class="dash-lbl">W / L · All</div></div>'
+    + '<div class="dash-div"></div>'
+    + '<div class="dash-main"><div class="dash-big" style="color:' + (swRate!==null?(swRate>=60?'var(--green)':swRate>=40?'var(--gold2)':'#f87171'):'var(--muted)') + '">' + (swRate!==null?swRate+'<span style="font-size:16px">%</span>':'—') + '</div><div class="dash-lbl">Win Rate</div></div>'
+    + '<div class="dash-div"></div>'
+    + '<div class="dash-main"><div style="margin-bottom:3px"><span class="streak-pill" style="color:' + (swStreakType==='win'?'var(--green)':'#f87171') + ';border-color:' + (swStreakType==='win'?'rgba(52,211,153,.3)':'rgba(248,113,113,.3)') + ';background:' + (swStreakType==='win'?'rgba(52,211,153,.08)':'rgba(248,113,113,.08)') + '">' + (swStreak>0?swStreak+(swStreakType==='win'?'W 🔥':'L'):'—') + '</span></div><div class="dash-lbl">Streak</div></div>'
+    + '</div>'
+    + '<div class="dash-sub">'
+    + '<div class="dash-sub-item"><div class="dash-sub-val" style="color:var(--blue)">' + (swAvgS1||'—') + '</div><div class="dash-sub-lbl">L1 Avg · ' + swW1 + 'W/' + swL1 + 'L</div></div>'
+    + '<div class="dash-sub-item"><div class="dash-sub-val" style="color:#a78bfa">' + (swAvgS2||'—') + '</div><div class="dash-sub-lbl">L2 Avg · ' + swW2 + 'W/' + swL2 + 'L</div></div>'
+    + '</div></div>' : '';
 
   var taBlock = (sType === 'all' || sType === 'ta') ?
     '<div class="sec" style="margin-top:' + (sType==='all'?'4px':'0') + '">&#129309; Tri-Alliance</div>'
-    + '<div class="stat-grid">'
-    + '<div class="stat-card"><div class="stat-big" style="color:var(--goldtxt)">' + (taAvg1||'&#8212;') + '</div><div class="stat-lbl">L1 Avg Rank</div>'
-      + '<div class="stat-sub">&#129351;' + ta1_1 + ' &#129352;' + ta2_1 + ' &#129353;' + ta3_1 + '</div></div>'
-    + '<div class="stat-card"><div class="stat-big" style="color:var(--blue)">' + (taAvg2||'&#8212;') + '</div><div class="stat-lbl">L2 Avg Rank</div>'
-      + '<div class="stat-sub">&#129351;' + ta1_2 + ' &#129352;' + ta2_2 + ' &#129353;' + ta3_2 + '</div></div>'
-    + scoreStatCard('L1 Avg Score', taAvgS1)
-    + scoreStatCard('L2 Avg Score', taAvgS2)
-    + '</div>' : '';
+    + '<div class="dash-card">'
+    + '<div class="dash-top">'
+    + '<div class="dash-main"><div class="dash-big" style="color:var(--goldtxt)">' + (taAvg1||'—') + '</div><div class="dash-lbl">L1 Avg Rank</div></div>'
+    + '<div class="dash-div"></div>'
+    + '<div class="dash-main"><div class="dash-big" style="color:#a78bfa">' + (taAvg2||'—') + '</div><div class="dash-lbl">L2 Avg Rank</div></div>'
+    + '<div class="dash-div"></div>'
+    + '<div class="dash-main"><div style="font-size:12px;line-height:1.6">&#129351;' + ta1_1 + ' &#129352;' + ta2_1 + ' &#129353;' + ta3_1 + '<br><span style="opacity:.5">&#129351;</span>' + ta1_2 + ' <span style="opacity:.5">&#129352;</span>' + ta2_2 + ' <span style="opacity:.5">&#129353;</span>' + ta3_2 + '</div><div class="dash-lbl" style="margin-top:3px">L1 / L2</div></div>'
+    + '</div>'
+    + '<div class="dash-sub">'
+    + '<div class="dash-sub-item"><div class="dash-sub-val" style="color:var(--blue)">' + (taAvgS1||'—') + '</div><div class="dash-sub-lbl">L1 Avg Score</div></div>'
+    + '<div class="dash-sub-item"><div class="dash-sub-val" style="color:#a78bfa">' + (taAvgS2||'—') + '</div><div class="dash-sub-lbl">L2 Avg Score</div></div>'
+    + '</div></div>' : '';
 
   // MVP block
-  var mvpRows = '';
-  for (i = 0; i < Math.min(5, mvpList.length); i++) {
-    var mv = mvpList[i];
-    var mvIcon = i===0?'&#129351;':i===1?'&#129352;':i===2?'&#129353;':'&#11088;';
-    mvpRows += '<div class="top3-row"><span class="top3-rank">' + mvIcon + '</span>'
-      + '<span class="top3-name">' + esc(mv.name) + '</span>'
-      + '<div class="top3-val">&#11088; ' + mv.count + 'x</div></div>';
-  }
-  var mvpBlock = mvpList.length > 0
-    ? '<div class="top3-table"><div class="top3-hdr">&#11088; MVP Leaderboard</div>' + mvpRows + '</div>'
-    : '';
+  var mvpEntries=mvpList.slice(0,5).map(function(mv){return{name:esc(mv.name),val:'&#11088; '+mv.count+'x',meta:''};});
+  var mvpBlock=mvpEntries.length>0?podiumTable('&#11088;','MVP Leaderboard',mvpEntries):'';
 
   function scorerTable(title, arr) {
     if (!arr.length) return '';
-    var rws = '';
-    for (var si = 0; si < Math.min(5, arr.length); si++) {
-      var sc3 = arr[si];
-      var scIco = si===0?'&#129351;':si===1?'&#129352;':si===2?'&#129353;':'&#128200;';
-      rws += '<div class="top3-row"><span class="top3-rank">' + scIco + '</span>'
-        + '<span class="top3-name">' + esc(sc3.name) + '</span>'
-        + '<div><div class="top3-val">' + fmtScore(sc3.avg) + ' avg</div>'
-        + '<div class="top3-sub">' + sc3.cnt + ' event' + (sc3.cnt>1?'s':'') + '</div></div></div>';
-    }
-    return '<div class="top3-table"><div class="top3-hdr">' + title + '</div>' + rws + '</div>';
+    var p=title.split(' ');
+    var entries=arr.slice(0,5).map(function(sc){return{name:esc(sc.name),val:fmtScore(sc.avg)+' avg',meta:sc.cnt+' event'+(sc.cnt>1?'s':'')};});
+    return podiumTable(p[0], p.slice(1).join(' '), entries);
   }
   var scorersBlock = scorerTable('&#9876; SW Top Scorers', sType !== 'ta' ? swTopScorers : [])
                   + scorerTable('&#129309; TA Top Scorers', sType !== 'sw' ? taTopScorers : []);
@@ -3368,19 +3461,8 @@ function renderStats() {
   }
 
   function top3HTML(title, icon, sorted, valFn, subFn) {
-    var rows = '';
-    var medals = ['&#129351;','&#129352;','&#129353;'];
-    for (var k = 0; k < Math.min(3, sorted.length); k++) {
-      var px = sorted[k];
-      rows += '<div class="top3-row">'
-        + '<span class="top3-rank">' + medals[k] + '</span>'
-        + '<span class="top3-name">' + esc(px.name) + '</span>'
-        + '<div style="text-align:right"><div class="top3-val">' + valFn(px) + '</div>'
-        + '<div class="top3-sub">' + subFn(px) + '</div></div>'
-        + '</div>';
-    }
-    if (!rows) rows = '<div style="padding:14px;text-align:center;color:var(--muted);font-size:12px">Not enough data yet</div>';
-    return '<div class="top3-table"><div class="top3-hdr">' + icon + ' ' + title + '</div>' + rows + '</div>';
+    var entries=sorted.slice(0,5).map(function(px){return{name:esc(px.name),val:valFn(px),meta:subFn(px)};});
+    return podiumTable(icon, title, entries);
   }
 
   var byPres  = playerStats.slice().sort(function(a,b){ return b.pres - a.pres; }).filter(function(x){ return x.pres > 0; });
@@ -3395,19 +3477,12 @@ function renderStats() {
 
   var allSorted = playerStats.slice().filter(function(x){ return x.pres > 0; })
     .sort(function(a,b){ return b.wins - a.wins || b.pres - a.pres; });
-  var rankRows = '';
-  for (i = 0; i < allSorted.length; i++) {
-    var ps = allSorted[i];
-    var rankIcon = i === 0 ? '&#129351;' : i === 1 ? '&#129352;' : i === 2 ? '&#129353;' : (i+1)+'.';
-    rankRows += '<div class="top3-row">'
-      + '<span class="top3-rank" style="font-size:' + (i<3?'16':'11') + 'px">' + rankIcon + '</span>'
-      + '<span class="top3-name">' + esc(ps.name) + '</span>'
-      + '<div style="display:flex;gap:8px;align-items:center">'
-      + '<span class="top3-sub">&#10003;' + ps.pres + '</span>'
-      + '<span class="top3-sub">&#127942;' + ps.wins + '</span>'
-      + (ps.wr !== null ? '<span class="wr-pill">' + ps.wr + '%</span>' : '')
-      + '</div></div>';
-  }
+  var rankEntries=allSorted.slice(0,20).map(function(ps){
+    var wrC=ps.wr>=60?'#059669':ps.wr>=40?'#d97706':'#dc2626';
+    var wrBadge=ps.wr!==null?'<span style="font-size:9px;font-weight:900;padding:1px 6px;background:var(--panel2);border-radius:10px;color:'+wrC+'">'+ps.wr+'%</span>':'';
+    return{name:esc(ps.name),val:'&#10003;'+ps.pres+' &#127942;'+ps.wins,meta:wrBadge};
+  });
+  var rankRows=rankEntries.length?podiumTable('&#127942;','Player Rankings',rankEntries):'';
 
 
   // ── Bear Hunt Stats ──────────────────────────────────────────────────────────
@@ -3417,85 +3492,92 @@ function renderStats() {
     var bh1Evs = bhEvs2.filter(function(e){ return e.trapNumber === 1; });
     var bh2Evs = bhEvs2.filter(function(e){ return e.trapNumber === 2; });
 
+
+function bhRow(idx, mainText, subText, value) {
+  var a=['#f59e0b','#94a3b8','#cd7f32'],it=idx<3,ac=it?a[idx]:'var(--border2)';
+  var lb=it?['&#129351;','&#129352;','&#129353;'][idx]:'<span style="font-size:11px;font-weight:800;color:var(--muted)">'+(idx+1)+'</span>';
+  var gl=it&&!document.body.classList.contains('light')?'background:linear-gradient(90deg,'+['rgba(245,158,11,.1)','rgba(148,163,184,.08)','rgba(205,127,50,.08)'][idx]+' 0%,transparent 60%);':'';
+  return '<div class="stat-row'+(it?' stat-row-top':'')+' " style="border-left-color:'+ac+';'+gl+'">'
+    +'<div class="stat-rank" style="font-size:'+(it?'18':'11')+'px">'+lb+'</div>'
+    +'<div style="flex:1;min-width:0"><div class="stat-name'+(it?' stat-name-top':'')+'">'+mainText+'</div>'
+    +(subText?'<div class="stat-sub">'+subText+'</div>':'')
+    +'</div>'
+    +'<div class="stat-val'+(it?' stat-val-top':'')+' " style="color:'+ac+'">'+value+'</div></div>';
+}
+    function bhTable(icon, title, rows) {
+      return '<div class="stat-card"><div class="stat-card-hdr">'
+        +'<span style="font-size:13px">'+icon+'</span>'
+        +'<span class="stat-card-hdr-lbl">'+title+'</span>'
+        +'</div>'+rows+'</div>';
+    }
     function bhTop5TAD(evArr, label) {
       if (!evArr.length) return '';
-      var sorted = evArr.slice().sort(function(a,b){ return (b.totalAllianceDamage||0)-(a.totalAllianceDamage||0); });
-      var rows = '';
-      var medals = ['&#129351;','&#129352;','&#129353;','4.','5.'];
-      for (var ii = 0; ii < Math.min(5, sorted.length); ii++) {
-        var ev2 = sorted[ii];
-        var meta2 = '<span style="font-size:9px;color:var(--muted);margin-left:4px">T' + (ev2.trapNumber||'?') + ' &middot; ' + (ev2.date||'') + '</span>';
-        rows += '<div class="top3-row"><span class="top3-rank">' + medals[ii] + '</span>'
-          + '<span class="top3-name">' + esc(ev2.name) + meta2 + '</span>'
-          + '<div class="top3-val">' + fmtDmg(ev2.totalAllianceDamage||0) + '</div></div>';
-      }
-      return '<div class="top3-table"><div class="top3-hdr">&#128205; ' + label + ' — Alliance DMG</div>' + rows + '</div>';
+      var sorted=evArr.slice().sort(function(a,b){return(b.totalAllianceDamage||0)-(a.totalAllianceDamage||0);});
+      var entries=sorted.slice(0,5).map(function(ev2){return{name:esc(ev2.name),val:fmtDmg(ev2.totalAllianceDamage||0),meta:'T'+(ev2.trapNumber||'?')+' &middot; '+(ev2.date||'')};});
+      return podiumTable('&#128205;', label+' — Alliance DMG', entries);
     }
-
     function bhTop5Rallies(evArr, label) {
       if (!evArr.length) return '';
-      var sorted = evArr.slice().sort(function(a,b){ return (b.totalRallies||0)-(a.totalRallies||0); });
-      var rows = '';
-      var medals = ['&#129351;','&#129352;','&#129353;','4.','5.'];
-      for (var ii = 0; ii < Math.min(5, sorted.length); ii++) {
-        var ev3 = sorted[ii];
-        var meta3 = '<span style="font-size:9px;color:var(--muted);margin-left:4px">T' + (ev3.trapNumber||'?') + ' &middot; ' + (ev3.date||'') + '</span>';
-        rows += '<div class="top3-row"><span class="top3-rank">' + medals[ii] + '</span>'
-          + '<span class="top3-name">' + esc(ev3.name) + meta3 + '</span>'
-          + '<div class="top3-val">' + (ev3.totalRallies||0) + ' rallies</div></div>';
-      }
-      return '<div class="top3-table"><div class="top3-hdr">&#128257; ' + label + ' — Rallies</div>' + rows + '</div>';
+      var sorted=evArr.slice().sort(function(a,b){return(b.totalRallies||0)-(a.totalRallies||0);});
+      var entries=sorted.slice(0,5).map(function(ev3){return{name:esc(ev3.name),val:(ev3.totalRallies||0)+' rallies',meta:'T'+(ev3.trapNumber||'?')+' &middot; '+(ev3.date||'')};});
+      return podiumTable('&#128257;', label+' — Rallies', entries);
     }
-
     function bhTop5Ind(evArr, label) {
       if (!evArr.length) return '';
-      var bestMap = {};
-      var ii, ev4, pid2;
-      for (ii = 0; ii < evArr.length; ii++) {
-        ev4 = evArr[ii];
-        for (pid2 in ev4.participants) {
-          var dp2 = (ev4.participants[pid2]||{}).dp || 0;
-          if (!bestMap[pid2] || dp2 > bestMap[pid2].dp) {
-            bestMap[pid2] = {dp:dp2, date:ev4.date||'', trap:ev4.trapNumber||''};
-          }
-        }
-      }
-      var arr2 = [];
-      for (pid2 in bestMap) {
-        if (bestMap[pid2].dp > 0) arr2.push({pid:pid2, dp:bestMap[pid2].dp, date:bestMap[pid2].date, trap:bestMap[pid2].trap});
-      }
-      arr2.sort(function(a,b){ return b.dp - a.dp; });
-      var rows = '';
-      var medals = ['&#129351;','&#129352;','&#129353;','4.','5.'];
-      for (var jj = 0; jj < Math.min(5, arr2.length); jj++) {
-        var en = arr2[jj];
-        var meta4 = '<span style="font-size:9px;color:var(--muted)"> &middot; T' + (en.trap||'?') + ' &middot; ' + (en.date||'') + '</span>';
-        rows += '<div class="top3-row"><span class="top3-rank">' + medals[jj] + '</span>'
-          + '<span class="top3-name">' + esc(getPlayerName(en.pid)) + meta4 + '</span>'
-          + '<div class="top3-val">' + fmtDmg(en.dp) + '</div></div>';
-      }
-      return '<div class="top3-table"><div class="top3-hdr">&#128293; ' + label + ' — Best Ind. DMG</div>' + rows + '</div>';
+      var bestMap={},ii,ev4,pid2;
+      for(ii=0;ii<evArr.length;ii++){ev4=evArr[ii];for(pid2 in ev4.participants){var dp2=(ev4.participants[pid2]||{}).dp||0;if(!bestMap[pid2]||dp2>bestMap[pid2].dp)bestMap[pid2]={dp:dp2,date:ev4.date||'',trap:ev4.trapNumber||''};}}
+      var arr2=[];for(pid2 in bestMap){if(bestMap[pid2].dp>0)arr2.push({pid:pid2,dp:bestMap[pid2].dp,date:bestMap[pid2].date,trap:bestMap[pid2].trap});}
+      arr2.sort(function(a,b){return b.dp-a.dp;});
+      var entries=arr2.slice(0,5).map(function(en){return{name:esc(getPlayerName(en.pid)),val:fmtDmg(en.dp),meta:'T'+(en.trap||'?')+' &middot; '+(en.date||'')};});
+      return podiumTable('&#128293;', label+' — Best Ind. DMG', entries);
     }
 
     if (bhEvs2.length === 0) {
       bhBlock = '<div class="card"><div class="ch" style="background:linear-gradient(135deg,#1a0c00,#0d0800)"><span>&#128059;</span><span class="ch-title">Bear Hunt Stats</span></div><div class="cb"><div style="color:var(--muted);font-size:12px;padding:10px 0">No Bear Hunt data yet.</div></div></div>';
     } else {
+      // BH recent event history
+      var bhEvsSorted = bhEvs2.slice().sort(function(a,b){ return a.date < b.date ? 1 : -1; }).slice(0,12);
+      var bhHistRows = '';
+      for (var bhj = 0; bhj < bhEvsSorted.length; bhj++) {
+        var bhe = bhEvsSorted[bhj];
+        var bparts = bhe.participants || {};
+        var pCount = Object.keys(bparts).filter(function(id){ return bparts[id].dp > 0; }).length;
+        bhHistRows += '<div style="display:grid;grid-template-columns:auto 1fr auto auto;gap:6px 10px;padding:7px 10px;border-bottom:1px solid var(--border);font-size:11px;align-items:center">'
+          + '<span style="font-size:10px;font-weight:800;color:var(--muted)">T' + (bhe.trapNumber||'?') + '</span>'
+          + '<div><div style="font-weight:700">' + esc(bhe.name) + '</div><div style="font-size:9px;color:var(--muted)">' + (bhe.date||'') + '</div></div>'
+          + '<div style="text-align:right"><div style="color:var(--goldtxt);font-weight:700">' + fmtDmg(bhe.totalAllianceDamage||0) + '</div><div style="font-size:9px;color:var(--muted)">' + (bhe.totalRallies||0) + ' rallies</div></div>'
+          + '<div style="text-align:right"><div style="color:var(--blue);font-weight:700">' + pCount + '</div><div style="font-size:9px;color:var(--muted)">players</div></div>'
+          + '</div>';
+      }
+      var bhHistBlock = bhHistRows
+        ? '<div class="sec" style="margin-top:10px">&#128203; Recent Events</div>'
+          + '<div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">' + bhHistRows + '</div>'
+        : '';
+
       bhBlock = '<div class="card"><div class="ch" style="background:linear-gradient(135deg,#1a0c00,#0d0800)"><span>&#128059;</span><span class="ch-title">Bear Hunt Stats</span></div><div class="cb">'
         + (sType !== 'all' ? '' : '<div class="sec">&#128059; Bear Hunt — Global</div>')
         + bhTop5TAD(bhEvs2, 'Global') + bhTop5Ind(bhEvs2, 'Global') + bhTop5Rallies(bhEvs2, 'Global')
         + (bh1Evs.length ? '<div class="sec" style="margin-top:10px">Trap 1</div>' + bhTop5TAD(bh1Evs,'Trap 1') + bhTop5Ind(bh1Evs,'Trap 1') + bhTop5Rallies(bh1Evs,'Trap 1') : '')
         + (bh2Evs.length ? '<div class="sec" style="margin-top:10px">Trap 2</div>' + bhTop5TAD(bh2Evs,'Trap 2') + bhTop5Ind(bh2Evs,'Trap 2') + bhTop5Rallies(bh2Evs,'Trap 2') : '')
+        + bhHistBlock
         + '</div></div>';
     }
   }
 
+  var exportBar = '<div style="display:flex;gap:8px;margin-bottom:10px;justify-content:flex-end">'
+    + '<button class="btn bghost" style="font-size:11px;padding:5px 12px" onclick="exportStats(\'light\')">&#128229; Export Top 5</button>'
+    + '<button class="btn bghost" style="font-size:11px;padding:5px 12px" onclick="exportStats(\'full\')">&#128229; Export Full</button>'
+    + '</div>';
+
   document.getElementById('p-st').innerHTML =
-    typeTabs
+    exportBar + typeTabs
     + (sType !== 'bh' ? '<div class="card"><div class="ch ch-sw"><span style="font-size:18px">&#128202;</span><span class="ch-title">Alliance Performance</span></div><div class="cb">'
     + swBlock + taBlock
     + '</div></div>'
     + '<div class="card"><div class="ch ch-ro"><span style="font-size:18px">&#128198;</span><span class="ch-title">Recent Results</span><span class="ch-sub">Last 10</span></div><div class="cb">'
-    + (filteredChips ? '<div class="hist-row">' + filteredChips + '</div>' : '<div style="color:var(--muted);font-size:12px">No results recorded yet.</div>')
+    + (histRows
+        ? '<div style="border-radius:8px;overflow:hidden;border:1px solid var(--border);margin-top:4px">' + histRows + '</div>'
+        : (sType !== 'bh' ? '<div style="color:var(--muted);font-size:12px;padding:8px 0">No results recorded yet.</div>' : ''))
     + '</div></div>' : '')
     + (sType !== 'bh' ? '<div class="card"><div class="ch ch-ta"><span style="font-size:18px">&#127942;</span><span class="ch-title">Player Rankings</span></div><div class="cb">'
     + top3HTML('Top Presence', '&#128100;', byPres,
@@ -4071,6 +4153,7 @@ function renderRoster() {
     + '<div class="sb"><div class="sbv" style="color:var(--goldtxt)">' + rotations + '</div><div class="sbl">Rotation</div></div>'
     + '<div style="margin-left:auto;display:flex;gap:7px;align-items:center;flex-wrap:wrap">'
     + (APP.readOnly ? '' : '<button class="btn bgold" onclick="openPM()">+ Add</button>')
+    + (APP.readOnly ? '' : '<button class="btn bghost" style="font-size:11px;padding:6px 12px" onclick="openImpP()">&#128229; Import</button>')
     + (APP.readOnly ? '' : actionBar)
     + '</div>'
     + '</div>'
@@ -4753,6 +4836,9 @@ function buildConfigPage() {
     + (APP.readOnly
         ? '<span style="font-size:10px;font-weight:700;color:var(--muted);margin-left:auto;background:rgba(148,163,184,.12);border:1px solid var(--border);border-radius:6px;padding:2px 8px">&#128065; View only</span>'
         : '<div style="display:flex;gap:6px;margin-left:auto">'
+        + (APP.isDemoMode
+            ? '<button class="btn bgold" onclick="exitDemoMode()" style="font-size:10px;white-space:nowrap;padding:4px 10px">&#128269; Exit Demo</button>'
+            : '<button class="btn bghost" onclick="enterDemoMode()" style="font-size:10px;white-space:nowrap;padding:4px 10px">&#127918; Demo</button>')
         + '<button class="btn bghost" onclick="openChangeCode()" style="font-size:10px;white-space:nowrap;padding:4px 10px">&#128273; Change Code</button>'
         + '<button class="btn bghost" onclick="switchAlliance()" style="font-size:10px;white-space:nowrap;padding:4px 10px">&#8652; Switch</button>'
         + '</div>'
@@ -4778,8 +4864,6 @@ function buildConfigPage() {
     + '<div class="cb">'
     + '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">'
     + '<button class="btn bgold" onclick="openImpP()">&#128101; Import Players</button>'
-    + '<button class="btn bgold" onclick="openImpE()">&#128197; SW &amp; TA Event</button>'
-    + '<button class="btn bgold" onclick="openImpBH()">&#128059; Bear Hunt Event</button>'
     + '</div>'
     + '<div style="display:flex;gap:8px;flex-wrap:wrap">'
     + '<button class="btn bghost" style="font-size:11px;flex:1" onclick="downloadTemplate()">&#11015; SW/TA Template</button>'
@@ -4843,10 +4927,8 @@ function buildConfigPage() {
     + '<button class="btn bgold" onclick="addSlot(\'ta\')">Add</button></div>')
     + '</div></div>'
 
-    // Danger
-    + (APP.readOnly ? '' : '<div class="card" style="border-color:rgba(239,68,68,.2)">'
-    + '<div class="ch" style="background:linear-gradient(135deg,#1a0808,#0e0505)"><span>&#9888;</span><span class="ch-title" style="color:#fca5a5">Danger Zone</span></div>'
-    + '<div class="cb"><button class="btn bdanger" style="font-size:12px;padding:8px 14px" onclick="resetData()">Reset to Demo Data</button></div></div>');
+    // Danger zone removed
+    ;
 }
 
 // =============================================================================
@@ -4985,7 +5067,7 @@ function renderHelp() {
     { title: 'What viewers can see',
       body:  'All tabs are visible: Bear Hunt events and scores, SW/TA events and results, the full roster with expanded stats, and the stats leaderboards. Everything is display-only.' },
     { title: 'What viewers cannot do',
-      body:  'Import, create, edit, or delete anything. The Copy Invite Link, Change Code, Viewer Code, Danger Zone, and all Save buttons are hidden. A <strong>👁 View only</strong> badge replaces the admin buttons in Settings.' }
+      body:  'Import, create, edit, or delete anything. The Copy Invite Link, Change Code, Viewer Code, and all Save buttons are hidden. A <strong>👁 View only</strong> badge replaces the admin buttons in Settings.' }
   ]);
 
   document.getElementById('p-hp').innerHTML =
@@ -5157,7 +5239,134 @@ if (window.visualViewport) {
 }
 window.addEventListener('resize', fixVH);
 fixVH();
+
+function enterDemoMode() {
+  APP.REAL_S = APP.S ? JSON.parse(JSON.stringify(APP.S)) : null;
+  APP.S = JSON.parse(JSON.stringify(DEMO));
+  APP.isDemoMode = true;
+  var banner = document.getElementById('demo-banner');
+  if (banner) banner.style.display = 'flex';
+  updateAllianceBadge();
+  renderCurrentTab();
+  showToast('Demo mode ON — changes are not saved');
+}
+function exitDemoMode() {
+  if (!APP.isDemoMode) return;
+  APP.isDemoMode = false;
+  var banner = document.getElementById('demo-banner');
+  if (banner) banner.style.display = 'none';
+  if (APP.REAL_S) {
+    APP.S = APP.REAL_S; APP.REAL_S = null;
+    updateAllianceBadge(); renderCurrentTab();
+    showToast('Back to real data');
+  } else {
+    APP.S = null; APP.REAL_S = null;
+    updateAllianceBadge(); renderCurrentTab();
+  }
+}
+function renderCurrentTab() {
+  var tab = APP.curTab || 'bh';
+  if (tab==='bh') renderBHTab();
+  else if (tab==='sw') renderEvTab('swordland');
+  else if (tab==='ta') renderEvTab('trialliance');
+  else if (tab==='ro') renderRoster();
+  else if (tab==='st') renderStats();
+  else if (tab==='cf') renderConfig();
+}
+
+function exportStats(mode) {
+  if (!window.XLSX) { showToast('XLSX library not loaded.'); return; }
+  try {
+    var S = APP.S;
+    var today = new Date().toISOString().slice(0,10);
+    var wb = XLSX.utils.book_new();
+    var sType = APP.statType || 'all';
+    var cap = mode === 'full' ? 9999 : 5;
+
+    function addSheet(name, rows) {
+      if (!rows.length) return;
+      var ws = XLSX.utils.aoa_to_sheet(rows);
+      var alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      for (var ci = 0; ci < rows[0].length; ci++) {
+        var hc = ws[alpha[ci]+'1'];
+        if (hc) hc.s = {font:{bold:true,color:{rgb:'FFFFFF'}},fill:{patternType:'solid',fgColor:{rgb:'1E293B'}}};
+      }
+      XLSX.utils.book_append_sheet(wb, ws, name);
+    }
+
+    if (sType === 'all' || sType === 'sw') {
+      // SW events
+      var swEvs = S.events.filter(function(e){return e.type==='swordland'&&(e.r1||e.r2);}).sort(function(a,b){return a.date<b.date?-1:1;});
+      var swRows=[['Date','Event','L1 Result','L1 MVP','L1 Score','L2 Result','L2 MVP','L2 Score']];
+      for(var i=0;i<swEvs.length;i++){var ev=swEvs[i];swRows.push([ev.date||'',ev.name||'',ev.r1==='win'?'Victory':ev.r1==='loss'?'Defeat':'',ev.mvp1||'',ev.score1||'',ev.r2==='win'?'Victory':ev.r2==='loss'?'Defeat':'',ev.mvp2||'',ev.score2||'']);}
+      if(swRows.length>1) addSheet('SW Events',swRows);
+      // SW player rankings
+      var swMap={};
+      for(i=0;i<S.events.length;i++){var e2=S.events[i];if(e2.type!=='swordland'||!e2.players)continue;for(var pid in e2.players){var dd=e2.players[pid];if(dd.st!=='present')continue;if(!swMap[pid])swMap[pid]={pres:0,wins:0};swMap[pid].pres++;var lg=(dd.lg==='a'||dd.lg==='as')?1:2;if(isWin(e2,lg))swMap[pid].wins++;}}
+      var swArr=[];for(var pid2 in swMap){var sm=swMap[pid2];swArr.push([getPlayerName(pid2),sm.pres,sm.wins,sm.pres>0?Math.round(sm.wins/sm.pres*100)+'%':'—']);}
+      swArr.sort(function(a,b){return b[2]-a[2]||b[1]-a[1];});swArr=swArr.slice(0,cap);
+      addSheet('SW Rankings',[['Rank','Player','Events','Wins','Win Rate']].concat(swArr.map(function(r,i){return[i+1].concat(r);})));
+    }
+
+    if (sType === 'all' || sType === 'ta') {
+      var taEvs=S.events.filter(function(e){return e.type==='trialliance'&&(e.r1||e.r2);}).sort(function(a,b){return a.date<b.date?-1:1;});
+      var taRows=[['Date','Event','L1 Rank','L1 MVP','L1 Score','L2 Rank','L2 MVP','L2 Score']];
+      for(var ti=0;ti<taEvs.length;ti++){var tev=taEvs[ti];taRows.push([tev.date||'',tev.name||'',tev.r1||'',tev.mvp1||'',tev.score1||'',tev.r2||'',tev.mvp2||'',tev.score2||'']);}
+      if(taRows.length>1) addSheet('TA Events',taRows);
+      var taMap={};
+      for(var ti2=0;ti2<S.events.length;ti2++){var te=S.events[ti2];if(te.type!=='trialliance'||!te.players)continue;for(var tp in te.players){var td=te.players[tp];if(td.st!=='present')continue;if(!taMap[tp])taMap[tp]={pres:0,r1:0,r2:0,r3:0};taMap[tp].pres++;var tlg=(td.lg==='a'||td.lg==='as')?1:2;var tr=parseInt(tlg===1?te.r1:te.r2);if(tr===1)taMap[tp].r1++;else if(tr===2)taMap[tp].r2++;else if(tr===3)taMap[tp].r3++;}}
+      var taArr=[];for(var tp2 in taMap){var tm=taMap[tp2];var tavg=tm.pres>0?((tm.r1*1+tm.r2*2+tm.r3*3)/tm.pres).toFixed(2):'-';taArr.push([getPlayerName(tp2),tm.pres,tm.r1,tm.r2,tm.r3,tavg]);}
+      taArr.sort(function(a,b){return a[5]-b[5]||b[1]-a[1];});taArr=taArr.slice(0,cap);
+      addSheet('TA Rankings',[['Rank','Player','Events','1st','2nd','3rd','Avg Rank']].concat(taArr.map(function(r,i){return[i+1].concat(r);})));
+    }
+
+    if (sType === 'all' || sType === 'bh') {
+      var bhEvs=S.events.filter(function(e){return e.type==='bearhunt';}).sort(function(a,b){return a.date<b.date?-1:1;});
+      var bhRows=[['Date','Event','Trap','Total DMG','Rallies']];
+      for(var bi=0;bi<bhEvs.length;bi++){var bh=bhEvs[bi];bhRows.push([bh.date||'',bh.name||'',bh.trapNumber||'',bh.totalAllianceDamage||0,bh.totalRallies||0]);}
+      if(bhRows.length>1) addSheet('BH Events',bhRows);
+      var bhMap={};
+      for(var bi2=0;bi2<bhEvs.length;bi2++){var bhe=bhEvs[bi2];for(var bp in bhe.participants||{}){var bdp=(bhe.participants[bp]||{}).dp||0;if(!bdp)continue;if(!bhMap[bp])bhMap[bp]={cnt:0,best:0,bestDate:'',bestTrap:0};bhMap[bp].cnt++;if(bdp>bhMap[bp].best){bhMap[bp].best=bdp;bhMap[bp].bestDate=bhe.date||'';bhMap[bp].bestTrap=bhe.trapNumber||'';}}}
+      var bhArr=[];for(var bp2 in bhMap){var bm=bhMap[bp2];bhArr.push([getPlayerName(bp2),bm.cnt,bm.best,'T'+(bm.bestTrap||'?')+' '+bm.bestDate]);}
+      bhArr.sort(function(a,b){return b[2]-a[2];});bhArr=bhArr.slice(0,cap);
+      addSheet('BH Rankings',[['Rank','Player','Traps','Best DMG','Best (Trap+Date)']].concat(bhArr.map(function(r,i){return[i+1].concat(r);})));
+    }
+
+    if(!wb.SheetNames.length){showToast('No data to export.');return;}
+    var fname=(APP.alliance||'alliance')+'_stats_'+(mode==='full'?'full':'top5')+'_'+today+'.xlsx';
+    var wbout=XLSX.write(wb,{bookType:'xlsx',type:'array'});
+    var blob=new Blob([wbout],{type:'application/octet-stream'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a');a.href=url;a.download=fname.replace(/[^a-zA-Z0-9_.-]/g,'_');
+    document.body.appendChild(a);a.click();
+    setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url);},1500);
+    showToast('Stats exported ('+mode+') ✓');
+  } catch(err){console.error(err);showToast('Export error: '+(err.message||String(err)));}
+}
+
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<!-- SCROLL TO TOP -->
+<button id="scroll-top-btn" onclick="document.getElementById('content').scrollTo({top:0,behavior:'smooth'})"
+  style="display:none;position:fixed;bottom:72px;right:16px;z-index:800;width:40px;height:40px;border-radius:50%;background:var(--gold2);color:#000;border:none;font-size:18px;cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.4);line-height:1;align-items:center;justify-content:center">&#8679;</button>
+
+<script>
+(function() {
+  function initScrollTop() {
+    var ct = document.getElementById('content');
+    var btn = document.getElementById('scroll-top-btn');
+    if (!ct || !btn) return;
+    ct.addEventListener('scroll', function() {
+      btn.style.display = ct.scrollTop > 300 ? 'flex' : 'none';
+    }, {passive: true});
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollTop);
+  } else {
+    initScrollTop();
+  }
+})();
+</script>
 </body>
 </html>
