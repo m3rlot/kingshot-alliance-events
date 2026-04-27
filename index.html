@@ -1117,8 +1117,8 @@ function applyLoadedState(parsed) {
     }
     // Rename events chronologically on every load (flag prevents unnecessary re-saves)
     setTimeout(renameEventsChronologically, 150);
-    // Migrate joinedAt for players who don't have it
-    setTimeout(migrateJoinedAt, 200);
+    // Migrate joinedAt (v2 — uses first active participation, not first appearance)
+    if (!APP.S._joinedAtV2) setTimeout(migrateJoinedAtV2, 200);
     return true;
   }
   return false;
@@ -1701,40 +1701,83 @@ function renameEventsChronologically() {
 }
 
 
-function migrateJoinedAt() {
+function migrateJoinedAtV2() {
+  // V2: recalculate joinedAt for ALL players using first active participation
+  // Replaces the old version that used first appearance (including empty placeholders)
   var S = APP.S;
   if (!S || !S.players || !S.events) return;
 
-  // Build map: pid → earliest date across all events
-  var firstDate = {};
+  var firstActive = {};
   for (var i = 0; i < S.events.length; i++) {
     var ev = S.events[i];
     var date = ev.date || '';
     if (!date) continue;
     if (ev.type === 'bearhunt') {
       for (var pid in (ev.participants || {})) {
-        if (!firstDate[pid] || date < firstDate[pid]) firstDate[pid] = date;
+        if ((ev.participants[pid].dp || 0) > 0) {
+          if (!firstActive[pid] || date < firstActive[pid]) firstActive[pid] = date;
+        }
       }
     } else {
       for (var pid2 in (ev.players || {})) {
-        if (!firstDate[pid2] || date < firstDate[pid2]) firstDate[pid2] = date;
+        var dd = ev.players[pid2];
+        if (dd.st === 'present' || dd.st === 'noshow') {
+          if (!firstActive[pid2] || date < firstActive[pid2]) firstActive[pid2] = date;
+        }
       }
     }
   }
 
-  // Assign to players who don't have joinedAt
+  var changed = false;
+  for (var j = 0; j < S.players.length; j++) {
+    var p = S.players[j];
+    var correct = firstActive[p.id] || new Date().toISOString().slice(0,10);
+    if (p.joinedAt !== correct) { p.joinedAt = correct; changed = true; }
+  }
+
+  APP.S._joinedAtV2 = true;
+  if (changed) persist();
+  else { APP.S._joinedAtV2 = true; persist(); }
+}
+
+function migrateJoinedAt() {
+  var S = APP.S;
+  if (!S || !S.players || !S.events) return;
+
+  // Build map: pid → earliest date of ACTIVE participation
+  // (present in SW/TA, or dp > 0 in BH — ignores empty {lg:'',st:''} placeholders)
+  var firstActive = {};
+  for (var i = 0; i < S.events.length; i++) {
+    var ev = S.events[i];
+    var date = ev.date || '';
+    if (!date) continue;
+    if (ev.type === 'bearhunt') {
+      for (var pid in (ev.participants || {})) {
+        if ((ev.participants[pid].dp || 0) > 0) {
+          if (!firstActive[pid] || date < firstActive[pid]) firstActive[pid] = date;
+        }
+      }
+    } else {
+      for (var pid2 in (ev.players || {})) {
+        var dd = ev.players[pid2];
+        if (dd.st === 'present' || dd.st === 'noshow') {
+          if (!firstActive[pid2] || date < firstActive[pid2]) firstActive[pid2] = date;
+        }
+      }
+    }
+  }
+
   var changed = false;
   for (var j = 0; j < S.players.length; j++) {
     var p = S.players[j];
     if (!p.joinedAt) {
-      p.joinedAt = firstDate[p.id] || S.events.reduce(function(acc, e) {
-        return (!acc || (e.date && e.date < acc)) ? e.date : acc;
-      }, null) || new Date().toISOString().slice(0,10);
+      // Use first active participation date, or today if never participated
+      p.joinedAt = firstActive[p.id] || new Date().toISOString().slice(0,10);
       changed = true;
     }
   }
 
-  if (changed) persist();
+  if (changed) { APP.S._eventsRenamedSig = null; persist(); }
 }
 
 
