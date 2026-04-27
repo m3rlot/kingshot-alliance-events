@@ -1115,6 +1115,8 @@ function applyLoadedState(parsed) {
     if (!APP.S._slotsRetroUpdated) {
       setTimeout(function() { if (!APP.S._slotsRetroUpdated) retroactiveSlotUpdate(); }, 100);
     }
+    // Rename events chronologically on every load (flag prevents unnecessary re-saves)
+    setTimeout(renameEventsChronologically, 150);
     return true;
   }
   return false;
@@ -1657,6 +1659,43 @@ function podiumTable(icon, title, entries) {
     + '</div>'
     + (rowsHtml ? '<div class="tbl-dense">'+rowsHtml+'</div>' : '')
     + '</div>';
+}
+
+
+function renameEventsChronologically() {
+  var evs = APP.S.events;
+
+  // Build a signature to detect if renaming is needed
+  var sig = evs.map(function(e){ return e.id+e.date+(e.trapNumber||''); }).join('|');
+  if (APP.S._eventsRenamedSig === sig) return; // nothing changed
+
+  // Sort each type separately, then rename
+  var sw = evs.filter(function(e){ return e.type === 'swordland'; })
+    .sort(function(a,b){ return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+  var ta = evs.filter(function(e){ return e.type === 'trialliance'; })
+    .sort(function(a,b){ return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+  var bh = evs.filter(function(e){ return e.type === 'bearhunt'; })
+    .sort(function(a,b){
+      if (a.date < b.date) return -1; if (a.date > b.date) return 1;
+      return (a.trapNumber||1) - (b.trapNumber||1);
+    });
+
+  var changed = false;
+  for (var i=0; i<sw.length; i++) {
+    var n = 'Swordland #'+(i+1);
+    if (sw[i].name !== n) { sw[i].name = n; changed = true; }
+  }
+  for (var j=0; j<ta.length; j++) {
+    var n2 = 'Tri-Alliance #'+(j+1);
+    if (ta[j].name !== n2) { ta[j].name = n2; changed = true; }
+  }
+  for (var k=0; k<bh.length; k++) {
+    var n3 = 'BH #'+(k+1);
+    if (bh[k].name !== n3) { bh[k].name = n3; changed = true; }
+  }
+
+  APP.S._eventsRenamedSig = sig;
+  if (changed) persist();
 }
 
 
