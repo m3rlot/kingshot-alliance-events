@@ -1735,7 +1735,10 @@ function renderBHTab() {
   for (i = 0; i < APP.S.events.length; i++) {
     if (APP.S.events[i].type === 'bearhunt') evs.push(APP.S.events[i]);
   }
-  evs.sort(function(a,b){ return a.date < b.date ? 1 : -1; });
+  evs.sort(function(a,b){
+    if (a.date > b.date) return -1; if (a.date < b.date) return 1;
+    return (b.trapNumber||1) - (a.trapNumber||1);
+  });
 
   var html = '<div class="card">'
     + '<div class="ch" style="background:linear-gradient(135deg,#1a0c00,#0d0800)">'
