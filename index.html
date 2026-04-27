@@ -2878,6 +2878,7 @@ function buildEvBody(ev, type) {
           var r3 = playerAttendanceRates(rp.id);
           var rO2 = type === 'swordland' ? r3.sw : r3.ta;
           if (rO2.pct === null) return slotTxt ? '<div class="attrow-bot">' + slotTxt + '</div>' : '';
+          if (rO2.na) return '<span style="font-size:9px;font-weight:700;color:var(--muted);opacity:.5;margin-left:auto">N/A</span>';
           var col = rO2.pct >= 80 ? '#22c55e' : rO2.pct >= 50 ? '#ca8a04' : '#ef4444';
           var badge = '<span style="font-size:9px;font-weight:700;color:' + col + ';margin-left:auto;white-space:nowrap">'
             + rO2.pres + '/' + rO2.total + '\u00a0' + rO2.pct + '%</span>';
@@ -3021,6 +3022,7 @@ function patchRegRows(eid, type) {
           var r3 = playerAttendanceRates(rp.id);
           var rO2 = type === 'swordland' ? r3.sw : r3.ta;
           if (rO2.pct === null) return slotTxt ? '<div class="attrow-bot">' + slotTxt + '</div>' : '';
+          if (rO2.na) return '<span style="font-size:9px;font-weight:700;color:var(--muted);opacity:.5;margin-left:auto">N/A</span>';
           var col = rO2.pct >= 80 ? '#22c55e' : rO2.pct >= 50 ? '#ca8a04' : '#ef4444';
           var badge = '<span style="font-size:9px;font-weight:700;color:' + col + ';margin-left:auto;white-space:nowrap">'
             + rO2.pres + '/' + rO2.total + '\u00a0' + rO2.pct + '%</span>';
@@ -3806,9 +3808,9 @@ function exportRoster() {
       var taPB = pb.ta && pb.ta.pb;
 
       // Attendance rates as "done/max (pct%)"
-      var bhRateStr = rates.bh.pct !== null ? (rates.bh.done + '/' + rates.bh.max + ' (' + rates.bh.pct + '%)') : '—';
-      var swRateStr = rates.sw.pct !== null ? (rates.sw.pres + '/' + rates.sw.total + ' (' + rates.sw.pct + '%)') : '—';
-      var taRateStr = rates.ta.pct !== null ? (rates.ta.pres + '/' + rates.ta.total + ' (' + rates.ta.pct + '%)') : '—';
+      var bhRateStr = rates.bh.na ? 'N/A' : rates.bh.pct !== null ? (rates.bh.done + '/' + rates.bh.max + ' (' + rates.bh.pct + '%)') : '—';
+      var swRateStr = rates.sw.na ? 'N/A' : rates.sw.pct !== null ? (rates.sw.pres + '/' + rates.sw.total + ' (' + rates.sw.pct + '%)') : '—';
+      var taRateStr = rates.ta.na ? 'N/A' : rates.ta.pct !== null ? (rates.ta.pres + '/' + rates.ta.total + ' (' + rates.ta.pct + '%)') : '—';
 
       rows.push([
         p.name,
@@ -3948,14 +3950,14 @@ function playerAttendanceRates(pid) {
   var taPct = taTotal > 0 ? Math.round(taPres / taTotal * 100) : null;
 
   return {
-    bh: {done:bhDone, max:bhDates2, pct:bhPct},
-    sw: {pres:swPres, total:swTotal, pct:swPct},
-    ta: {pres:taPres, total:taTotal, pct:taPct}
+    bh: {done:bhDone, max:bhDates2, pct:bhPct, na:bhDates2===0},
+    sw: {pres:swPres, total:swTotal, pct:swPct, na:swTotal===0},
+    ta: {pres:taPres, total:taTotal, pct:taPct, na:taTotal===0}
   };
 }
 
-function rateBar(pct) {
-  // Small inline % bar
+function rateBar(pct, na) {
+  if (na) return '<span style="font-size:9px;font-weight:700;color:var(--muted);opacity:.6">N/A</span>';
   if (pct === null) return '';
   var color = pct >= 80 ? 'var(--green)' : pct >= 50 ? '#ca8a04' : '#ef4444';
   return '<span style="display:inline-flex;align-items:center;gap:4px">'
@@ -4163,9 +4165,7 @@ function renderRoster() {
         : '<span style="color:var(--muted)">No data</span>';
       var swWL = pbData.sw.pres > 0
         ? ' <span style="color:var(--muted);font-size:10px">| ' + pbData.sw.wins + 'W / ' + (pbData.sw.pres - pbData.sw.wins) + 'L</span>' : '';
-      var swRate = rates.sw.pct !== null
-        ? '<span style="font-size:10px;color:var(--muted)">' + rates.sw.pres + '/' + rates.sw.total + ' </span>' + rateBar(rates.sw.pct)
-        : '';
+      var swRate = rateBar(rates.sw.pct, rates.sw.na);
 
       var taLine = pbData.ta.pb
         ? '<b>' + pbData.ta.pb.score.toLocaleString() + '</b> pts <span style="color:var(--muted);font-size:10px">— ' + fmtDate(pbData.ta.pb.date) + '</span>'
@@ -4173,16 +4173,12 @@ function renderRoster() {
       var taTot  = pbData.ta.r1 + pbData.ta.r2 + pbData.ta.r3;
       var taRank = taTot > 0
         ? ' <span style="color:var(--muted);font-size:10px">| ' + Math.round(pbData.ta.r1/taTot*100) + '% 1st · ' + Math.round(pbData.ta.r2/taTot*100) + '% 2nd · ' + Math.round(pbData.ta.r3/taTot*100) + '% 3rd</span>' : '';
-      var taRate = rates.ta.pct !== null
-        ? '<span style="font-size:10px;color:var(--muted)">' + rates.ta.pres + '/' + rates.ta.total + ' </span>' + rateBar(rates.ta.pct)
-        : '';
+      var taRate = rateBar(rates.ta.pct, rates.ta.na);
 
       var bhLine = pbData.bh.pb
         ? '<b>' + fmtDmg(pbData.bh.pb.dp) + '</b> <span style="color:var(--muted);font-size:10px">— T' + pbData.bh.pb.trap + ' · ' + fmtDate(pbData.bh.pb.date) + '</span>'
         : '<span style="color:var(--muted)">No data</span>';
-      var bhRate = rates.bh.pct !== null
-        ? '<span style="font-size:10px;color:var(--muted)">' + rates.bh.done + '/' + rates.bh.max + ' </span>' + rateBar(rates.bh.pct)
-        : '';
+      var bhRate = rateBar(rates.bh.pct, rates.bh.na);
 
       expandContent = '<div style="padding:6px 12px 10px;border-top:1px solid var(--border)">'
         + '<div style="display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid rgba(42,53,80,.2);font-size:12px">'
