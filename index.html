@@ -766,6 +766,24 @@ body.light .tbl-dense-row{border-bottom-color:var(--border)}
 <!-- LEGION SCORE IMPORT hidden input -->
 <input type="file" id="leg-score-file" accept=".xlsx,.xls" style="display:none" onclick="this.value=''" onchange="onLegScoreFile(this)">
 
+<!-- LEGION SCORE PREVIEW MODAL -->
+<div id="leg-score-preview-modal" class="ov" style="display:none">
+  <div class="modal" style="max-width:480px;max-height:88vh;display:flex;flex-direction:column">
+    <div class="mhdr">
+      <span id="leg-score-preview-title">&#8679; Import Scores — Legion ?</span>
+      <button class="close-btn" onclick="closeLegScorePreview()">&#215;</button>
+    </div>
+    <div style="padding:14px 16px;overflow-y:auto;flex:1">
+      <div id="leg-score-preview-rows" style="max-height:300px;overflow-y:auto;border:1px solid var(--border);border-radius:8px;padding:8px 12px;margin-bottom:10px"></div>
+      <div id="leg-score-preview-note" style="font-size:11px;color:var(--blue);margin-bottom:10px"></div>
+    </div>
+    <div style="padding:10px 16px;display:flex;gap:8px;border-top:1px solid var(--border)">
+      <button class="btn bghost" style="flex:1" onclick="closeLegScorePreview()">Cancel</button>
+      <button class="btn bgold" style="flex:1" id="leg-score-confirm-btn" onclick="confirmLegScoreImport()">&#8679; Import</button>
+    </div>
+  </div>
+</div>
+
 <!-- IMPORT PLAYERS MODAL -->
 <div id="imp-p" class="ov" style="display:none" onclick="if(event.target===this)closeImpP()">
   <div class="modal">
@@ -894,7 +912,7 @@ function initTheme() {
 var _toastTimer = null;
 function showToast(msg) {
   var el = document.getElementById('toast');
-  el.textContent = msg;
+  el.innerHTML = msg;
   el.className = 'show';
   if (_toastTimer) clearTimeout(_toastTimer);
   _toastTimer = setTimeout(function() { el.className = ''; }, 2400);
@@ -1262,6 +1280,21 @@ function hideLoginScreen() {
   var ov = document.getElementById('login-ov'); if (ov) ov.style.display = 'none';
 }
 function cancelSwitch() {
+  // Restore previous state if the user cancels the switch
+  if (_switchSnapshot) {
+    APP.alliance = _switchSnapshot.alliance;
+    APP.code     = _switchSnapshot.code;
+    APP.sharedKey= _switchSnapshot.sharedKey;
+    APP.S        = _switchSnapshot.S;
+    APP.readOnly = _switchSnapshot.readOnly;
+    // Restore the session to localStorage so auto-login still works
+    try {
+      if (APP.alliance && APP.code) {
+        localStorage.setItem('ae-session', JSON.stringify({ name: APP.alliance, code: APP.code }));
+      }
+    } catch(e) {}
+    _switchSnapshot = null;
+  }
   var btn = document.getElementById('li-btn'); if (btn) btn.disabled = false;
   hideLoginScreen(); loginErrHide();
 }
@@ -1306,7 +1339,10 @@ async function doLoginBtn() {
   }
 }
 
+var _switchSnapshot = null;
 function switchAlliance() {
+  // Save full state snapshot so cancelSwitch can restore it
+  _switchSnapshot = { alliance: APP.alliance, code: APP.code, sharedKey: APP.sharedKey, S: APP.S, readOnly: APP.readOnly };
   try { localStorage.removeItem('ae-session'); } catch(e) {}
   APP.alliance = null; APP.code = null; APP.sharedKey = null; APP.S = null; APP.readOnly = false;
   showLoginScreen(true);
@@ -3434,12 +3470,18 @@ function getEv(id) {
 // LEGION SCORE IMPORT
 // =============================================================================
 var _legScoreCtx = {eid:'', leg:1, type:''};
+var _legScorePendingRows = [];
 
 function openLegScoreImport(eid, leg, type) {
   _legScoreCtx = {eid:eid, leg:leg, type:type};
   var inp = document.getElementById('leg-score-file');
   inp.value = '';
   inp.click();
+}
+
+function closeLegScorePreview() {
+  document.getElementById('leg-score-preview-modal').style.display = 'none';
+  _legScorePendingRows = [];
 }
 
 function onLegScoreFile(input) {
@@ -3452,46 +3494,90 @@ function onLegScoreFile(input) {
       var wb   = XLSX.read(evt.target.result, {type:'array'});
       var ws   = wb.Sheets[wb.SheetNames[0]];
       var rows = XLSX.utils.sheet_to_json(ws, {header:1, defval:''});
-      // Build name->pid map (case-insensitive)
-      var nameMap = {};
-      var ii, pp;
-      for (ii = 0; ii < APP.S.players.length; ii++) {
-        pp = APP.S.players[ii];
-        nameMap[pp.name.trim().toLowerCase()] = pp.id;
-      }
-      var legKey = ctx.leg === 1 ? 'a' : 'b';
-      var subKey = legKey + 's';
-      if (!ev.players) ev.players = {};
-      var imported = 0;
+
+      // Collect valid rows
+      var validRows = [], ii;
       for (ii = 0; ii < rows.length; ii++) {
         var row = rows[ii];
         var name = String(row[0] || '').trim();
-        var scoreRaw = row[1];
-        if (!name) continue;
-        var pid = nameMap[name.toLowerCase()];
-        if (!pid) continue;
-        var score = parseFloat(scoreRaw);
+        if (!name || name.toLowerCase() === 'player') continue;
+        var score = parseFloat(row[1]);
         if (isNaN(score)) score = 0;
-        // Keep existing leg assignment; if not in this legion, set to main
-        var existing = ev.players[pid] || {};
-        var curLg = existing.lg || '';
-        var keepLg = (curLg === legKey || curLg === subKey) ? curLg : legKey;
-        var newSt = score > 0 ? 'present' : 'noshow';
-        ev.players[pid] = { lg: keepLg, st: newSt, score: score };
-        if (newSt === 'present') {
-          var slotForLeg = (keepLg === 'a' || keepLg === 'as') ? ev.slotA : ev.slotB;
-          updatePlayerSlotFromEvent(pid, ev.type, slotForLeg);
-        }
-        imported++;
+        validRows.push({ name: name, score: score });
       }
-      persist();
-      patchOpenEv(ctx.eid, ctx.type);
-      showToast('&#10003; Imported ' + imported + ' players into Legion ' + ctx.leg);
+      if (validRows.length === 0) { showToast('No data found in file.'); return; }
+
+      // Build preview list
+      _legScorePendingRows = validRows;
+      var html = '', unknownCount = 0;
+      for (ii = 0; ii < validRows.length; ii++) {
+        var known = findPlayer(validRows[ii].name);
+        if (!known) unknownCount++;
+        var color = known ? 'var(--text)' : 'var(--blue)';
+        var prefix = known ? '' : '&#43; ';
+        var scoreStr = validRows[ii].score > 0
+          ? '<span style="font-weight:700;color:var(--goldtxt)">' + validRows[ii].score.toLocaleString() + '</span>'
+          : '<span style="color:var(--muted)">0</span>';
+        html += '<div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.05)">'
+          + '<span style="color:' + color + '">' + prefix + esc(validRows[ii].name) + '</span>'
+          + scoreStr
+          + '</div>';
+      }
+      document.getElementById('leg-score-preview-rows').innerHTML = html;
+      document.getElementById('leg-score-preview-title').textContent =
+        '\u2B06 Import Scores \u2014 Legion ' + ctx.leg;
+      var noteEl = document.getElementById('leg-score-preview-note');
+      if (unknownCount > 0) {
+        noteEl.innerHTML = '&#43; ' + unknownCount + ' unknown player(s) — you\'ll be asked to create or rename after confirming.';
+        noteEl.style.display = 'block';
+      } else {
+        noteEl.style.display = 'none';
+      }
+      document.getElementById('leg-score-preview-modal').style.display = 'flex';
     } catch(err) {
       showToast('Import error: ' + err.message);
     }
   };
   reader.readAsArrayBuffer(file);
+}
+
+function confirmLegScoreImport() {
+  var ctx = _legScoreCtx;
+  var validRows = _legScorePendingRows;
+  if (!validRows || !validRows.length) return;
+  closeLegScorePreview();
+  var importedNames = validRows.map(function(r){ return r.name; });
+  checkAndResolveNames(importedNames, function() {
+    // Rebuild name→pid map after renames/creates
+    var pidMap = {}, pi;
+    for (pi = 0; pi < APP.S.players.length; pi++) {
+      pidMap[APP.S.players[pi].name.trim().toLowerCase()] = APP.S.players[pi].id;
+    }
+    var ev2 = getEv(ctx.eid); if (!ev2) return;
+    var legKey = ctx.leg === 1 ? 'a' : 'b';
+    var subKey = legKey + 's';
+    if (!ev2.players) ev2.players = {};
+    var imported = 0, ri;
+    for (ri = 0; ri < validRows.length; ri++) {
+      var origName = validRows[ri].name;
+      var sc = validRows[ri].score;
+      var pid = pidMap[origName.trim().toLowerCase()];
+      if (!pid) continue;
+      var existing = ev2.players[pid] || {};
+      var curLg = existing.lg || '';
+      var keepLg = (curLg === legKey || curLg === subKey) ? curLg : legKey;
+      var newSt = sc > 0 ? 'present' : 'noshow';
+      ev2.players[pid] = { lg: keepLg, st: newSt, score: sc };
+      if (newSt === 'present') {
+        var slotForLeg = (keepLg === 'a' || keepLg === 'as') ? ev2.slotA : ev2.slotB;
+        updatePlayerSlotFromEvent(pid, ev2.type, slotForLeg);
+      }
+      imported++;
+    }
+    persist();
+    patchOpenEv(ctx.eid, ctx.type);
+    showToast('&#10003; Imported ' + imported + ' players into Legion ' + ctx.leg);
+  });
 }
 
 // =============================================================================
