@@ -391,6 +391,25 @@ body.light .alliance-badge{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.1
 .tbl-dense-mt{font-size:10px;color:var(--muted);opacity:.8;white-space:nowrap;flex-shrink:0;text-align:right}
 .tbl-dense-vl{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--muted);flex-shrink:0;text-align:right}
 body.light .tbl-dense-row{border-bottom-color:var(--border)}
+
+/* Roster detail modal + history modal */
+.hist-tab{display:inline-flex;align-items:center;gap:4px;padding:5px 12px;font-size:10px;font-weight:800;letter-spacing:.5px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .15s}
+.hist-tab.on{background:var(--panel2);color:var(--text);border-color:var(--border2)}
+.hist-row{padding:8px 14px;border-bottom:1px solid rgba(255,255,255,.04);font-size:11px}
+.hist-row:last-child{border-bottom:none}
+.hist-row-bh{display:grid;grid-template-columns:90px 36px 1fr auto;gap:8px;align-items:center}
+.hist-row-sw,.hist-row-ta{display:block}
+.hist-line1{display:flex;align-items:center;gap:6px}
+.hist-line2{font-size:10px;color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hist-date{color:var(--muted);font-size:10px;flex-shrink:0;white-space:nowrap}
+.hist-val{font-weight:700;margin-left:auto;white-space:nowrap;flex-shrink:0}
+.hist-evname{color:var(--text);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hist-badge{font-size:9px;font-weight:800;padding:2px 7px;border-radius:10px;text-align:center;white-space:nowrap;flex-shrink:0}
+.rd-sec{padding:6px 12px 4px;font-size:9px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;border-top:2px solid}
+.rd-hdr2{display:grid;gap:4px;padding:5px 10px;background:var(--panel2);border-bottom:1px solid var(--border);font-size:8px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);position:sticky;top:0;z-index:1}
+.rd-row2{display:grid;gap:4px;align-items:center;padding:6px 10px;border-bottom:1px solid rgba(255,255,255,.04);font-size:10px;font-weight:700}
+.rd-row2:last-child{border-bottom:none}
+.rd-row2-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 </style>
 </head>
 <body>
@@ -1778,6 +1797,295 @@ function migrateJoinedAt() {
   }
 
   if (changed) { APP.S._eventsRenamedSig = null; persist(); }
+}
+
+
+// ── ROSTER DETAIL MODAL ────────────────────────────────────────
+function openRosterDetail() {
+  var S = APP.S;
+  if (!S || !S.players.length) return;
+
+  var groups = [
+    {label:'Starters', color:'#a3e635', tier:'starter', inactive:false},
+    {label:'Rotation', color:'#fde047', tier:'rotation', inactive:false},
+    {label:'Reserve',  color:'#93c5fd', tier:'reserve',  inactive:false},
+    {label:'Inactive', color:'#6b7280', tier:null,       inactive:true},
+  ];
+
+  function pctColor(pct) {
+    if (pct===null||pct===undefined) return 'var(--muted)';
+    if (pct>=80) return '#4ade80';
+    if (pct>=60) return '#a3e635';
+    if (pct>=40) return '#fde047';
+    if (pct>=20) return '#f97316';
+    return '#f87171';
+  }
+
+  // colW: player name gets remaining space; fixed cols kept minimal
+  // BH=38px, SW%=30px, SW=26px, TA♟=28px, TA=26px, Pts=24px
+  var colW = 'minmax(0,1fr) 24px 38px 30px 26px 28px 26px';
+
+  var html = '<div class="rd-hdr2" style="grid-template-columns:'+colW+'">'
+    +'<span>Player</span>'
+    +'<span style="text-align:right">Pts</span>'
+    +'<span style="text-align:center">BH</span>'
+    +'<span style="text-align:center">SW%</span>'
+    +'<span style="text-align:center">SW</span>'
+    +'<span style="text-align:center">TA♟</span>'
+    +'<span style="text-align:center">TA</span>'
+    +'</div>';
+
+  groups.forEach(function(g) {
+    var players = S.players.filter(function(p) {
+      var gs = calcStatsGlobal(p.id);
+      var inact = calcInactivity(p.id).inactive;
+      if (g.inactive) return inact;
+      return gs.tier === g.tier && !inact;
+    }).sort(function(a,b) {
+      return calcStatsGlobal(b.id).pts - calcStatsGlobal(a.id).pts;
+    });
+    if (!players.length) return;
+
+    html += '<div class="rd-sec" style="color:'+g.color+';border-color:'+g.color+'">'+g.label+' ('+players.length+')</div>';
+
+    players.forEach(function(p, i) {
+      var gs = calcStatsGlobal(p.id);
+      var rates = playerAttendanceRates(p.id);
+      var pbD = playerPBs(p.id);
+      var nc = g.inactive ? '#6b7280' : g.color;
+      var bg = i%2===0 ? 'rgba(255,255,255,.015)' : 'transparent';
+
+      // BH: x/y, color = attendance %
+      var bhDisp = (!rates.bh.na && rates.bh.pct!==null)
+        ? '<span style="color:'+pctColor(rates.bh.pct)+'">'+rates.bh.done+'/'+rates.bh.max+'</span>'
+        : '<span style="color:var(--muted)">—</span>';
+
+      // SW win%
+      var swWinDisp = '<span style="color:var(--muted)">—</span>';
+      if (pbD.sw.pres > 0) {
+        var wr = Math.round(pbD.sw.wins/pbD.sw.pres*100);
+        var wc = wr>=60?'#10b981':wr>=40?'#f59e0b':'#ef4444';
+        swWinDisp = '<span style="color:'+wc+'">'+wr+'%</span>';
+      }
+
+      // SW att: x/y, color = attendance %
+      var swAttDisp = (!rates.sw.na && rates.sw.pct!==null)
+        ? '<span style="color:'+pctColor(rates.sw.pct)+'">'+rates.sw.pres+'/'+rates.sw.total+'</span>'
+        : '<span style="color:var(--muted)">—</span>';
+
+      // TA avg rank
+      var taRankDisp = '<span style="color:var(--muted)">—</span>';
+      var tot = pbD.ta.r1+pbD.ta.r2+pbD.ta.r3;
+      if (tot > 0) {
+        var avg = ((pbD.ta.r1*1+pbD.ta.r2*2+pbD.ta.r3*3)/tot).toFixed(1);
+        var rc = parseFloat(avg)<=1.5?'#10b981':parseFloat(avg)<=2.5?'#f59e0b':'#d8b4fe';
+        taRankDisp = '<span style="color:'+rc+'">'+avg+'</span>';
+      }
+
+      // TA att: x/y, color = attendance %
+      var taAttDisp = (!rates.ta.na && rates.ta.pct!==null)
+        ? '<span style="color:'+pctColor(rates.ta.pct)+'">'+rates.ta.pres+'/'+rates.ta.total+'</span>'
+        : '<span style="color:var(--muted)">—</span>';
+
+      html += '<div class="rd-row2" style="grid-template-columns:'+colW+';background:'+bg+'">'
+        +'<span class="rd-row2-name" style="color:'+nc+'">'+esc(p.name)+'</span>'
+        +'<span style="text-align:right;color:var(--text)">'+gs.pts+'</span>'
+        +'<span style="text-align:center">'+bhDisp+'</span>'
+        +'<span style="text-align:center">'+swWinDisp+'</span>'
+        +'<span style="text-align:center">'+swAttDisp+'</span>'
+        +'<span style="text-align:center">'+taRankDisp+'</span>'
+        +'<span style="text-align:center">'+taAttDisp+'</span>'
+        +'</div>';
+    });
+  });
+
+  document.getElementById('rd-modal-body').innerHTML = html;
+  document.getElementById('rd-modal').style.display = 'flex';
+}
+
+function exportRosterDetail() {
+  if (!window.XLSX) { showToast('XLSX not loaded'); return; }
+  var S = APP.S; if (!S) return;
+  var wb = XLSX.utils.book_new();
+  var headers = ['Player','Tier','Status','Pts','BH Done','BH Max','BH%','SW Win%','SW Pres','SW Total','SW%','TA Avg Rank','TA Pres','TA Total','TA%'];
+  var rows = [headers];
+  S.players.forEach(function(p) {
+    var gs = calcStatsGlobal(p.id);
+    var rates = playerAttendanceRates(p.id);
+    var pbD = playerPBs(p.id);
+    var wr = pbD.sw.pres>0?Math.round(pbD.sw.wins/pbD.sw.pres*100)+'%':'—';
+    var tot = pbD.ta.r1+pbD.ta.r2+pbD.ta.r3;
+    var avgRk = tot>0?((pbD.ta.r1+pbD.ta.r2*2+pbD.ta.r3*3)/tot).toFixed(1):'—';
+    rows.push([p.name,gs.tier,calcInactivity(p.id).inactive?'Inactive':'Active',gs.pts,
+      rates.bh.na?'N/A':rates.bh.done, rates.bh.na?'N/A':rates.bh.max, rates.bh.na?'N/A':(rates.bh.pct+'%'),
+      wr,
+      rates.sw.na?'N/A':rates.sw.pres, rates.sw.na?'N/A':rates.sw.total, rates.sw.na?'N/A':(rates.sw.pct+'%'),
+      avgRk,
+      rates.ta.na?'N/A':rates.ta.pres, rates.ta.na?'N/A':rates.ta.total, rates.ta.na?'N/A':(rates.ta.pct+'%')
+    ]);
+  });
+  rows.sort(function(a,b){ return a[0]==='Player'?-1:b[0]==='Player'?1: ({'starter':0,'rotation':1,'reserve':2}[a[1]]||3)-({'starter':0,'rotation':1,'reserve':2}[b[1]]||3)||b[3]-a[3]; });
+  var ws = XLSX.utils.aoa_to_sheet(rows);
+  XLSX.utils.book_append_sheet(wb, ws, 'Roster Detail');
+  XLSX.writeFile(wb, (APP.alliance||'WTF')+'_roster_detail_'+new Date().toISOString().slice(0,10)+'.xlsx');
+  showToast('Export done ✓');
+}
+
+// ── PLAYER HISTORY MODAL ───────────────────────────────────────
+var PH = { pid: null, filter: 'all' };
+
+function openPlayerHistory(pid) {
+  PH.pid = pid; PH.filter = 'all';
+  var p = APP.S.players.find(function(x){return x.id===pid;});
+  document.getElementById('ph-modal-title').textContent = (p?p.name:'Player') + ' — History';
+  renderPlayerHistory();
+  document.getElementById('ph-modal').style.display = 'flex';
+}
+
+function renderPlayerHistory() {
+  var pid = PH.pid;
+  var evs = APP.S.events;
+  var tabs = ['all','bh','sw','ta'];
+  var tabLabels = {all:'🗂 All', bh:'🐻 BH', sw:'⚔ SW', ta:'🤝 TA'};
+
+  // Build tabs
+  var tabsHtml = '';
+  tabs.forEach(function(t) {
+    var isOn = PH.filter===t;
+    tabsHtml += '<button class="hist-tab'+(isOn?' on':'')+'" onclick="PH.filter=\''+t+'\';renderPlayerHistory()">'+tabLabels[t]+'</button>';
+  });
+  document.getElementById('ph-tabs').innerHTML = tabsHtml;
+
+  // Gather relevant events sorted newest first
+  var items = [];
+  evs.forEach(function(ev) {
+    var type = ev.type;
+    if (PH.filter !== 'all' && type !== ({bh:'bearhunt',sw:'swordland',ta:'trialliance'}[PH.filter])) return;
+    if (type === 'bearhunt') {
+      var pp = (ev.participants||{})[pid];
+      if (pp === undefined) return;
+      items.push({type:'bh', date:ev.date||'', name:ev.name||'', trap:ev.trapNumber||'?', dp:pp?pp.dp||0:0, present:!!(pp&&pp.dp>0)});
+    } else {
+      var pp2 = (ev.players||{})[pid];
+      if (!pp2) return;
+      var lg = pp2.lg||''; var st = pp2.st||'';
+      if (!lg && !st) return;
+      var legion = lg==='a'||lg==='as'?'L1': lg==='b'||lg==='bs'?'L2':'—';
+      var isSub = lg==='as'||lg==='bs';
+      if (type === 'swordland') {
+        var legNum = (lg==='a'||lg==='as')?1:2;
+        var win = st==='present' ? (legNum===1?ev.r1:ev.r2)==='win' : null;
+        var score = pp2.score||0;
+        items.push({type:'sw', date:ev.date||'', name:ev.name||'', legion:legion, sub:isSub, st:st, win:win, score:score});
+      } else {
+        var legNum2 = (lg==='a'||lg==='as')?1:2;
+        var rank = st==='present' ? parseInt(legNum2===1?ev.r1:ev.r2)||null : null;
+        var score2 = pp2.score||0;
+        items.push({type:'ta', date:ev.date||'', name:ev.name||'', legion:legion, sub:isSub, st:st, rank:rank, score:score2});
+      }
+    }
+  });
+
+  items.sort(function(a,b){ return b.date<a.date?-1:1; });
+
+  if (!items.length) {
+    document.getElementById('ph-modal-body').innerHTML = '<div style="padding:24px;text-align:center;color:var(--muted);font-size:12px">No events found for this player.</div>';
+    return;
+  }
+
+  var html = '';
+  items.forEach(function(it) {
+    if (it.type === 'bh') {
+      var dpColor = it.dp>0 ? '#fca5a5' : 'var(--muted)';
+      html += '<div class="hist-row hist-row-bh">'
+        +'<span class="hist-date">'+it.date+'</span>'
+        +'<span style="color:var(--muted);font-size:10px">T'+it.trap+'</span>'
+        +'<span class="hist-evname">'+esc(it.name)+'</span>'
+        +'<span class="hist-val" style="color:'+dpColor+'">'+(it.dp>0?fmtDmg(it.dp):'—')+'</span>'
+        +'</div>';
+    } else if (it.type === 'sw') {
+      var stBadge = it.st==='present'
+        ? '<span class="hist-badge" style="background:rgba(16,185,129,.15);color:#10b981">✓ Present</span>'
+        : it.st==='noshow'
+        ? '<span class="hist-badge" style="background:rgba(239,68,68,.12);color:#ef4444">✗ No-show</span>'
+        : '<span class="hist-badge" style="background:rgba(100,116,139,.12);color:var(--muted)">— Absent</span>';
+      var winBadge = it.win===true
+        ? '<span class="hist-badge" style="background:rgba(16,185,129,.15);color:#10b981">Win</span>'
+        : it.win===false
+        ? '<span class="hist-badge" style="background:rgba(239,68,68,.12);color:#ef4444">Loss</span>'
+        : '<span style="color:var(--muted)">—</span>';
+      var scoreDisp = it.score>0 ? '<span style="color:#60a5fa;font-weight:700">'+it.score.toLocaleString()+'</span>' : '<span style="color:var(--muted)">—</span>';
+      html += '<div class="hist-row hist-row-sw">'
+        +'<div class="hist-line1">'
+        +'<span class="hist-date">'+it.date+'</span>'
+        +'<span style="font-size:10px;color:var(--muted);flex-shrink:0">'+it.legion+(it.sub?' <sup>sub</sup>':'')+'</span>'
+        +stBadge + winBadge
+        +'<span class="hist-val">'+scoreDisp+'</span>'
+        +'</div>'
+        +'<div class="hist-line2">'+esc(it.name)+'</div>'
+        +'</div>';
+    } else {
+      var stBadge2 = it.st==='present'
+        ? '<span class="hist-badge" style="background:rgba(16,185,129,.15);color:#10b981">✓ Present</span>'
+        : it.st==='noshow'
+        ? '<span class="hist-badge" style="background:rgba(239,68,68,.12);color:#ef4444">✗ No-show</span>'
+        : '<span class="hist-badge" style="background:rgba(100,116,139,.12);color:var(--muted)">— Absent</span>';
+      var rankBadge = it.rank===1 ? '🥇' : it.rank===2 ? '🥈' : it.rank===3 ? '🥉' : '<span style="color:var(--muted)">—</span>';
+      var sc2 = it.score>0 ? '<span style="color:#a78bfa;font-weight:700">'+it.score.toLocaleString()+'</span>' : '<span style="color:var(--muted)">—</span>';
+      html += '<div class="hist-row hist-row-ta">'
+        +'<div class="hist-line1">'
+        +'<span class="hist-date">'+it.date+'</span>'
+        +'<span style="font-size:10px;color:var(--muted);flex-shrink:0">'+it.legion+(it.sub?' <sup>sub</sup>':'')+'</span>'
+        +stBadge2
+        +'<span style="font-size:16px;flex-shrink:0">'+rankBadge+'</span>'
+        +'<span class="hist-val">'+sc2+'</span>'
+        +'</div>'
+        +'<div class="hist-line2">'+esc(it.name)+'</div>'
+        +'</div>';
+    }
+  });
+  document.getElementById('ph-modal-body').innerHTML = html;
+}
+
+function exportPlayerHistory() {
+  if (!window.XLSX || !PH.pid) return;
+  var p = APP.S.players.find(function(x){return x.id===PH.pid;});
+  var pname = p ? p.name : 'player';
+  var evs = APP.S.events;
+  var wb = XLSX.utils.book_new();
+
+  // BH sheet
+  var bhRows = [['Date','Trap','Event','Damage']];
+  evs.filter(function(e){return e.type==='bearhunt';}).sort(function(a,b){return a.date<b.date?-1:1;}).forEach(function(ev) {
+    var pp = (ev.participants||{})[PH.pid];
+    if (pp===undefined) return;
+    bhRows.push([ev.date||'', 'T'+(ev.trapNumber||'?'), ev.name||'', pp&&pp.dp>0?pp.dp:0]);
+  });
+  if (bhRows.length>1) XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(bhRows), 'Bear Hunt');
+
+  // SW sheet
+  var swRows = [['Date','Event','Legion','Status','Win/Loss','Score']];
+  evs.filter(function(e){return e.type==='swordland';}).sort(function(a,b){return a.date<b.date?-1:1;}).forEach(function(ev) {
+    var pp2 = (ev.players||{})[PH.pid]; if(!pp2||(!pp2.lg&&!pp2.st)) return;
+    var lg = pp2.lg||''; var legN = (lg==='a'||lg==='as')?1:2;
+    var win = pp2.st==='present'?(legN===1?ev.r1:ev.r2)==='win'?'Win':'Loss':'—';
+    swRows.push([ev.date||'',ev.name||'',(lg==='a'||lg==='as'?'L1':'L2')+(lg==='as'||lg==='bs'?' (sub)':''),pp2.st||'—',win,pp2.score||0]);
+  });
+  if (swRows.length>1) XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(swRows), 'Swordland');
+
+  // TA sheet
+  var taRows = [['Date','Event','Legion','Status','Rank','Score']];
+  evs.filter(function(e){return e.type==='trialliance';}).sort(function(a,b){return a.date<b.date?-1:1;}).forEach(function(ev) {
+    var pp3 = (ev.players||{})[PH.pid]; if(!pp3||(!pp3.lg&&!pp3.st)) return;
+    var lg3 = pp3.lg||''; var legN3 = (lg3==='a'||lg3==='as')?1:2;
+    var rk = pp3.st==='present'?parseInt(legN3===1?ev.r1:ev.r2)||'—':'—';
+    taRows.push([ev.date||'',ev.name||'',(lg3==='a'||lg3==='as'?'L1':'L2')+(lg3==='as'||lg3==='bs'?' (sub)':''),pp3.st||'—',rk,pp3.score||0]);
+  });
+  if (taRows.length>1) XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(taRows), 'Tri-Alliance');
+
+  if (!wb.SheetNames.length) { showToast('No data to export'); return; }
+  XLSX.writeFile(wb, pname.replace(/[^a-zA-Z0-9]/g,'_')+'_history_'+new Date().toISOString().slice(0,10)+'.xlsx');
+  showToast('Exported ✓');
 }
 
 
@@ -4230,6 +4538,9 @@ function renderRoster() {
         + '<span style="font-size:9px;font-weight:800;color:#8b5cf6">TA</span><span>' + taLine + taRank + '</span><span style="text-align:right">' + taRate + '</span></div>'
         + '<div style="display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:6px;padding:4px 0;font-size:12px">'
         + '<span style="font-size:9px;font-weight:800;color:#f97316">BH</span><span>' + bhLine + '</span><span style="text-align:right">' + bhRate + '</span></div>'
+        + '<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">'
+        + '<button class="btn bghost" style="font-size:10px;padding:4px 10px;width:100%" onclick="openPlayerHistory(\''+p.id+'\')" >&#128203; History &amp; Details</button>'
+        + '</div>'
         + '</div>';
     }
 
@@ -4253,7 +4564,8 @@ function renderRoster() {
   var actionBar = '';
   if (!APP.multiMode) {
     actionBar = APP.readOnly ? '' : '<button class="btn bghost" style="font-size:11px;padding:6px 12px" onclick="toggleMultiMode()">&#9745; Select</button>'
-      + '<button class="btn bghost" style="font-size:11px;padding:6px 12px" onclick="exportRoster()">&#128229; Export</button>';
+      + '<button class="btn bghost" style="font-size:11px;padding:6px 12px" onclick="exportRoster()">&#128229; Export</button>'
+      + '<button class="btn bghost" style="font-size:11px;padding:6px 12px" onclick="openRosterDetail()">&#128202; Overview</button>';
   } else {
     actionBar = '<button class="btn bghost" style="font-size:11px;padding:6px 12px" onclick="selectAll()">Select all</button>'
       + '<button class="btn bdanger" style="font-size:12px;padding:6px 13px;' + (selCount===0?'opacity:.4':'') + '" onclick="deleteSelected()">&#10005; Delete (' + selCount + ')</button>'
@@ -5463,5 +5775,30 @@ function exportStats(mode) {
   }
 })();
 </script>
+
+<!-- ROSTER DETAIL MODAL -->
+<div id="rd-modal" class="ov" style="display:none">
+  <div class="modal" style="max-width:660px;max-height:90vh;display:flex;flex-direction:column">
+    <div style="display:flex;align-items:center;margin-bottom:12px;flex-shrink:0">
+      <div class="modal-ttl">📊 Participation Overview</div>
+      <button class="btn bghost" style="font-size:10px;padding:4px 10px;margin-left:auto;margin-right:8px" onclick="exportRosterDetail()">📥 Export</button>
+      <button class="close-btn" onclick="document.getElementById('rd-modal').style.display='none'">&#215;</button>
+    </div>
+    <div id="rd-modal-body" style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch"></div>
+  </div>
+</div>
+
+<!-- PLAYER HISTORY MODAL -->
+<div id="ph-modal" class="ov" style="display:none">
+  <div class="modal" style="max-width:520px;height:min(90vh,600px);display:flex;flex-direction:column">
+    <div style="display:flex;align-items:center;margin-bottom:10px;flex-shrink:0">
+      <div class="modal-ttl" id="ph-modal-title">Player History</div>
+      <button class="btn bghost" style="font-size:10px;padding:4px 10px;margin-left:auto;margin-right:8px" onclick="exportPlayerHistory()">📥 Export</button>
+      <button class="close-btn" onclick="document.getElementById('ph-modal').style.display='none'">&#215;</button>
+    </div>
+    <div style="display:flex;gap:6px;margin-bottom:10px;flex-shrink:0" id="ph-tabs"></div>
+    <div id="ph-modal-body" style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:8px"></div>
+  </div>
+</div>
 </body>
 </html>
