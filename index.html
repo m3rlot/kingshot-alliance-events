@@ -4364,27 +4364,31 @@ function playerAttendanceRates(pid) {
   var bhDates2 = Object.keys(bhDates).length;
   var bhPct = bhDates2 > 0 ? Math.round(bhDone / bhDates2 * 100) : null;
 
-  // SW: only events where the player was assigned (has a slot), since joinedAt
+  // SW: main always counted; sub only if present (bonus, no penalty)
   var swPres = 0, swTotal = 0;
   for (var j = 0; j < evs.length; j++) {
     var ev2 = evs[j];
     if (ev2.type !== 'swordland') continue;
     if (joinedAt && ev2.date && ev2.date < joinedAt) continue;
-    if (!ev2.players || !ev2.players[pid] || !ev2.players[pid].lg) continue; // not assigned = not counted
-    swTotal++;
-    if (ev2.players[pid].st === 'present') swPres++;
+    var d2 = ev2.players && ev2.players[pid];
+    if (!d2 || !d2.lg) continue;
+    var p2 = (d2.st === 'present');
+    if (d2.lg === 'a' || d2.lg === 'b') { swTotal++; if (p2) swPres++; }
+    else if ((d2.lg === 'as' || d2.lg === 'bs') && p2) { swTotal++; swPres++; }
   }
   var swPct = swTotal > 0 ? Math.round(swPres / swTotal * 100) : null;
 
-  // TA: only events where the player was assigned (has a slot), since joinedAt
+  // TA: main always counted; sub only if present (bonus, no penalty)
   var taPres = 0, taTotal = 0;
   for (var k = 0; k < evs.length; k++) {
     var ev3 = evs[k];
     if (ev3.type !== 'trialliance') continue;
     if (joinedAt && ev3.date && ev3.date < joinedAt) continue;
-    if (!ev3.players || !ev3.players[pid] || !ev3.players[pid].lg) continue; // not assigned = not counted
-    taTotal++;
-    if (ev3.players[pid].st === 'present') taPres++;
+    var d3 = ev3.players && ev3.players[pid];
+    if (!d3 || !d3.lg) continue;
+    var p3 = (d3.st === 'present');
+    if (d3.lg === 'a' || d3.lg === 'b') { taTotal++; if (p3) taPres++; }
+    else if ((d3.lg === 'as' || d3.lg === 'bs') && p3) { taTotal++; taPres++; }
   }
   var taPct = taTotal > 0 ? Math.round(taPres / taTotal * 100) : null;
 
