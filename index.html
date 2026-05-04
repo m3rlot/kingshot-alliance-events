@@ -3867,16 +3867,38 @@ function renderStats() {
   var taAvgS1 = taScore1Cnt > 0 ? fmtScore(taScore1Sum/taScore1Cnt) : null;
   var taAvgS2 = taScore2Cnt > 0 ? fmtScore(taScore2Sum/taScore2Cnt) : null;
 
-  // --- MVP counts ---
-  var mvpCount = {}; // name -> count
+  // --- MVP counts — grouped by player ID to survive name changes ---
+  // Build a case-insensitive name → player lookup from current roster
+  var _mvpNameToPid = {};
+  for (var _pi = 0; _pi < S.players.length; _pi++) {
+    var _pp = S.players[_pi];
+    _mvpNameToPid[(_pp.name||'').trim().toLowerCase()] = _pp.id;
+  }
+  function _resolveMvp(rawName) {
+    if (!rawName) return null;
+    var key = rawName.trim().toLowerCase();
+    return _mvpNameToPid[key] || ('__raw__' + key); // fallback: keep raw name as key
+  }
+  var mvpCountById = {}; // pid (or raw key) -> {name, count}
   for (i = 0; i < S.events.length; i++) {
     e = S.events[i];
     if (sType !== 'all' && ((sType==='sw') !== (e.type==='swordland'))) continue;
-    if (e.mvp1) mvpCount[e.mvp1] = (mvpCount[e.mvp1]||0) + 1;
-    if (e.mvp2) mvpCount[e.mvp2] = (mvpCount[e.mvp2]||0) + 1;
+    [e.mvp1, e.mvp2].forEach(function(rawMvp) {
+      if (!rawMvp) return;
+      var pid = _resolveMvp(rawMvp);
+      if (!mvpCountById[pid]) {
+        // Prefer current player name if resolvable, else keep raw
+        var currentPlayer = null;
+        for (var _qi = 0; _qi < S.players.length; _qi++) {
+          if (S.players[_qi].id === pid) { currentPlayer = S.players[_qi]; break; }
+        }
+        mvpCountById[pid] = { name: currentPlayer ? currentPlayer.name : rawMvp, count: 0 };
+      }
+      mvpCountById[pid].count++;
+    });
   }
   var mvpList = [];
-  for (var nm in mvpCount) mvpList.push({name:nm, count:mvpCount[nm]});
+  for (var _mk in mvpCountById) mvpList.push(mvpCountById[_mk]);
   mvpList.sort(function(a,b){ return b.count - a.count; });
 
   // --- Individual avg score — split by type ---
@@ -4364,31 +4386,27 @@ function playerAttendanceRates(pid) {
   var bhDates2 = Object.keys(bhDates).length;
   var bhPct = bhDates2 > 0 ? Math.round(bhDone / bhDates2 * 100) : null;
 
-  // SW: main always counted; sub only if present (bonus, no penalty)
+  // SW: only events where the player was assigned (has a slot), since joinedAt
   var swPres = 0, swTotal = 0;
   for (var j = 0; j < evs.length; j++) {
     var ev2 = evs[j];
     if (ev2.type !== 'swordland') continue;
     if (joinedAt && ev2.date && ev2.date < joinedAt) continue;
-    var d2 = ev2.players && ev2.players[pid];
-    if (!d2 || !d2.lg) continue;
-    var p2 = (d2.st === 'present');
-    if (d2.lg === 'a' || d2.lg === 'b') { swTotal++; if (p2) swPres++; }
-    else if ((d2.lg === 'as' || d2.lg === 'bs') && p2) { swTotal++; swPres++; }
+    if (!ev2.players || !ev2.players[pid] || !ev2.players[pid].lg) continue; // not assigned = not counted
+    swTotal++;
+    if (ev2.players[pid].st === 'present') swPres++;
   }
   var swPct = swTotal > 0 ? Math.round(swPres / swTotal * 100) : null;
 
-  // TA: main always counted; sub only if present (bonus, no penalty)
+  // TA: only events where the player was assigned (has a slot), since joinedAt
   var taPres = 0, taTotal = 0;
   for (var k = 0; k < evs.length; k++) {
     var ev3 = evs[k];
     if (ev3.type !== 'trialliance') continue;
     if (joinedAt && ev3.date && ev3.date < joinedAt) continue;
-    var d3 = ev3.players && ev3.players[pid];
-    if (!d3 || !d3.lg) continue;
-    var p3 = (d3.st === 'present');
-    if (d3.lg === 'a' || d3.lg === 'b') { taTotal++; if (p3) taPres++; }
-    else if ((d3.lg === 'as' || d3.lg === 'bs') && p3) { taTotal++; taPres++; }
+    if (!ev3.players || !ev3.players[pid] || !ev3.players[pid].lg) continue; // not assigned = not counted
+    taTotal++;
+    if (ev3.players[pid].st === 'present') taPres++;
   }
   var taPct = taTotal > 0 ? Math.round(taPres / taTotal * 100) : null;
 
