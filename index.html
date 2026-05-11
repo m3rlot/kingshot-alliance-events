@@ -1156,6 +1156,8 @@ function applyLoadedState(parsed) {
     setTimeout(renameEventsChronologically, 150);
     // Migrate joinedAt (v2 — uses first active participation, not first appearance)
     if (!APP.S._joinedAtV2) setTimeout(migrateJoinedAtV2, 200);
+    // v3 — force re-run to fix players created via NR modal with missing joinedAt
+    if (!APP.S._joinedAtV3) setTimeout(function(){ migrateJoinedAtV2(); APP.S._joinedAtV3 = true; persist(); }, 300);
     return true;
   }
   return false;
