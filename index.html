@@ -2330,6 +2330,7 @@ function doImportBHScore() {
       if (found && rows[i].dp > 0) ev2.participants[found.id] = {dp: rows[i].dp};
     }
     persist();
+    migrateJoinedAtV2();
     renderBHTab();
     showToast('Scores imported ✓');
   });
@@ -3575,6 +3576,7 @@ function confirmLegScoreImport() {
       imported++;
     }
     persist();
+    migrateJoinedAtV2();
     patchOpenEv(ctx.eid, ctx.type);
     showToast('&#10003; Imported ' + imported + ' players into Legion ' + ctx.leg);
   });
@@ -4872,7 +4874,7 @@ function confirmNR() {
     if (chosen === '__new__') {
       // Create new player
       var def = APP.S.swSlots[0] || '';
-      var pl = {id:uid(), name:originalName, r4:false, swM:def, swA:null, taM:APP.S.taSlots[0]||'', taA:null};
+      var pl = {id:uid(), name:originalName, r4:false, swM:def, swA:null, taM:APP.S.taSlots[0]||'', taA:null, joinedAt:new Date().toISOString().slice(0,10)};
       APP.S.players.push(pl);
       for (j = 0; j < APP.S.events.length; j++) {
         if (!APP.S.events[j].players) APP.S.events[j].players = {};
