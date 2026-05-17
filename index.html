@@ -1158,6 +1158,8 @@ function applyLoadedState(parsed) {
     if (!APP.S._joinedAtV2) setTimeout(migrateJoinedAtV2, 200);
     // v3 — force re-run to fix players created via NR modal with missing joinedAt
     if (!APP.S._joinedAtV3) setTimeout(function(){ migrateJoinedAtV2(); APP.S._joinedAtV3 = true; persist(); }, 300);
+    // v4 — migrate MVP name strings → player IDs for existing events
+    if (!APP.S._mvpIdV1) setTimeout(migrateMvpNamesToIds, 400);
     return true;
   }
   return false;
@@ -1835,6 +1837,34 @@ function migrateJoinedAt() {
   }
 
   if (changed) { APP.S._eventsRenamedSig = null; persist(); }
+}
+
+// One-time migration: convert MVP name strings → player IDs for all events.
+// Handles renames by matching current player names. Runs once at startup.
+function migrateMvpNamesToIds() {
+  var S = APP.S;
+  if (!S || !S.players || !S.events) return;
+  var nameToId = {};
+  for (var pi = 0; pi < S.players.length; pi++) {
+    nameToId[(S.players[pi].name||'').trim().toLowerCase()] = S.players[pi].id;
+  }
+  var changed = false;
+  for (var ei = 0; ei < S.events.length; ei++) {
+    var ev = S.events[ei];
+    ['mvp1','mvp2'].forEach(function(key) {
+      var v = ev[key];
+      if (!v) return;
+      // Check if already a player ID
+      for (var qi = 0; qi < S.players.length; qi++) {
+        if (S.players[qi].id === v) return; // already an ID
+      }
+      // Try to resolve as a name
+      var resolved = nameToId[(v||'').trim().toLowerCase()];
+      if (resolved) { ev[key] = resolved; changed = true; }
+    });
+  }
+  S._mvpIdV1 = true;
+  if (changed) persist(); else persist();
 }
 
 
@@ -2679,50 +2709,42 @@ function dynamicBHPenalty(pid) {
 }
 
 function calcStatsGlobal(pid) {
-  // Mixed-event tier calculation using GLOBAL alliance event timeline.
-  // SW=weight 1, TA=weight 1, each BH trap=weight 0.5 (pair=1 event).
-  // The window is the same for all players (last N alliance events by weight),
-  // so a player who skipped BH events does not reach further back in time.
+  // Tier calculation using last N unique DATES across all alliance events.
+  // "window" = number of distinct event dates to look back, shared by all players.
+  // Multiple events on the same date (e.g. TA + BH, or BH T1 + T2) count as ONE date.
   var rules = R();
   var i, e;
 
-  // Build GLOBAL alliance event list (all events, independent of participation)
-  var allGlobalEvs = [];
+  // Group all alliance events by date
+  var dateMap = {}; // dateStr -> array of events
   for (i = 0; i < APP.S.events.length; i++) {
     e = APP.S.events[i];
-    if (e.type === 'bearhunt') {
-      allGlobalEvs.push({e:e, weight:0.5, isBH:true});
-    } else if (e.type === 'swordland' || e.type === 'trialliance') {
-      allGlobalEvs.push({e:e, weight:1, isBH:false});
-    }
+    if (e.type !== 'bearhunt' && e.type !== 'swordland' && e.type !== 'trialliance') continue;
+    if (!dateMap[e.date]) dateMap[e.date] = [];
+    dateMap[e.date].push(e);
   }
-  allGlobalEvs.sort(function(a,b){ return a.e.date < b.e.date ? -1 : 1; });
 
-  // Walk backwards, accumulate weight up to window size
+  // Sort unique dates ascending, take last N
+  var allDates = Object.keys(dateMap).sort();
   var windowSize = rules.window;
-  var windowEvs = [], accW = 0;
-  for (i = allGlobalEvs.length - 1; i >= 0 && accW < windowSize; i--) {
-    if (accW + allGlobalEvs[i].weight <= windowSize + 0.001) {
-      windowEvs.unshift(allGlobalEvs[i]);
-      accW += allGlobalEvs[i].weight;
-    }
-  }
+  var windowDates = allDates.slice(-windowSize);
 
-  // Calculate player's points within the global window
-  var total = 0;
-  for (i = 0; i < windowEvs.length; i++) {
-    var we = windowEvs[i];
-    if (we.isBH) {
-      // BH: +bhPtsPresent if participated, 0 if absent (penalty handled separately)
-      var parts = we.e.participants;
-      if (parts && parts[pid] && parts[pid].dp > 0) total += rules.bhPtsPresent;
-    } else {
-      var d = we.e.players ? we.e.players[pid] : null;
-      if (d && isSelected(d) && d.st && !(isSub(d) && d.st === 'noshow')) {
-        var p = evPts(we.e, pid);
-        if (p !== null) total += p;
+  // Calculate player's points across window dates
+  var total = 0, j;
+  for (i = 0; i < windowDates.length; i++) {
+    var evOnDate = dateMap[windowDates[i]];
+    for (j = 0; j < evOnDate.length; j++) {
+      var ev = evOnDate[j];
+      if (ev.type === 'bearhunt') {
+        var parts = ev.participants;
+        if (parts && parts[pid] && parts[pid].dp > 0) total += rules.bhPtsPresent;
+      } else {
+        var d = ev.players ? ev.players[pid] : null;
+        if (d && isSelected(d) && d.st && !(isSub(d) && d.st === 'noshow')) {
+          var p = evPts(ev, pid);
+          if (p !== null) total += p;
+        }
       }
-      // Not selected or no result = 0 contribution
     }
   }
 
@@ -2730,19 +2752,23 @@ function calcStatsGlobal(pid) {
   total += dynamicBHPenalty(pid);
   total = Math.max(0, total);
 
-  // Streak: consecutive main SW/TA no-shows (walk global list, skip BH)
+  // Streak: consecutive main SW/TA no-shows (walk all SW/TA events desc, skip BH)
+  var swTaEvs = [];
+  for (i = 0; i < APP.S.events.length; i++) {
+    e = APP.S.events[i];
+    if (e.type === 'swordland' || e.type === 'trialliance') swTaEvs.push(e);
+  }
+  swTaEvs.sort(function(a,b){ return a.date < b.date ? -1 : 1; });
   var streak = 0;
-  for (i = allGlobalEvs.length - 1; i >= 0; i--) {
-    var ae = allGlobalEvs[i];
-    if (ae.isBH) continue;
-    var pd = ae.e.players ? ae.e.players[pid] : null;
-    if (!pd || !isSelected(pd) || !pd.st) continue; // not assigned to this event
+  for (i = swTaEvs.length - 1; i >= 0; i--) {
+    var pd = swTaEvs[i].players ? swTaEvs[i].players[pid] : null;
+    if (!pd || !isSelected(pd) || !pd.st) continue;
     if (pd.st === 'noshow' && !isSub(pd)) streak++;
     else break;
   }
 
   var tier = 'reserve';
-  var tracked = Math.round(accW);
+  var tracked = windowDates.length;
   if (tracked >= rules.minEvents) {
     if      (streak >= rules.autoStreak)  tier = 'reserve';
     else if (total  >= rules.starterMin)  tier = 'starter';
@@ -2973,6 +2999,16 @@ function resultSelector(ev, type) {
     var legKey = leg === 1 ? 'a' : 'b';
     var pls = ev.players || {};
     var current = ev[mvpKey] || '';
+    // Resolve current stored value (may be an ID or a legacy name string)
+    var currentResolvedId = null;
+    var currentDisplay = current;
+    for (var _ri = 0; _ri < APP.S.players.length; _ri++) {
+      var _rp = APP.S.players[_ri];
+      if (_rp.id === current) { currentResolvedId = _rp.id; currentDisplay = _rp.name; break; }
+      if ((_rp.name||'').trim().toLowerCase() === (current||'').trim().toLowerCase()) {
+        currentResolvedId = _rp.id; currentDisplay = _rp.name; break;
+      }
+    }
     // Build list of players in this legion (mains only)
     var members = [];
     var i, p;
@@ -2987,13 +3023,14 @@ function resultSelector(ev, type) {
     if (APP.readOnly) {
       return '<div style="display:flex;align-items:center;gap:6px;flex:1;min-width:140px">'
         + '<span style="font-size:10px;font-weight:800;color:var(--goldtxt)">&#11088; MVP L' + leg + '</span>'
-        + '<span style="font-size:11px;font-weight:700;color:var(--text)">' + (current ? esc(current) : '<span style="color:var(--muted)">—</span>') + '</span>'
+        + '<span style="font-size:11px;font-weight:700;color:var(--text)">' + (currentDisplay ? esc(currentDisplay) : '<span style="color:var(--muted)">—</span>') + '</span>'
         + '</div>';
     }
 
     var opts = '<option value="">— No MVP —</option>';
     for (i = 0; i < members.length; i++) {
-      opts += '<option value="' + esc(members[i].name) + '"' + (current === members[i].name ? ' selected' : '') + '>' + esc(members[i].name) + '</option>';
+      // Store player ID as value (not name) to survive renames
+      opts += '<option value="' + esc(members[i].id) + '"' + (members[i].id === currentResolvedId ? ' selected' : '') + '>' + esc(members[i].name) + '</option>';
     }
     var dis = isLocked ? ' disabled' : '';
     return '<div style="display:flex;align-items:center;gap:6px;flex:1;min-width:140px">'
@@ -3916,10 +3953,15 @@ function renderStats() {
     var _pp = S.players[_pi];
     _mvpNameToPid[(_pp.name||'').trim().toLowerCase()] = _pp.id;
   }
-  function _resolveMvp(rawName) {
-    if (!rawName) return null;
-    var key = rawName.trim().toLowerCase();
-    return _mvpNameToPid[key] || ('__raw__' + key); // fallback: keep raw name as key
+  function _resolveMvp(rawMvp) {
+    if (!rawMvp) return null;
+    // If already a player ID, use directly
+    for (var _ri = 0; _ri < S.players.length; _ri++) {
+      if (S.players[_ri].id === rawMvp) return rawMvp;
+    }
+    // Name lookup (case-insensitive)
+    var key = rawMvp.trim().toLowerCase();
+    return _mvpNameToPid[key] || ('__raw__' + key);
   }
   var mvpCountById = {}; // pid (or raw key) -> {name, count}
   for (i = 0; i < S.events.length; i++) {
@@ -4798,9 +4840,16 @@ function savePM() {
     for (i = 0; i < APP.S.players.length; i++) {
       if (APP.S.players[i].id === APP.editPid) {
         var px = APP.S.players[i];
+        var oldNameLower = (px.name||'').trim().toLowerCase();
         px.name = pl.name; px.r4 = pl.r4;
         px.swM = pl.swM; px.swA = pl.swA;
         px.taM = pl.taM; px.taA = pl.taA;
+        // Migrate any historical MVP entries stored as old name → player ID
+        for (var _mi = 0; _mi < APP.S.events.length; _mi++) {
+          var _me = APP.S.events[_mi];
+          if (_me.mvp1 && _me.mvp1 !== APP.editPid && _me.mvp1.trim().toLowerCase() === oldNameLower) _me.mvp1 = APP.editPid;
+          if (_me.mvp2 && _me.mvp2 !== APP.editPid && _me.mvp2.trim().toLowerCase() === oldNameLower) _me.mvp2 = APP.editPid;
+        }
         break;
       }
     }
