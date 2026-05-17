@@ -2657,48 +2657,86 @@ function bhEvPts(ev, pid) {
   return null; // not in this event
 }
 
-function calcStatsGlobal(pid) {
-  // Mixed-event tier calculation: SW=1, TA=1, BH pair=1 (each BH trap=0.5)
+// Dynamic BH penalty: computed from current rules, no cached state needed.
+// Returns the penalty pts if the player was absent from ALL of the last
+// bhPenaltyWindow*2 BH trap events, otherwise 0.
+function dynamicBHPenalty(pid) {
   var rules = R();
-  var allEvs = [], i, e;
+  var penWindow = rules.bhPenaltyWindow;
+  if (!penWindow || penWindow <= 0) return 0;
+  var penPts = rules.bhPenaltyPts;
+  if (penPts === undefined || penPts >= 0) return 0;
+  var bhEvs = APP.S.events
+    .filter(function(e){ return e.type === 'bearhunt'; })
+    .sort(function(a,b){ return a.date < b.date ? -1 : 1; });
+  if (bhEvs.length < 2 * penWindow) return 0;
+  var checkEvs = bhEvs.slice(-2 * penWindow);
+  for (var k = 0; k < checkEvs.length; k++) {
+    var parts = checkEvs[k].participants;
+    if (parts && parts[pid] && parts[pid].dp > 0) return 0; // participated → no penalty
+  }
+  return penPts; // absent from all checked traps → penalty
+}
+
+function calcStatsGlobal(pid) {
+  // Mixed-event tier calculation using GLOBAL alliance event timeline.
+  // SW=weight 1, TA=weight 1, each BH trap=weight 0.5 (pair=1 event).
+  // The window is the same for all players (last N alliance events by weight),
+  // so a player who skipped BH events does not reach further back in time.
+  var rules = R();
+  var i, e;
+
+  // Build GLOBAL alliance event list (all events, independent of participation)
+  var allGlobalEvs = [];
   for (i = 0; i < APP.S.events.length; i++) {
     e = APP.S.events[i];
     if (e.type === 'bearhunt') {
-      var bhp = bhEvPts(e, pid);
-      if (bhp === null) continue;
-      allEvs.push({e:e, weight:0.5, pts:bhp, isBH:true});
+      allGlobalEvs.push({e:e, weight:0.5, isBH:true});
     } else if (e.type === 'swordland' || e.type === 'trialliance') {
-      if (!e.players || !e.players[pid]) continue;
-      var d = e.players[pid];
-      if (!isSelected(d) || !d.st) continue;
-      if (isSub(d) && d.st === 'noshow') continue;
-      var p = evPts(e, pid);
-      if (p === null) continue;
-      allEvs.push({e:e, weight:1, pts:p, isBH:false});
+      allGlobalEvs.push({e:e, weight:1, isBH:false});
     }
   }
-  allEvs.sort(function(a,b){ return a.e.date < b.e.date ? -1 : 1; });
+  allGlobalEvs.sort(function(a,b){ return a.e.date < b.e.date ? -1 : 1; });
 
-  // Walk backwards, accumulate weight up to window
+  // Walk backwards, accumulate weight up to window size
   var windowSize = rules.window;
   var windowEvs = [], accW = 0;
-  for (i = allEvs.length - 1; i >= 0 && accW < windowSize; i--) {
-    if (accW + allEvs[i].weight <= windowSize + 0.001) {
-      windowEvs.unshift(allEvs[i]);
-      accW += allEvs[i].weight;
+  for (i = allGlobalEvs.length - 1; i >= 0 && accW < windowSize; i--) {
+    if (accW + allGlobalEvs[i].weight <= windowSize + 0.001) {
+      windowEvs.unshift(allGlobalEvs[i]);
+      accW += allGlobalEvs[i].weight;
     }
   }
 
+  // Calculate player's points within the global window
   var total = 0;
-  for (i = 0; i < windowEvs.length; i++) total += windowEvs[i].pts;
+  for (i = 0; i < windowEvs.length; i++) {
+    var we = windowEvs[i];
+    if (we.isBH) {
+      // BH: +bhPtsPresent if participated, 0 if absent (penalty handled separately)
+      var parts = we.e.participants;
+      if (parts && parts[pid] && parts[pid].dp > 0) total += rules.bhPtsPresent;
+    } else {
+      var d = we.e.players ? we.e.players[pid] : null;
+      if (d && isSelected(d) && d.st && !(isSub(d) && d.st === 'noshow')) {
+        var p = evPts(we.e, pid);
+        if (p !== null) total += p;
+      }
+      // Not selected or no result = 0 contribution
+    }
+  }
+
+  // Apply BH absence penalty (dynamic, always reflects current config)
+  total += dynamicBHPenalty(pid);
   total = Math.max(0, total);
 
-  // Streak: consecutive main SW/TA no-shows only (BH doesn't break streak)
+  // Streak: consecutive main SW/TA no-shows (walk global list, skip BH)
   var streak = 0;
-  for (i = allEvs.length - 1; i >= 0; i--) {
-    var ae = allEvs[i];
+  for (i = allGlobalEvs.length - 1; i >= 0; i--) {
+    var ae = allGlobalEvs[i];
     if (ae.isBH) continue;
-    var pd = ae.e.players[pid];
+    var pd = ae.e.players ? ae.e.players[pid] : null;
+    if (!pd || !isSelected(pd) || !pd.st) continue; // not assigned to this event
     if (pd.st === 'noshow' && !isSub(pd)) streak++;
     else break;
   }
