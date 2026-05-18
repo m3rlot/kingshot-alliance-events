@@ -4253,6 +4253,24 @@ function playerWinRate(pid) {
   return out;
 }
 
+function playerSparkline(pid) {
+  if (!APP.S) return '';
+  var evs = [], k, e2;
+  for (k = 0; k < APP.S.events.length; k++) {
+    e2 = APP.S.events[k];
+    if (e2.players && e2.players[pid] && isSelected(e2.players[pid]) && e2.players[pid].st) evs.push(e2);
+  }
+  evs.sort(function(a,b){ return a.date < b.date ? -1 : 1; });
+  var last5 = evs.slice(-5), bars = '', k2;
+  for (k2 = 0; k2 < last5.length; k2++) {
+    var st2 = last5[k2].players[pid].st;
+    var col2 = st2 === 'present' ? 'var(--green)' : '#fca5a5';
+    var h2   = st2 === 'present' ? '100%' : '35%';
+    bars += '<div class="spark-bar" style="height:' + h2 + ';background:' + col2 + '"></div>';
+  }
+  return '<div style="width:33px;display:flex;gap:2px;align-items:flex-end;height:14px;flex-shrink:0;justify-content:flex-end;margin-right:4px">' + bars + '</div>';
+}
+
 function toggleMultiMode() {
   APP.multiMode = !APP.multiMode;
   APP.multiSel  = {};
@@ -4696,6 +4714,7 @@ function renderRoster() {
 
     rows += '<span class="rname">' + esc(p.name) + '</span>'
       + (p.r4 ? r4Bdg() : '')
+      + playerSparkline(p.id)
       + '<div class="ractions">';
 
     var expandKey = 'rx_' + p.id;
